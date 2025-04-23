@@ -28,8 +28,14 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Test.Serialization.BufferedDeserialization
 {
+    /// <summary>
+    /// The key value type discriminator tests.
+    /// </summary>
     public class KeyValueTypeDiscriminatorTests
     {
+        /// <summary>
+        /// Keys the value type discriminator_ with parent base type_ single.
+        /// </summary>
         [Fact]
         public void KeyValueTypeDiscriminator_WithParentBaseType_Single()
         {
@@ -53,6 +59,9 @@ namespace YamlDotNet.Test.Serialization.BufferedDeserialization
             service.Should().BeOfType<KubernetesService>();
         }
 
+        /// <summary>
+        /// Keys the value type discriminator_ with parent base type_ list.
+        /// </summary>
         [Fact]
         public void KeyValueTypeDiscriminator_WithParentBaseType_List()
         {
@@ -77,6 +86,9 @@ namespace YamlDotNet.Test.Serialization.BufferedDeserialization
             resources[1].Should().BeOfType<KubernetesService>();
         }
 
+        /// <summary>
+        /// Keys the value type discriminator_ with object base type_ single.
+        /// </summary>
         [Fact]
         public void KeyValueTypeDiscriminator_WithObjectBaseType_Single()
         {
@@ -100,6 +112,9 @@ namespace YamlDotNet.Test.Serialization.BufferedDeserialization
             service.Should().BeOfType<KubernetesService>();
         }
 
+        /// <summary>
+        /// Keys the value type discriminator_ with object base type_ list.
+        /// </summary>
         [Fact]
         public void KeyValueTypeDiscriminator_WithObjectBaseType_List()
         {
@@ -124,6 +139,9 @@ namespace YamlDotNet.Test.Serialization.BufferedDeserialization
             resources[1].Should().BeOfType<KubernetesService>();
         }
 
+        /// <summary>
+        /// Keys the value type discriminator_ with interface base type_ single.
+        /// </summary>
         [Fact]
         public void KeyValueTypeDiscriminator_WithInterfaceBaseType_Single()
         {
@@ -147,6 +165,9 @@ namespace YamlDotNet.Test.Serialization.BufferedDeserialization
             service.Should().BeOfType<KubernetesService>();
         }
 
+        /// <summary>
+        /// Keys the value type discriminator_ with interface base type_ list.
+        /// </summary>
         [Fact]
         public void KeyValueTypeDiscriminator_WithInterfaceBaseType_List()
         {
@@ -171,6 +192,9 @@ namespace YamlDotNet.Test.Serialization.BufferedDeserialization
             resources[1].Should().BeOfType<KubernetesService>();
         }
 
+        /// <summary>
+        /// Keys the value type discriminator_ multiple with same key.
+        /// </summary>
         [Fact]
         public void KeyValueTypeDiscriminator_MultipleWithSameKey()
         {
@@ -234,34 +258,82 @@ spec:
 
         public interface IKubernetesResource { }
 
+        /// <summary>
+        /// The kubernetes resource.
+        /// </summary>
         public class KubernetesResource : IKubernetesResource
         {
+            /// <summary>
+            /// Gets or sets the api version.
+            /// </summary>
             public string ApiVersion { get; set; }
+            /// <summary>
+            /// Gets or sets the kind.
+            /// </summary>
             public string Kind { get; set; }
+            /// <summary>
+            /// Gets or sets the metadata.
+            /// </summary>
             public KubernetesMetadata Metadata { get; set; }
 
+            /// <summary>
+            /// The kubernetes metadata.
+            /// </summary>
             public class KubernetesMetadata
             {
+                /// <summary>
+                /// Gets or sets the name.
+                /// </summary>
                 public string Name { get; set; }
             }
         }
 
+        /// <summary>
+        /// The kubernetes service.
+        /// </summary>
         public class KubernetesService : KubernetesResource
         {
+            /// <summary>
+            /// Gets or sets the spec.
+            /// </summary>
             public KubernetesServiceSpec Spec { get; set; }
+            /// <summary>
+            /// The kubernetes service spec.
+            /// </summary>
             public class KubernetesServiceSpec
             {
+                /// <summary>
+                /// Gets or sets the selector.
+                /// </summary>
                 public Dictionary<string, string> Selector { get; set; }
+                /// <summary>
+                /// Gets or sets the ports.
+                /// </summary>
                 public List<KubernetesServicePort> Ports { get; set; }
+                /// <summary>
+                /// The kubernetes service port.
+                /// </summary>
                 public class KubernetesServicePort
                 {
+                    /// <summary>
+                    /// Gets or sets the protocol.
+                    /// </summary>
                     public string Protocol { get; set; }
+                    /// <summary>
+                    /// Gets or sets the port.
+                    /// </summary>
                     public int Port { get; set; }
+                    /// <summary>
+                    /// Gets or sets the target port.
+                    /// </summary>
                     public int TargetPort { get; set; }
                 }
             }
         }
 
+        /// <summary>
+        /// The kubernetes namespace.
+        /// </summary>
         public class KubernetesNamespace : KubernetesResource
         {
 

@@ -23,6 +23,9 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Test.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The static context.
+    /// </summary>
     [YamlStaticContext]
     public partial class StaticContext : YamlDotNet.Serialization.StaticContext
     {

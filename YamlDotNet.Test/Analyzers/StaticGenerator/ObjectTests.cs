@@ -31,8 +31,14 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Test.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The object tests.
+    /// </summary>
     public class ObjectTests
     {
+        /// <summary>
+        /// Inheriteds the members works.
+        /// </summary>
         [Fact]
         public void InheritedMembersWorks()
         {
@@ -48,6 +54,9 @@ Inherited: world
             Assert.Equal(yaml.NormalizeNewLines().TrimNewLines(), actualYaml.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Regulars the object works.
+        /// </summary>
         [Fact]
         public void RegularObjectWorks()
         {
@@ -109,21 +118,39 @@ SomeDictionary:
             Assert.Equal(yaml.NormalizeNewLines().TrimNewLines(), actualYaml.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Enumerables the are treated as lists.
+        /// </summary>
         [Fact]
         public void EnumerablesAreTreatedAsLists() => ExecuteListOverrideTest<EnumerableClass>();
 
+        /// <summary>
+        /// Collections the are treated as lists.
+        /// </summary>
         [Fact]
         public void CollectionsAreTreatedAsLists() => ExecuteListOverrideTest<CollectionClass>();
 
+        /// <summary>
+        /// IS the lists are treated as lists.
+        /// </summary>
         [Fact]
         public void IListsAreTreatedAsLists() => ExecuteListOverrideTest<ListClass>();
 
+        /// <summary>
+        /// Reads the only collections are treated as lists.
+        /// </summary>
         [Fact]
         public void ReadOnlyCollectionsAreTreatedAsLists() => ExecuteListOverrideTest<ReadOnlyCollectionClass>();
 
+        /// <summary>
+        /// Reads the only lists are treated as lists.
+        /// </summary>
         [Fact]
         public void ReadOnlyListsAreTreatedAsLists() => ExecuteListOverrideTest<ReadOnlyListClass>();
 
+        /// <summary>
+        /// IS the list are treated as lists.
+        /// </summary>
         [Fact]
         public void IListAreTreatedAsLists()
         {
@@ -139,6 +166,9 @@ SomeDictionary:
             Assert.Equal("value2", ((List<string>)actual.Test)[1]);
         }
 
+        /// <summary>
+        /// Callbacks the are executed.
+        /// </summary>
         [Fact]
         public void CallbacksAreExecuted()
         {
@@ -155,6 +185,9 @@ SomeDictionary:
             Assert.Equal(1, test.OnSerializingCallCount);
         }
 
+        /// <summary>
+        /// Namings the convention applied to enum.
+        /// </summary>
         [Fact]
         public void NamingConventionAppliedToEnum()
         {
@@ -164,6 +197,9 @@ SomeDictionary:
             Assert.Equal("plain", serialized.TrimNewLines());
         }
 
+        /// <summary>
+        /// Namings the convention applied to enum when deserializing.
+        /// </summary>
         [Fact]
         public void NamingConventionAppliedToEnumWhenDeserializing()
         {
@@ -174,6 +210,9 @@ SomeDictionary:
             Assert.Equal(expected, actual);
         }
 
+        /// <summary>
+        /// Reads the only dictionaries are treated as dictionaries.
+        /// </summary>
         [Fact]
         public void ReadOnlyDictionariesAreTreatedAsDictionaries()
         {
@@ -192,6 +231,9 @@ SomeDictionary:
         }
 
 #if NET6_0_OR_GREATER
+        /// <summary>
+        /// Enums the deserialization uses enum member attribute.
+        /// </summary>
         [Fact]
         public void EnumDeserializationUsesEnumMemberAttribute()
         {
@@ -201,6 +243,9 @@ SomeDictionary:
             Assert.Equal(EnumMemberedEnum.Hello, actual);
         }
 
+        /// <summary>
+        /// Enums the deserialized uses enum name when member is empty.
+        /// </summary>
         [Fact]
         public void EnumDeserializedUsesEnumNameWhenMemberIsEmpty()
         {
@@ -210,6 +255,9 @@ SomeDictionary:
             Assert.Equal(EnumMemberedEnum.EmptyValue, actual);
         }
 
+        /// <summary>
+        /// Enums the deserialized uses enum name when member is null.
+        /// </summary>
         [Fact]
         public void EnumDeserializedUsesEnumNameWhenMemberIsNull()
         {
@@ -219,6 +267,9 @@ SomeDictionary:
             Assert.Equal(EnumMemberedEnum.NullValue, actual);
         }
 
+        /// <summary>
+        /// Enums the serialization uses enum member attribute.
+        /// </summary>
         [Fact]
         public void EnumSerializationUsesEnumMemberAttribute()
         {
@@ -227,6 +278,9 @@ SomeDictionary:
             Assert.Equal("goodbye", actual.TrimNewLines());
         }
 
+        /// <summary>
+        /// Enums the serialization uses enum member attribute with empty value.
+        /// </summary>
         [Fact]
         public void EnumSerializationUsesEnumMemberAttributeWithEmptyValue()
         {
@@ -235,6 +289,9 @@ SomeDictionary:
             Assert.Equal("Test: ''", actual.TrimNewLines());
         }
 
+        /// <summary>
+        /// Enums the serialization uses enum member attribute with null value.
+        /// </summary>
         [Fact]
         public void EnumSerializationUsesEnumMemberAttributeWithNullValue()
         {
@@ -243,12 +300,21 @@ SomeDictionary:
             Assert.Equal("NullValue", actual.TrimNewLines());
         }
 
+        /// <summary>
+        /// The enum membered enum harness.
+        /// </summary>
         [YamlSerializable]
         public class EnumMemberedEnumHarness
         {
+            /// <summary>
+            /// Gets or sets the test.
+            /// </summary>
             public EnumMemberedEnum Test { get; set; }
         }
 
+        /// <summary>
+        /// The enum membered enum.
+        /// </summary>
         [YamlSerializable]
         public enum EnumMemberedEnum
         {
@@ -264,6 +330,9 @@ SomeDictionary:
             NullValue = 3
         }
 #endif
+        /// <summary>
+        /// Complexes the type converter_ uses serializer to serialize complex types.
+        /// </summary>
         [Fact]
         public void ComplexTypeConverter_UsesSerializerToSerializeComplexTypes()
         {
@@ -290,6 +359,9 @@ prop2:
             Assert.Equal(expected, actual.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Complexes the type converter_ uses deserializer to deserialize complex types.
+        /// </summary>
         [Fact]
         public void ComplexTypeConverter_UsesDeserializerToDeserializeComplexTypes()
         {
@@ -306,17 +378,35 @@ prop2:
             Assert.Equal("2.2", actual.InnerType2.Prop2);
         }
 
+        /// <summary>
+        /// The complex type.
+        /// </summary>
         [YamlSerializable]
         public class ComplexType
         {
+            /// <summary>
+            /// Gets or sets the inner type1.
+            /// </summary>
             public InnerType InnerType1 { get; set; }
+            /// <summary>
+            /// Gets or sets the inner type2.
+            /// </summary>
             public InnerType InnerType2 { get; set; }
         }
 
+        /// <summary>
+        /// The inner type.
+        /// </summary>
         [YamlSerializable]
         public class InnerType
         {
+            /// <summary>
+            /// Gets or sets the prop1.
+            /// </summary>
             public string Prop1 { get; set; }
+            /// <summary>
+            /// Gets or sets the prop2.
+            /// </summary>
             public string Prop2 { get; set; }
         }
 
@@ -324,11 +414,7 @@ prop2:
         {
             public bool Accepts(Type type)
             {
-                if (type == typeof(ComplexType))
-                {
-                    return true;
-                }
-                return false;
+                return type == typeof(ComplexType);
             }
 
             public object ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
@@ -399,111 +485,249 @@ prop2:
             Assert.Equal("value2", ((List<string>)actual.TestValue)[1]);
         }
 
+        /// <summary>
+        /// The test state.
+        /// </summary>
         [YamlSerializable]
         public class TestState
         {
+            /// <summary>
+            /// Gets or sets the on deserialized call count.
+            /// </summary>
             public int OnDeserializedCallCount { get; set; }
+            /// <summary>
+            /// Gets or sets the on deserializing call count.
+            /// </summary>
             public int OnDeserializingCallCount { get; set; }
+            /// <summary>
+            /// Gets or sets the on serialized call count.
+            /// </summary>
             public int OnSerializedCallCount { get; set; }
+            /// <summary>
+            /// Gets or sets the on serializing call count.
+            /// </summary>
             public int OnSerializingCallCount { get; set; }
 
+            /// <summary>
+            /// Gets or sets the test.
+            /// </summary>
             public string Test { get; set; } = string.Empty;
 
+            /// <summary>
+            /// Deserializeds the.
+            /// </summary>
             [OnDeserialized]
             public void Deserialized() => OnDeserializedCallCount++;
 
+            /// <summary>
+            /// Deserializings the.
+            /// </summary>
             [OnDeserializing]
             public void Deserializing() => OnDeserializingCallCount++;
 
+            /// <summary>
+            /// Serializeds the.
+            /// </summary>
             [OnSerialized]
             public void Serialized() => OnSerializedCallCount++;
 
+            /// <summary>
+            /// Serializings the.
+            /// </summary>
             [OnSerializing]
             public void Serializing() => OnSerializingCallCount++;
         }
 
     }
+    /// <summary>
+    /// The inherited class.
+    /// </summary>
     public class InheritedClass
     {
+        /// <summary>
+        /// Gets or sets the inherited.
+        /// </summary>
         public string Inherited { get; set; }
     }
 
+    /// <summary>
+    /// The serialized inherited class.
+    /// </summary>
     [YamlSerializable]
     public class SerializedInheritedClass : InheritedClass
     {
+        /// <summary>
+        /// Gets or sets the not inherited.
+        /// </summary>
         public string NotInherited { get; set; }
     }
 
+    /// <summary>
+    /// The regular object outer.
+    /// </summary>
     [YamlSerializable]
     public class RegularObjectOuter
     {
+        /// <summary>
+        /// Gets or sets the prop1.
+        /// </summary>
         public string Prop1 { get; set; }
+        /// <summary>
+        /// Gets or sets the prop2.
+        /// </summary>
         public int Prop2 { get; set; }
+        /// <summary>
+        /// Gets or sets the member.
+        /// </summary>
         [YamlMember(Alias = "Hello", Description = "A Description", ScalarStyle = YamlDotNet.Core.ScalarStyle.DoubleQuoted)]
         public string Member { get; set; }
+        /// <summary>
+        /// Gets or sets the ignored.
+        /// </summary>
         [YamlIgnore]
         public string Ignored { get; set; } = "I am ignored";
+        /// <summary>
+        /// Gets or sets the inner.
+        /// </summary>
         public RegularObjectInner Inner { get; set; }
+        /// <summary>
+        /// Gets or sets the nested.
+        /// </summary>
         public NestedClass Nested { get; set; }
 
+        /// <summary>
+        /// Gets or sets the dictionary of arrays.
+        /// </summary>
         public Dictionary<string, string[]> DictionaryOfArrays { get; set; }
 
+        /// <summary>
+        /// Gets or sets the some value.
+        /// </summary>
         public object SomeValue { get; set; }
 
+        /// <summary>
+        /// Gets or sets the some dictionary.
+        /// </summary>
         public object SomeDictionary { get; set; }
 
+        /// <summary>
+        /// The nested class.
+        /// </summary>
         [YamlSerializable]
         public class NestedClass
         {
+            /// <summary>
+            /// Gets or sets the nested prop.
+            /// </summary>
             public string NestedProp { get; set; }
         }
     }
 
+    /// <summary>
+    /// The regular object inner.
+    /// </summary>
     [YamlSerializable]
     public class RegularObjectInner
     {
+        /// <summary>
+        /// Gets or sets the prop1.
+        /// </summary>
         public string Prop1 { get; set; }
+        /// <summary>
+        /// Gets or sets the prop2.
+        /// </summary>
         public int Prop2 { get; set; }
     }
 
+    /// <summary>
+    /// The enumerable class.
+    /// </summary>
     [YamlSerializable]
     public class EnumerableClass : InterfaceLists<IEnumerable<string>>
     {
+        /// <summary>
+        /// Gets or sets the test.
+        /// </summary>
         public IEnumerable<string> Test { get; set; }
+        /// <summary>
+        /// Gets the test value.
+        /// </summary>
         public object TestValue => Test;
     }
 
+    /// <summary>
+    /// The collection class.
+    /// </summary>
     [YamlSerializable]
     public class CollectionClass : InterfaceLists<ICollection<string>>
     {
+        /// <summary>
+        /// Gets or sets the test.
+        /// </summary>
         public ICollection<string> Test { get; set; }
+        /// <summary>
+        /// Gets the test value.
+        /// </summary>
         public object TestValue => Test;
     }
 
+    /// <summary>
+    /// The list class.
+    /// </summary>
     [YamlSerializable]
     public class ListClass : InterfaceLists<IList<string>>
     {
+        /// <summary>
+        /// Gets or sets the test.
+        /// </summary>
         public IList<string> Test { get; set; }
+        /// <summary>
+        /// Gets the test value.
+        /// </summary>
         public object TestValue => Test;
     }
 
+    /// <summary>
+    /// The read only collection class.
+    /// </summary>
     [YamlSerializable]
     public class ReadOnlyCollectionClass : InterfaceLists<IReadOnlyCollection<string>>
     {
+        /// <summary>
+        /// Gets or sets the test.
+        /// </summary>
         public IReadOnlyCollection<string> Test { get; set; }
+        /// <summary>
+        /// Gets the test value.
+        /// </summary>
         public object TestValue => Test;
     }
 
+    /// <summary>
+    /// The read only list class.
+    /// </summary>
     [YamlSerializable]
     public class ReadOnlyListClass : InterfaceLists<IReadOnlyList<string>>
     {
+        /// <summary>
+        /// Gets or sets the test.
+        /// </summary>
         public IReadOnlyList<string> Test { get; set; }
+        /// <summary>
+        /// Gets the test value.
+        /// </summary>
         public object TestValue => Test;
     }
 
+    /// <summary>
+    /// The read only dictionary class.
+    /// </summary>
     [YamlSerializable]
     public class ReadOnlyDictionaryClass
     {
+        /// <summary>
+        /// Gets or sets the test.
+        /// </summary>
         public IReadOnlyDictionary<string, string> Test { get; set; }
     }
 

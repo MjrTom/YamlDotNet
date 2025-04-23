@@ -27,8 +27,14 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The type converter attribute tests.
+    /// </summary>
     public class TypeConverterAttributeTests
     {
+        /// <summary>
+        /// Tests the converter in attribute override_ deserializes.
+        /// </summary>
         [Fact]
         public void TestConverterInAttributeOverride_Deserializes()
         {
@@ -45,6 +51,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal("def", actual.Value.Value);
         }
 
+        /// <summary>
+        /// Tests the converter in attribute override_ serializes.
+        /// </summary>
         [Fact]
         public void TestConverterInAttributeOverride_Serializes()
         {
@@ -68,6 +77,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal(expected, actual);
         }
 
+        /// <summary>
+        /// Tests the converter on attribute_ deserializes.
+        /// </summary>
         [Fact]
         public void TestConverterOnAttribute_Deserializes()
         {
@@ -79,6 +91,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal("def", actual.Value.Value);
         }
 
+        /// <summary>
+        /// Tests the converter on attribute_ serializes.
+        /// </summary>
         [Fact]
         public void TestConverterOnAttribute_Serializes()
         {
@@ -97,10 +112,25 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal(expected, actual);
         }
 
+        /// <summary>
+        /// The attributed type converter.
+        /// </summary>
         public class AttributedTypeConverter : IYamlTypeConverter
         {
+            /// <summary>
+            /// Accepts the.
+            /// </summary>
+            /// <param name="type">The type.</param>
+            /// <returns>A bool.</returns>
             public bool Accepts(Type type) => false;
 
+            /// <summary>
+            /// Reads the yaml.
+            /// </summary>
+            /// <param name="parser">The parser.</param>
+            /// <param name="type">The type.</param>
+            /// <param name="rootDeserializer">The root deserializer.</param>
+            /// <returns>An object.</returns>
             public object ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
             {
                 parser.Consume<MappingStart>();
@@ -116,6 +146,13 @@ namespace YamlDotNet.Test.Serialization
                 return result;
             }
 
+            /// <summary>
+            /// Writes the yaml.
+            /// </summary>
+            /// <param name="emitter">The emitter.</param>
+            /// <param name="value">The value.</param>
+            /// <param name="type">The type.</param>
+            /// <param name="serializer">The serializer.</param>
             public void WriteYaml(IEmitter emitter, object value, Type type, ObjectSerializer serializer)
             {
                 var v = (ValueClass)value;
@@ -127,20 +164,41 @@ namespace YamlDotNet.Test.Serialization
             }
         }
 
+        /// <summary>
+        /// The outer class.
+        /// </summary>
         public class OuterClass
         {
+            /// <summary>
+            /// Gets or sets the value.
+            /// </summary>
             [YamlConverter(typeof(AttributedTypeConverter))]
             public ValueClass Value { get; set; }
         }
 
+        /// <summary>
+        /// The outer class without attribute.
+        /// </summary>
         public class OuterClassWithoutAttribute
         {
+            /// <summary>
+            /// Gets or sets the value.
+            /// </summary>
             public ValueClass Value { get; set; }
         }
 
+        /// <summary>
+        /// The value class.
+        /// </summary>
         public class ValueClass
         {
+            /// <summary>
+            /// Gets or sets the key.
+            /// </summary>
             public string Key { get; set; }
+            /// <summary>
+            /// Gets or sets the value.
+            /// </summary>
             public string Value { get; set; }
         }
     }

@@ -150,6 +150,10 @@ namespace YamlDotNet.RepresentationModel
 
         #region IEnumerable<YamlDocument> Members
 
+        /// <summary>
+        /// Gets the enumerator.
+        /// </summary>
+        /// <returns>An IEnumerator.</returns>
         public IEnumerator<YamlDocument> GetEnumerator()
         {
             return documents.GetEnumerator();

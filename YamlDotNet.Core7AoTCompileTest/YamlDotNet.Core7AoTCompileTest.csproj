@@ -20,6 +20,16 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <WarningLevel>8</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningLevel>8</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\YamlDotNet.Analyzers.StaticGenerator\YamlDotNet.Analyzers.StaticGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     <ProjectReference Include="..\YamlDotNet.Core7AoTCompileTest.Model\YamlDotNet.Core7AoTCompileTest.Model.csproj" />

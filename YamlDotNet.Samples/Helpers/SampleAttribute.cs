@@ -28,6 +28,9 @@ namespace YamlDotNet.Samples.Helpers
     /// </summary>
     public class SampleAttribute : FactAttribute
     {
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
         public string Description { get; set; }
     }
 }

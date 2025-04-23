@@ -26,8 +26,14 @@ using YamlDotNet.Helpers;
 
 namespace YamlDotNet.Test.Helpers
 {
+    /// <summary>
+    /// The ordered dictionary tests.
+    /// </summary>
     public class OrderedDictionaryTests
     {
+        /// <summary>
+        /// Orders the of elements is mainted.
+        /// </summary>
         [Fact]
         public void OrderOfElementsIsMainted()
         {
@@ -49,6 +55,9 @@ namespace YamlDotNet.Test.Helpers
             Assert.Equal(new[] { "First", "Second", "Third" }, dict.Values.ToArray());
         }
 
+        /// <summary>
+        /// Keys the contains works.
+        /// </summary>
         [Fact]
         public void KeysContainsWorks()
         {
@@ -66,6 +75,9 @@ namespace YamlDotNet.Test.Helpers
             Assert.False(dict.Keys.Contains(4));
         }
 
+        /// <summary>
+        /// Values the contains works.
+        /// </summary>
         [Fact]
         public void ValuesContainsWorks()
         {
@@ -83,6 +95,9 @@ namespace YamlDotNet.Test.Helpers
             Assert.False(dict.Values.Contains("Fourth item"));
         }
 
+        /// <summary>
+        /// Cans the insert and remove at index.
+        /// </summary>
         [Fact]
         public void CanInsertAndRemoveAtIndex()
         {

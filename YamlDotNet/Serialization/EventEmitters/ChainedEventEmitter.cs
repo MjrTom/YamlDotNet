@@ -36,31 +36,61 @@ namespace YamlDotNet.Serialization.EventEmitters
             this.nextEmitter = nextEmitter ?? throw new ArgumentNullException(nameof(nextEmitter));
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public virtual void Emit(AliasEventInfo eventInfo, IEmitter emitter)
         {
             nextEmitter.Emit(eventInfo, emitter);
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public virtual void Emit(ScalarEventInfo eventInfo, IEmitter emitter)
         {
             nextEmitter.Emit(eventInfo, emitter);
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public virtual void Emit(MappingStartEventInfo eventInfo, IEmitter emitter)
         {
             nextEmitter.Emit(eventInfo, emitter);
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public virtual void Emit(MappingEndEventInfo eventInfo, IEmitter emitter)
         {
             nextEmitter.Emit(eventInfo, emitter);
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public virtual void Emit(SequenceStartEventInfo eventInfo, IEmitter emitter)
         {
             nextEmitter.Emit(eventInfo, emitter);
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public virtual void Emit(SequenceEndEventInfo eventInfo, IEmitter emitter)
         {
             nextEmitter.Emit(eventInfo, emitter);

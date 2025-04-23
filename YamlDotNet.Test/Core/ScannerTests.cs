@@ -30,8 +30,14 @@ using YamlDotNet.Core.Tokens;
 
 namespace YamlDotNet.Test.Core
 {
+    /// <summary>
+    /// The scanner tests.
+    /// </summary>
     public class ScannerTests : TokenHelper
     {
+        /// <summary>
+        /// Verifies the tokens on example1.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample1()
         {
@@ -44,6 +50,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example2.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample2()
         {
@@ -53,6 +62,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example3.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample3()
         {
@@ -65,6 +77,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example4.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample4()
         {
@@ -78,6 +93,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example5.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample5()
         {
@@ -90,6 +108,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example6.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample6()
         {
@@ -100,6 +121,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example7.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample7()
         {
@@ -119,6 +143,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example8.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample8()
         {
@@ -134,6 +161,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example9.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample9()
         {
@@ -154,6 +184,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example10.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample10()
         {
@@ -186,6 +219,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example11.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample11()
         {
@@ -226,6 +262,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example12.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample12()
         {
@@ -261,6 +300,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example13.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample13()
         {
@@ -293,6 +335,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example14.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample14()
         {
@@ -310,6 +355,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Supports the realy long strings.
+        /// </summary>
         [Fact]
         public void SupportRealyLongStrings()
         {
@@ -327,6 +375,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Comments the are returned when requested.
+        /// </summary>
         [Fact]
         public void CommentsAreReturnedWhenRequested()
         {
@@ -349,6 +400,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Comments the are correctly marked.
+        /// </summary>
         [Fact]
         public void CommentsAreCorrectlyMarked()
         {
@@ -370,6 +424,9 @@ namespace YamlDotNet.Test.Core
             Assert.Fail("Did not find a comment");
         }
 
+        /// <summary>
+        /// Comments the are omitted unless requested.
+        /// </summary>
         [Fact]
         public void CommentsAreOmittedUnlessRequested()
         {
@@ -389,6 +446,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Marks the on double quoted scalars are correct.
+        /// </summary>
         [Fact]
         public void MarksOnDoubleQuotedScalarsAreCorrect()
         {
@@ -404,6 +464,9 @@ namespace YamlDotNet.Test.Core
             Assert.Equal(4, scalar.End.Column);
         }
 
+        /// <summary>
+        /// Slow_stream_is_parsed_correctlies the.
+        /// </summary>
         [Fact]
         public void Slow_stream_is_parsed_correctly()
         {
@@ -420,6 +483,9 @@ namespace YamlDotNet.Test.Core
             scanner.MoveNext();
         }
 
+        /// <summary>
+        /// Issue_553_562S the.
+        /// </summary>
         [Fact]
         public void Issue_553_562()
         {
@@ -431,6 +497,9 @@ namespace YamlDotNet.Test.Core
             }
         }
 
+        /// <summary>
+        /// Plain_S the scalar_outside_of_flow_allows_braces.
+        /// </summary>
         [Fact]
         public void Plain_Scalar_outside_of_flow_allows_braces()
         {
@@ -445,6 +514,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Plain_S the scalar_inside_flow_does_not_allow_braces.
+        /// </summary>
         [Fact]
         public void Plain_Scalar_inside_flow_does_not_allow_braces()
         {
@@ -460,6 +532,9 @@ namespace YamlDotNet.Test.Core
                 Error("Invalid key indicator format."));
         }
 
+        /// <summary>
+        /// Keys_can_start_with_colons_in_nested_blocks the.
+        /// </summary>
         [Fact]
         public void Keys_can_start_with_colons_in_nested_block()
         {
@@ -483,6 +558,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Keys_can_start_with_colons_after_quoted_values the.
+        /// </summary>
         [Fact]
         public void Keys_can_start_with_colons_after_quoted_values()
         {
@@ -501,6 +579,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Keys_can_start_with_colons_after_single_quoted_values_in_nested_blocks the.
+        /// </summary>
         [Fact]
         public void Keys_can_start_with_colons_after_single_quoted_values_in_nested_block()
         {
@@ -524,6 +605,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Keys_can_start_with_colons_after_double_quoted_values_in_nested_blocks the.
+        /// </summary>
         [Fact]
         public void Keys_can_start_with_colons_after_double_quoted_values_in_nested_block()
         {
@@ -547,6 +631,9 @@ namespace YamlDotNet.Test.Core
                  StreamEnd);
         }
 
+        /// <summary>
+        /// Utf16S the strings as utf8 surrogates work correctly.
+        /// </summary>
         [Fact]
         public void Utf16StringsAsUtf8SurrogatesWorkCorrectly()
         {
@@ -561,6 +648,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Utf16S the characters are read correctly.
+        /// </summary>
         [Fact]
         public void Utf16CharactersAreReadCorrectly()
         {
@@ -621,25 +711,50 @@ namespace YamlDotNet.Test.Core
                 this.data = data;
             }
 
+            /// <summary>
+            /// Gets a value indicating whether can read.
+            /// </summary>
             public override bool CanRead => true;
 
+            /// <summary>
+            /// Gets a value indicating whether can seek.
+            /// </summary>
             public override bool CanSeek => false;
 
+            /// <summary>
+            /// Gets a value indicating whether can write.
+            /// </summary>
             public override bool CanWrite => false;
 
+            /// <summary>
+            /// Gets the length.
+            /// </summary>
             public override long Length => data.Length;
 
+            /// <summary>
+            /// Gets or sets the position.
+            /// </summary>
             public override long Position
             {
                 get => position;
                 set => throw new NotSupportedException();
             }
 
+            /// <summary>
+            /// Flushes the.
+            /// </summary>
             public override void Flush()
             {
                 throw new NotSupportedException();
             }
 
+            /// <summary>
+            /// Reads the.
+            /// </summary>
+            /// <param name="buffer">The buffer.</param>
+            /// <param name="offset">The offset.</param>
+            /// <param name="count">The count.</param>
+            /// <returns>An int.</returns>
             public override int Read(byte[] buffer, int offset, int count)
             {
                 if (count == 0 || position == data.Length)
@@ -652,16 +767,32 @@ namespace YamlDotNet.Test.Core
                 return 1;
             }
 
+            /// <summary>
+            /// Seeks the.
+            /// </summary>
+            /// <param name="offset">The offset.</param>
+            /// <param name="origin">The origin.</param>
+            /// <returns>A long.</returns>
             public override long Seek(long offset, SeekOrigin origin)
             {
                 throw new NotSupportedException();
             }
 
+            /// <summary>
+            /// Sets the length.
+            /// </summary>
+            /// <param name="value">The value.</param>
             public override void SetLength(long value)
             {
                 throw new NotSupportedException();
             }
 
+            /// <summary>
+            /// Writes the.
+            /// </summary>
+            /// <param name="buffer">The buffer.</param>
+            /// <param name="offset">The offset.</param>
+            /// <param name="count">The count.</param>
             public override void Write(byte[] buffer, int offset, int count)
             {
                 throw new NotSupportedException();

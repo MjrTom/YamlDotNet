@@ -23,6 +23,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
 {
+    /// <summary>
+    /// The emitting object graph visitor.
+    /// </summary>
     public sealed class EmittingObjectGraphVisitor : IObjectGraphVisitor<IEmitter>
     {
         private readonly IEventEmitter eventEmitter;

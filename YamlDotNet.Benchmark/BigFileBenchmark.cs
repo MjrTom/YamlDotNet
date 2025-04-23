@@ -27,12 +27,18 @@ using YamlDotNet.RepresentationModel;
 using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Benchmark;
+/// <summary>
+/// The big file benchmark.
+/// </summary>
 
 [MemoryDiagnoser]
 public class BigFileBenchmark
 {
     private string yamlString = "";
 
+    /// <summary>
+    /// Setups the.
+    /// </summary>
     [GlobalSetup]
     public void Setup()
     {
@@ -45,6 +51,9 @@ public class BigFileBenchmark
         yamlString = stringBuilder.ToString();
     }
 
+    /// <summary>
+    /// Loads the large.
+    /// </summary>
     [Benchmark]
     public void LoadLarge()
     {

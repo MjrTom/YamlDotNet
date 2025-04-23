@@ -24,6 +24,9 @@ using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
 {
+    /// <summary>
+    /// The custom serialization object graph visitor.
+    /// </summary>
     public sealed class CustomSerializationObjectGraphVisitor : ChainedObjectGraphVisitor
     {
         private readonly TypeConverterCache typeConverters;

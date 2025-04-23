@@ -23,10 +23,22 @@ using Microsoft.CodeAnalysis;
 
 namespace YamlDotNet.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The enum mappings.
+    /// </summary>
     public class EnumMappings
     {
+        /// <summary>
+        /// Gets or sets the type.
+        /// </summary>
         public ITypeSymbol Type { get; set; }
+        /// <summary>
+        /// Gets or sets the actual name.
+        /// </summary>
         public string ActualName { get; set; }
+        /// <summary>
+        /// Gets or sets the enum member value.
+        /// </summary>
         public string EnumMemberValue { get; set; }
 
         public EnumMappings(ITypeSymbol type, string actualName, string enumMemberValue)

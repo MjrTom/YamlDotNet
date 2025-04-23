@@ -25,22 +25,70 @@ using Microsoft.CodeAnalysis;
 
 namespace YamlDotNet.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The class object.
+    /// </summary>
     public class ClassObject
     {
+        /// <summary>
+        /// Gets the field symbols.
+        /// </summary>
         public List<IFieldSymbol> FieldSymbols { get; }
+        /// <summary>
+        /// Gets the full name.
+        /// </summary>
         public string FullName { get; }
+        /// <summary>
+        /// Gets the guid suffix.
+        /// </summary>
         public string GuidSuffix { get; }
+        /// <summary>
+        /// Gets a value indicating whether is array.
+        /// </summary>
         public bool IsArray { get; }
+        /// <summary>
+        /// Gets a value indicating whether is dictionary.
+        /// </summary>
         public bool IsDictionary { get; }
+        /// <summary>
+        /// Gets a value indicating whether dictionary is override.
+        /// </summary>
         public bool IsDictionaryOverride { get; }
+        /// <summary>
+        /// Gets a value indicating whether is list.
+        /// </summary>
         public bool IsList { get; }
+        /// <summary>
+        /// Gets a value indicating whether list is override.
+        /// </summary>
         public bool IsListOverride { get; }
+        /// <summary>
+        /// Gets the module symbol.
+        /// </summary>
         public ITypeSymbol ModuleSymbol { get; }
+        /// <summary>
+        /// Gets the on deserialized methods.
+        /// </summary>
         public List<IMethodSymbol> OnDeserializedMethods { get; }
+        /// <summary>
+        /// Gets the on deserializing methods.
+        /// </summary>
         public List<IMethodSymbol> OnDeserializingMethods { get; }
+        /// <summary>
+        /// Gets the on serialized methods.
+        /// </summary>
         public List<IMethodSymbol> OnSerializedMethods { get; }
+        /// <summary>
+        /// Gets the on serializing methods.
+        /// </summary>
         public List<IMethodSymbol> OnSerializingMethods { get; }
+        /// <summary>
+        /// Gets the property symbols.
+        /// </summary>
         public List<IPropertySymbol> PropertySymbols { get; }
+        /// <summary>
+        /// Gets the sanitized class name.
+        /// </summary>
         public string SanitizedClassName { get; }
 
         public ClassObject(string sanitizedClassName,

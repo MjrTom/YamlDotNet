@@ -26,6 +26,9 @@ using YamlDotNet.Samples.Helpers;
 
 namespace YamlDotNet.Samples
 {
+    /// <summary>
+    /// The loading a yaml stream.
+    /// </summary>
     public class LoadingAYamlStream
     {
         private readonly ITestOutputHelper output;
@@ -35,6 +38,9 @@ namespace YamlDotNet.Samples
             this.output = output;
         }
 
+        /// <summary>
+        /// Mains the.
+        /// </summary>
         [Sample(
             DisplayName = "Loading a YAML Stream",
             Description = "Explains how to load YAML using the representation model."

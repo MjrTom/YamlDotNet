@@ -29,6 +29,10 @@ namespace YamlDotNet.Serialization.Utilities
     {
         private readonly Dictionary<Type, object> items = [];
 
+        /// <summary>
+        /// Gets the.
+        /// </summary>
+        /// <returns>A T.</returns>
         public T Get<T>()
             where T : class, new()
         {

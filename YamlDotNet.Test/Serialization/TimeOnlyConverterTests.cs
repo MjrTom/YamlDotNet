@@ -310,6 +310,9 @@ namespace YamlDotNet.Test.Serialization
             serialised.Should().ContainEquivalentOf($"timeonly: {formatted}");
         }
 
+        /// <summary>
+        /// Jsons the compatible_ encase time only in double quotes.
+        /// </summary>
         [Fact]
         public void JsonCompatible_EncaseTimeOnlyInDoubleQuotes()
         {

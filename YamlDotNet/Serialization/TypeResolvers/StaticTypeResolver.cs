@@ -26,6 +26,12 @@ namespace YamlDotNet.Serialization.TypeResolvers
     /// </summary>
     public class StaticTypeResolver : ITypeResolver
     {
+        /// <summary>
+        /// Resolves the.
+        /// </summary>
+        /// <param name="staticType">The static type.</param>
+        /// <param name="actualValue">The actual value.</param>
+        /// <returns>A Type.</returns>
         public virtual Type Resolve(Type staticType, object? actualValue)
         {
             if (actualValue != null)

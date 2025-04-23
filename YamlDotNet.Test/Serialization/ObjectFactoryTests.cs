@@ -26,8 +26,14 @@ using YamlDotNet.Serialization.ObjectFactories;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The object factory tests.
+    /// </summary>
     public class ObjectFactoryTests : SerializationTestHelper
     {
+        /// <summary>
+        /// Nots the specifying object factory uses default.
+        /// </summary>
         [Fact]
         public void NotSpecifyingObjectFactoryUsesDefault()
         {
@@ -39,6 +45,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().BeOfType<EmptyBase>();
         }
 
+        /// <summary>
+        /// Objects the factory is invoked.
+        /// </summary>
         [Fact]
         public void ObjectFactoryIsInvoked()
         {
@@ -51,6 +60,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().BeOfType<EmptyDerived>();
         }
 
+        /// <summary>
+        /// Defaults the object factory supports non generic interfaces.
+        /// </summary>
         [Fact]
         public void DefaultObjectFactorySupportsNonGenericInterfaces()
         {

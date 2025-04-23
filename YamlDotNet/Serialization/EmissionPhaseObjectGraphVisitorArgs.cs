@@ -23,6 +23,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization
 {
+    /// <summary>
+    /// The emission phase object graph visitor args.
+    /// </summary>
     public sealed class EmissionPhaseObjectGraphVisitorArgs
     {
         /// <summary>
@@ -40,6 +43,9 @@ namespace YamlDotNet.Serialization
         /// </summary>
         public ObjectSerializer NestedObjectSerializer { get; }
 
+        /// <summary>
+        /// Gets the type converters.
+        /// </summary>
         public IEnumerable<IYamlTypeConverter> TypeConverters { get; }
 
         private readonly IEnumerable<IObjectGraphVisitor<Nothing>> preProcessingPhaseVisitors;

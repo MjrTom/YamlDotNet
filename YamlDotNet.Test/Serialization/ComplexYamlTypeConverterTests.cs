@@ -27,8 +27,14 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The complex yaml type converter tests.
+    /// </summary>
     public class ComplexYamlTypeConverterTests
     {
+        /// <summary>
+        /// Complexes the type converter_ uses serializer to serialize complex types.
+        /// </summary>
         [Fact]
         public void ComplexTypeConverter_UsesSerializerToSerializeComplexTypes()
         {
@@ -55,6 +61,9 @@ prop2:
             Assert.Equal(expected, actual.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Complexes the type converter_ uses deserializer to deserialize complex types.
+        /// </summary>
         [Fact]
         public void ComplexTypeConverter_UsesDeserializerToDeserializeComplexTypes()
         {
@@ -87,11 +96,7 @@ prop2:
         {
             public bool Accepts(Type type)
             {
-                if (type == typeof(ComplexType))
-                {
-                    return true;
-                }
-                return false;
+                return type == typeof(ComplexType);
             }
 
             public object ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)

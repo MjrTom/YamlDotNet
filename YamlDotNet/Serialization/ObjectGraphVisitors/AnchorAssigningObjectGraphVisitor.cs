@@ -23,6 +23,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
 {
+    /// <summary>
+    /// The anchor assigning object graph visitor.
+    /// </summary>
     public sealed class AnchorAssigningObjectGraphVisitor : ChainedObjectGraphVisitor
     {
         private readonly IEventEmitter eventEmitter;

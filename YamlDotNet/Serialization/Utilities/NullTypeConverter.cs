@@ -21,6 +21,9 @@
 
 namespace YamlDotNet.Serialization.Utilities
 {
+    /// <summary>
+    /// The null type converter.
+    /// </summary>
     public class NullTypeConverter : ITypeConverter
     {
         /// <inheritdoc />

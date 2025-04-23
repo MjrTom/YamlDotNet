@@ -51,6 +51,9 @@ namespace YamlDotNet.Serialization
             return properties;
         }
 
+        /// <summary>
+        /// The override property descriptor.
+        /// </summary>
         public sealed class OverridePropertyDescriptor : IPropertyDescriptor
         {
             private readonly IPropertyDescriptor baseDescriptor;
@@ -64,46 +67,87 @@ namespace YamlDotNet.Serialization
                 this.classType = classType;
             }
 
+            /// <summary>
+            /// Gets the name.
+            /// </summary>
             public string Name { get { return baseDescriptor.Name; } }
+            /// <summary>
+            /// Gets a value indicating whether required.
+            /// </summary>
             public bool Required { get => baseDescriptor.Required; }
+            /// <summary>
+            /// Gets a value indicating whether allow nulls.
+            /// </summary>
             public bool AllowNulls { get => baseDescriptor.AllowNulls; }
 
+            /// <summary>
+            /// Gets a value indicating whether can write.
+            /// </summary>
             public bool CanWrite { get { return baseDescriptor.CanWrite; } }
 
+            /// <summary>
+            /// Gets the type.
+            /// </summary>
             public Type Type { get { return baseDescriptor.Type; } }
 
+            /// <summary>
+            /// Gets or sets the type override.
+            /// </summary>
             public Type? TypeOverride
             {
                 get { return baseDescriptor.TypeOverride; }
                 set { baseDescriptor.TypeOverride = value; }
             }
 
+            /// <summary>
+            /// Gets the converter type.
+            /// </summary>
             public Type? ConverterType =>
                 GetCustomAttribute<YamlConverterAttribute>()?.ConverterType ?? baseDescriptor.ConverterType;
 
+            /// <summary>
+            /// Gets or sets the order.
+            /// </summary>
             public int Order
             {
                 get { return baseDescriptor.Order; }
                 set { baseDescriptor.Order = value; }
             }
 
+            /// <summary>
+            /// Gets or sets the scalar style.
+            /// </summary>
             public ScalarStyle ScalarStyle
             {
                 get { return baseDescriptor.ScalarStyle; }
                 set { baseDescriptor.ScalarStyle = value; }
             }
 
+            /// <summary>
+            /// Writes the.
+            /// </summary>
+            /// <param name="target">The target.</param>
+            /// <param name="value">The value.</param>
             public void Write(object target, object? value)
             {
                 baseDescriptor.Write(target, value);
             }
 
+            /// <summary>
+            /// Gets the custom attribute.
+            /// </summary>
+            /// <returns>A T? .</returns>
             public T? GetCustomAttribute<T>() where T : Attribute
             {
                 var attr = overrides.GetAttribute<T>(classType, Name);
                 return attr ?? baseDescriptor.GetCustomAttribute<T>();
             }
 
+            /// <summary>
+            /// Reads the.
+            /// </summary>
+            /// <param name="target">The target.</param>
+            /// <returns>An IObjectDescriptor.</returns>
             public IObjectDescriptor Read(object target)
             {
                 return baseDescriptor.Read(target);

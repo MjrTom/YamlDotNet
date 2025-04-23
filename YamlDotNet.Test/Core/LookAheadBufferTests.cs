@@ -27,11 +27,17 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Test.Core
 {
+    /// <summary>
+    /// The look ahead buffer tests.
+    /// </summary>
     public class LookAheadBufferTests
     {
         private const string TestString = "abcdefghi";
         private const int Capacity = 4;
 
+        /// <summary>
+        /// Shoulds the have read once when peeking at offset zero.
+        /// </summary>
         [Fact]
         public void ShouldHaveReadOnceWhenPeekingAtOffsetZero()
         {
@@ -41,6 +47,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(0).Should().Be('a');
         }
 
+        /// <summary>
+        /// Shoulds the have read twice when peeking at offset one.
+        /// </summary>
         [Fact]
         public void ShouldHaveReadTwiceWhenPeekingAtOffsetOne()
         {
@@ -52,6 +61,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(1).Should().Be('b');
         }
 
+        /// <summary>
+        /// Shoulds the have read thrice when peeking at offset two.
+        /// </summary>
         [Fact]
         public void ShouldHaveReadThriceWhenPeekingAtOffsetTwo()
         {
@@ -64,6 +76,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(2).Should().Be('c');
         }
 
+        /// <summary>
+        /// Shoulds the not have read after skipping one character.
+        /// </summary>
         [Fact]
         public void ShouldNotHaveReadAfterSkippingOneCharacter()
         {
@@ -78,6 +93,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(1).Should().Be('c');
         }
 
+        /// <summary>
+        /// Shoulds the have read once after skipping one character.
+        /// </summary>
         [Fact]
         public void ShouldHaveReadOnceAfterSkippingOneCharacter()
         {
@@ -90,6 +108,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(2).Should().Be('d');
         }
 
+        /// <summary>
+        /// Shoulds the have read twice after skipping one character.
+        /// </summary>
         [Fact]
         public void ShouldHaveReadTwiceAfterSkippingOneCharacter()
         {
@@ -102,6 +123,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(3).Should().Be('e');
         }
 
+        /// <summary>
+        /// Shoulds the have read once after skipping five characters.
+        /// </summary>
         [Fact]
         public void ShouldHaveReadOnceAfterSkippingFiveCharacters()
         {
@@ -116,6 +140,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(0).Should().Be('f');
         }
 
+        /// <summary>
+        /// Shoulds the have read once after skipping six characters.
+        /// </summary>
         [Fact]
         public void ShouldHaveReadOnceAfterSkippingSixCharacters()
         {
@@ -132,6 +159,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(0).Should().Be('g');
         }
 
+        /// <summary>
+        /// Shoulds the have read once after skipping seven characters.
+        /// </summary>
         [Fact]
         public void ShouldHaveReadOnceAfterSkippingSevenCharacters()
         {
@@ -148,6 +178,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(0).Should().Be('h');
         }
 
+        /// <summary>
+        /// Shoulds the have read once after skipping eight characters.
+        /// </summary>
         [Fact]
         public void ShouldHaveReadOnceAfterSkippingEightCharacters()
         {
@@ -164,6 +197,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(0).Should().Be('i');
         }
 
+        /// <summary>
+        /// Shoulds the have read once after skipping nine characters.
+        /// </summary>
         [Fact]
         public void ShouldHaveReadOnceAfterSkippingNineCharacters()
         {
@@ -180,6 +216,9 @@ namespace YamlDotNet.Test.Core
             buffer.Peek(0).Should().Be('\0');
         }
 
+        /// <summary>
+        /// Shoulds the find end of input.
+        /// </summary>
         [Fact]
         public void ShouldFindEndOfInput()
         {
@@ -197,6 +236,9 @@ namespace YamlDotNet.Test.Core
             buffer.EndOfInput.Should().BeTrue();
         }
 
+        /// <summary>
+        /// Shoulds the throw when skipping beyond current buffer.
+        /// </summary>
         [Fact]
         public void ShouldThrowWhenSkippingBeyondCurrentBuffer()
         {

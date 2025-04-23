@@ -19,10 +19,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
+using System.Reflection;
 using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Helpers
 {
+    /// <summary>
+    /// The default fsharp helper.
+    /// </summary>
     public class DefaultFsharpHelper : IFsharpHelper
     {
         private static bool IsFsharpCore(Type t)
@@ -30,16 +34,31 @@ namespace YamlDotNet.Helpers
             return t.Namespace == "Microsoft.FSharp.Core";
         }
 
+        /// <summary>
+        /// Are the option type.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns>A bool.</returns>
         public bool IsOptionType(Type t)
         {
             return IsFsharpCore(t) && t.Name == "FSharpOption`1";
         }
 
+        /// <summary>
+        /// Gets the option underlying type.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns>A Type? .</returns>
         public Type? GetOptionUnderlyingType(Type t)
         {
             return t.IsGenericType && IsOptionType(t) ? t.GenericTypeArguments[0] : null;
         }
 
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
+        /// <param name="objectDescriptor">The object descriptor.</param>
+        /// <returns>An object? .</returns>
         public object? GetValue(IObjectDescriptor objectDescriptor)
         {
             if (!IsOptionType(objectDescriptor.Type))
@@ -55,11 +74,23 @@ namespace YamlDotNet.Helpers
             return objectDescriptor.Type.GetProperty("Value").GetValue(objectDescriptor.Value);
         }
 
+        /// <summary>
+        /// Are the fsharp list type.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns>A bool.</returns>
         public bool IsFsharpListType(Type t)
         {
             return t.Namespace == "Microsoft.FSharp.Collections" && t.Name == "FSharpList`1";
         }
 
+        /// <summary>
+        /// Creates the fsharp list from array.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <param name="itemsType">The items type.</param>
+        /// <param name="arr">The arr.</param>
+        /// <returns>An object? .</returns>
         public object? CreateFsharpListFromArray(Type t, Type itemsType, Array arr)
         {
             if (!IsFsharpListType(t))
@@ -67,14 +98,21 @@ namespace YamlDotNet.Helpers
                 return null;
             }
 
-            var fsharpList =
-                t.Assembly
-                .GetType("Microsoft.FSharp.Collections.ListModule")
-                .GetMethod("OfArray")
-                .MakeGenericMethod(itemsType)
-                .Invoke(null, [arr]);
+            var listModuleType = Type.GetType("Microsoft.FSharp.Collections.ListModule, FSharp.Core");
+            if (listModuleType == null)
+            {
+                throw new InvalidOperationException("Cannot find FSharp.Core ListModule");
+            }
 
-            return fsharpList;
+            var ofArrayMethod = listModuleType.GetMethod("OfArray", BindingFlags.Public | BindingFlags.Static);
+            if (ofArrayMethod == null)
+            {
+                throw new InvalidOperationException("Cannot find OfArray method in ListModule");
+            }
+
+            var genericOfArrayMethod = ofArrayMethod.MakeGenericMethod(itemsType);
+
+            return genericOfArrayMethod.Invoke(null, new object[] { arr });
         }
     }
 }

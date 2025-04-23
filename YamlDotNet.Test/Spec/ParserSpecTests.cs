@@ -30,6 +30,9 @@ using YamlDotNet.RepresentationModel;
 
 namespace YamlDotNet.Test.Spec
 {
+    /// <summary>
+    /// The parser spec tests.
+    /// </summary>
     public sealed class ParserSpecTests
     {
         private sealed class ParserSpecTestsData : SpecTestsData
@@ -52,6 +55,15 @@ namespace YamlDotNet.Test.Spec
             "C2SP" // this is supposed to error out, which it does, just not in the same spot.
         };
 
+        /// <summary>
+        /// Conforms the with yaml spec.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="inputFile">The input file.</param>
+        /// <param name="expectedEventFile">The expected event file.</param>
+        /// <param name="error">If true, error.</param>
+        /// <param name="quoting">If true, quoting.</param>
         [Theory, ClassData(typeof(ParserSpecTestsData))]
 #pragma warning disable xUnit1026 // Theory methods should use all of their parameters
         public void ConformsWithYamlSpec(string name, string description, string inputFile, string expectedEventFile, bool error, bool quoting)

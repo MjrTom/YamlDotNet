@@ -28,6 +28,9 @@ using Microsoft.CodeAnalysis.CSharp;
 
 namespace YamlDotNet.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The static type inspector file.
+    /// </summary>
     public class StaticTypeInspectorFile : File
     {
         private readonly GeneratorExecutionContext context;
@@ -37,6 +40,10 @@ namespace YamlDotNet.Analyzers.StaticGenerator
             this.context = context;
         }
 
+        /// <summary>
+        /// Writes the.
+        /// </summary>
+        /// <param name="syntaxReceiver">The syntax receiver.</param>
         public override void Write(SerializableSyntaxReceiver syntaxReceiver)
         {
             Write("public class StaticTypeInspector : YamlDotNet.Serialization.ITypeInspector");

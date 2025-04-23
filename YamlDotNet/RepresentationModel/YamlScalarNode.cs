@@ -162,6 +162,11 @@ namespace YamlDotNet.RepresentationModel
             visitor.Visit(this);
         }
 
+        /// <summary>
+        /// Equals the.
+        /// </summary>
+        /// <param name="obj">The obj.</param>
+        /// <returns>A bool.</returns>
         public override bool Equals(object? obj)
         {
             return obj is YamlScalarNode other

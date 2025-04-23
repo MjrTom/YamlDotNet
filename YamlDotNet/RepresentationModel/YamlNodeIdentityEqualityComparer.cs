@@ -30,11 +30,22 @@ namespace YamlDotNet.RepresentationModel
     {
         #region IEqualityComparer<YamlNode> Members
 
+        /// <summary>
+        /// Equals the.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        /// <returns>A bool.</returns>
         public bool Equals([AllowNull] YamlNode x, [AllowNull] YamlNode y)
         {
             return ReferenceEquals(x, y);
         }
 
+        /// <summary>
+        /// Gets the hash code.
+        /// </summary>
+        /// <param name="obj">The obj.</param>
+        /// <returns>An int.</returns>
         public int GetHashCode(YamlNode obj)
         {
             return obj.GetHashCode();

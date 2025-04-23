@@ -8,6 +8,12 @@
     <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     <WarningLevel>5</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="StringExtensions.fs" />
     <Compile Include="DeserializerTests.fs" />

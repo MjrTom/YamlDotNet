@@ -25,6 +25,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
 {
+    /// <summary>
+    /// The default values object graph visitor.
+    /// </summary>
     public sealed class DefaultValuesObjectGraphVisitor : ChainedObjectGraphVisitor
     {
         private readonly DefaultValuesHandling handling;

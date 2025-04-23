@@ -23,8 +23,18 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Serialization.Utilities
 {
+    /// <summary>
+    /// The reflection type converter.
+    /// </summary>
     public class ReflectionTypeConverter : ITypeConverter
     {
+        /// <summary>
+        /// Changes the type.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="expectedType">The expected type.</param>
+        /// <param name="typeInspector">The type inspector.</param>
+        /// <returns>An object? .</returns>
         public object? ChangeType(object? value, Type expectedType, ITypeInspector typeInspector) => ChangeType(value, expectedType, NullNamingConvention.Instance, typeInspector);
         /// <inheritdoc />
         public object? ChangeType(object? value, Type expectedType, INamingConvention enumNamingConvention, ITypeInspector typeInspector) => TypeConverter.ChangeType(value, expectedType, enumNamingConvention, typeInspector);

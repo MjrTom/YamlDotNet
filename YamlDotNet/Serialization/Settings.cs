@@ -21,6 +21,9 @@
 
 namespace YamlDotNet.Serialization
 {
+    /// <summary>
+    /// The settings.
+    /// </summary>
     public class Settings
     {
         /// <summary>

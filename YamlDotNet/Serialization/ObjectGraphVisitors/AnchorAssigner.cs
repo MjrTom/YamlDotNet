@@ -24,6 +24,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
 {
+    /// <summary>
+    /// The anchor assigner.
+    /// </summary>
     public sealed class AnchorAssigner : PreProcessingPhaseObjectGraphVisitorSkeleton, IAliasProvider
     {
         private class AnchorAssignment

@@ -167,6 +167,11 @@ namespace YamlDotNet.RepresentationModel
             visitor.Visit(this);
         }
 
+        /// <summary>
+        /// Equals the.
+        /// </summary>
+        /// <param name="obj">The obj.</param>
+        /// <returns>A bool.</returns>
         public override bool Equals(object? obj)
         {
             var other = obj as YamlSequenceNode;
@@ -270,6 +275,10 @@ namespace YamlDotNet.RepresentationModel
         #region IEnumerable<YamlNode> Members
 
         /// <summary />
+        /// <summary>
+        /// Gets the enumerator.
+        /// </summary>
+        /// <returns>An IEnumerator.</returns>
         public IEnumerator<YamlNode> GetEnumerator()
         {
             return Children.GetEnumerator();

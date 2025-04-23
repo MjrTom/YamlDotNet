@@ -24,8 +24,14 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Test.Core
 {
+    /// <summary>
+    /// The parser tests.
+    /// </summary>
     public class ParserTests : EventsHelper
     {
+        /// <summary>
+        /// Empties the document.
+        /// </summary>
         [Fact]
         public void EmptyDocument()
         {
@@ -34,6 +40,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the events on example1.
+        /// </summary>
         [Fact]
         public void VerifyEventsOnExample1()
         {
@@ -48,6 +57,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example2.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample2()
         {
@@ -59,6 +71,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example3.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample3()
         {
@@ -70,6 +85,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example4.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample4()
         {
@@ -87,6 +105,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example5.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample5()
         {
@@ -100,6 +121,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example6.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample6()
         {
@@ -112,6 +136,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example7.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample7()
         {
@@ -138,6 +165,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example8.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample8()
         {
@@ -153,6 +183,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example9.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample9()
         {
@@ -169,6 +202,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example10.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample10()
         {
@@ -193,6 +229,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example11.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample11()
         {
@@ -221,6 +260,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example12.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample12()
         {
@@ -247,6 +289,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example13.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample13()
         {
@@ -271,6 +316,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the tokens on example14.
+        /// </summary>
         [Fact]
         public void VerifyTokensOnExample14()
         {
@@ -288,6 +336,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the token with local tags.
+        /// </summary>
         [Fact]
         public void VerifyTokenWithLocalTags()
         {
@@ -306,6 +357,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Comments the are returned when requested.
+        /// </summary>
         [Fact]
         public void CommentsAreReturnedWhenRequested()
         {
@@ -338,6 +392,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Comments the do not influence parsing_ issue_260.
+        /// </summary>
         [Fact]
         public void CommentsDoNotInfluenceParsing_Issue_260()
         {
@@ -356,6 +413,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Comments the are omitted unless requested.
+        /// </summary>
         [Fact]
         public void CommentsAreOmittedUnlessRequested()
         {
@@ -382,6 +442,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the token with multi doc tag.
+        /// </summary>
         [Fact]
         public void VerifyTokenWithMultiDocTag()
         {
@@ -405,6 +468,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the token with url encoded tag containing plus spaces.
+        /// </summary>
         [Fact]
         public void VerifyTokenWithUrlEncodedTagContainingPlusSpaces()
         {
@@ -416,6 +482,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the token with url encoded32 bits unicode tags.
+        /// </summary>
         [Fact]
         public void VerifyTokenWithUrlEncoded32BitsUnicodeTags()
         {
@@ -427,6 +496,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Verifies the comment type after scalar block.
+        /// </summary>
         [Fact]
         public void VerifyCommentTypeAfterScalarBlock()
         {
@@ -439,6 +511,11 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// News the lines are parsed according to the specification.
+        /// </summary>
+        /// <param name="yaml">The yaml.</param>
+        /// <param name="expected">The expected.</param>
         [Theory]
         [InlineData("|\n  b-carriage-return,b-line-feed\r\n  lll", "b-carriage-return,b-line-feed\nlll")]
         [InlineData("|\n  b-carriage-return\r  lll", "b-carriage-return\nlll")]
@@ -456,6 +533,9 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// Singles the elemente with anchor inline mapping.
+        /// </summary>
         [Fact]
         public void SingleElementeWithAnchorInlineMapping()
         {

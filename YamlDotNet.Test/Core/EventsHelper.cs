@@ -30,6 +30,9 @@ using VersionDirective = YamlDotNet.Core.Tokens.VersionDirective;
 // ReSharper disable MemberHidesStaticFromOuterClass
 namespace YamlDotNet.Test.Core
 {
+    /// <summary>
+    /// The events helper.
+    /// </summary>
     public class EventsHelper
     {
         protected const bool Explicit = false;
@@ -64,7 +67,7 @@ namespace YamlDotNet.Test.Core
 
         protected VersionDirective Version(int major, int minor)
         {
-            return new VersionDirective(new Version(major, minor));
+            return new VersionDirective(new YamlDotNet.Core.Version(major, minor));
         }
 
         protected TagDirective TagDirective(string handle, string prefix)

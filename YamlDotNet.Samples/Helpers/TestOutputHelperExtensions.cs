@@ -23,8 +23,15 @@ using Xunit.Abstractions;
 
 namespace YamlDotNet.Samples.Helpers
 {
+    /// <summary>
+    /// The test output helper extensions.
+    /// </summary>
     public static class TestOutputHelperExtensions
     {
+        /// <summary>
+        /// Writes the line.
+        /// </summary>
+        /// <param name="output">The output.</param>
         public static void WriteLine(this ITestOutputHelper output)
         {
             output.WriteLine(string.Empty);

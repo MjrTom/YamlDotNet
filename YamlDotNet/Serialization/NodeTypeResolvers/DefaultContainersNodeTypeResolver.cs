@@ -23,6 +23,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeTypeResolvers
 {
+    /// <summary>
+    /// The default containers node type resolver.
+    /// </summary>
     public sealed class DefaultContainersNodeTypeResolver : INodeTypeResolver
     {
         /// <inheritdoc />

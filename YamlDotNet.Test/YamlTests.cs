@@ -25,6 +25,9 @@ using Xunit;
 
 namespace YamlDotNet.Test
 {
+    /// <summary>
+    /// The yaml tests.
+    /// </summary>
     public class YamlTests
     {
         private const string SingleLine = "object:";
@@ -76,6 +79,11 @@ that:
     
 theOtherThing:";
 
+        /// <summary>
+        /// Texts the produces expected output.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="expectedText">The expected text.</param>
         [Theory]
         [InlineData(SingleLine, SingleLine)]
         [InlineData(LeadingBlankLines, SingleLine)]
@@ -96,6 +104,9 @@ theOtherThing:";
             result.NormalizeNewLines().Should().Be(expectedText);
         }
 
+        /// <summary>
+        /// Texts the throws argument out of range exception for insuffient indentation.
+        /// </summary>
         [Fact]
         public void TextThrowsArgumentOutOfRangeExceptionForInsuffientIndentation()
         {

@@ -30,10 +30,16 @@ using YamlDotNet.Serialization.NodeDeserializers;
 
 namespace YamlDotNet.Samples
 {
+    /// <summary>
+    /// The validating during deserialization.
+    /// </summary>
     public class ValidatingDuringDeserialization
     {
         // First, we'll implement a new INodeDeserializer
         // that will decorate another INodeDeserializer with validation:
+        /// <summary>
+        /// The validating node deserializer.
+        /// </summary>
         public class ValidatingNodeDeserializer : INodeDeserializer
         {
             private readonly INodeDeserializer nodeDeserializer;
@@ -43,6 +49,15 @@ namespace YamlDotNet.Samples
                 this.nodeDeserializer = nodeDeserializer;
             }
 
+            /// <summary>
+            /// Deserializes the.
+            /// </summary>
+            /// <param name="parser">The parser.</param>
+            /// <param name="expectedType">The expected type.</param>
+            /// <param name="nestedObjectDeserializer">The nested object deserializer.</param>
+            /// <param name="value">The value.</param>
+            /// <param name="rootDeserializer">The root deserializer.</param>
+            /// <returns>A bool.</returns>
             public bool Deserialize(IParser parser, Type expectedType, Func<IParser, Type, object> nestedObjectDeserializer, out object value, ObjectDeserializer rootDeserializer)
             {
                 if (nodeDeserializer.Deserialize(parser, expectedType, nestedObjectDeserializer, out value, rootDeserializer))
@@ -55,6 +70,9 @@ namespace YamlDotNet.Samples
             }
         }
 
+        /// <summary>
+        /// Mains the.
+        /// </summary>
         [Sample(
             DisplayName = "Validating during deserialization",
             Description = @"
@@ -80,8 +98,14 @@ namespace YamlDotNet.Samples
         }
     }
 
+    /// <summary>
+    /// The data.
+    /// </summary>
     public class Data
     {
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
         [Required]
         public string Name { get; set; }
     }

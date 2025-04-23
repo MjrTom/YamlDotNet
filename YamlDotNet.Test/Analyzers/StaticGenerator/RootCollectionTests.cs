@@ -25,8 +25,14 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Test.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The root collection tests.
+    /// </summary>
     public class RootCollectionTests
     {
+        /// <summary>
+        /// Roots the array works.
+        /// </summary>
         [Fact]
         public void RootArrayWorks()
         {
@@ -41,6 +47,9 @@ namespace YamlDotNet.Test.Analyzers.StaticGenerator
             Assert.Equal("world", actual[1].Test);
         }
 
+        /// <summary>
+        /// Roots the list works.
+        /// </summary>
         [Fact]
         public void RootListWorks()
         {
@@ -55,6 +64,9 @@ namespace YamlDotNet.Test.Analyzers.StaticGenerator
             Assert.Equal("world", actual[1].Test);
         }
 
+        /// <summary>
+        /// Roots the dictionary works.
+        /// </summary>
         [Fact]
         public void RootDictionaryWorks()
         {
@@ -71,6 +83,9 @@ b:
             Assert.Equal("world", actual["b"].Test);
         }
 
+        /// <summary>
+        /// Roots the object works.
+        /// </summary>
         [Fact]
         public void RootObjectWorks()
         {
@@ -85,6 +100,9 @@ b: world
             Assert.Equal("world", actual["b"]);
         }
 
+        /// <summary>
+        /// Roots the nested object works.
+        /// </summary>
         [Fact]
         public void RootNestedObjectWorks()
         {
@@ -101,9 +119,15 @@ b:
             Assert.Equal("world", ((IDictionary<object, object>)actual["b"])["Test"]);
         }
     }
+    /// <summary>
+    /// The root object.
+    /// </summary>
     [YamlSerializable]
     public class RootObject
     {
+        /// <summary>
+        /// Gets or sets the test.
+        /// </summary>
         public string Test { get; set; }
     }
 }

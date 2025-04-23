@@ -27,6 +27,9 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The emit default values tests.
+    /// </summary>
     public class EmitDefaultValuesTests
     {
         private class Model
@@ -59,6 +62,9 @@ namespace YamlDotNet.Test.Serialization
             public Dictionary<string, string> ANonEmptyDictionary => new Dictionary<string, string>() { { "foo", "bar" } };
         }
 
+        /// <summary>
+        /// All_default_values_and_nulls_are_emitted_when_no_configuration_is_performeds the.
+        /// </summary>
         [Fact]
         public void All_default_values_and_nulls_are_emitted_when_no_configuration_is_performed()
         {
@@ -87,6 +93,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Contains(nameof(Model.ANullableNonZeroNonDefaultInteger) + ':', yaml);
         }
 
+        /// <summary>
+        /// Only_null_values_are_omitted_when_S the default values handling_is_ omit null.
+        /// </summary>
         [Fact]
         public void Only_null_values_are_omitted_when_DefaultValuesHandling_is_OmitNull()
         {
@@ -116,6 +125,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Contains(nameof(Model.ANullableNonZeroNonDefaultInteger) + ':', yaml);
         }
 
+        /// <summary>
+        /// All_default_values_are_omitted_when_S the default values handling_is_ omit all.
+        /// </summary>
         [Fact]
         public void All_default_values_are_omitted_when_DefaultValuesHandling_is_OmitAll()
         {
@@ -145,6 +157,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Contains(nameof(Model.ANullableNonZeroNonDefaultInteger) + ':', yaml);
         }
 
+        /// <summary>
+        /// Empty_enumerables_are_omitted_when_S the default values handling_is_ omit empty.
+        /// </summary>
         [Fact]
         public void Empty_enumerables_are_omitted_when_DefaultValuesHandling_is_OmitEmpty()
         {
@@ -168,6 +183,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Contains(nameof(Model.ANonEmptyEnumerable) + ':', yaml);
         }
 
+        /// <summary>
+        /// Yamls the member_overrides_default_value_handling.
+        /// </summary>
         [Fact]
         public void YamlMember_overrides_default_value_handling()
         {

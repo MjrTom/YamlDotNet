@@ -25,12 +25,18 @@ using BenchmarkDotNet.Jobs;
 using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Benchmark;
+/// <summary>
+/// The serialization benchmarks.
+/// </summary>
 
 [MemoryDiagnoser]
 [MediumRunJob(RuntimeMoniker.Net80)]
 [MediumRunJob(RuntimeMoniker.Net47)]
 public class SerializationBenchmarks
 {
+    /// <summary>
+    /// The sample record.
+    /// </summary>
     public class SampleRecord
     {
         public SampleRecord(string name, string description)
@@ -39,13 +45,23 @@ public class SerializationBenchmarks
             Description = description;
         }
 
+        /// <summary>
+        /// Gets the name.
+        /// </summary>
         public string Name { get; private set; }
+        /// <summary>
+        /// Gets the description.
+        /// </summary>
         public string Description { get; private set; }
     }
 
     private readonly IReadOnlyCollection<SampleRecord> configs = Enumerable.Range(0, 10_000).Select(i => new SampleRecord("MyName", "MyDescription")).ToList();
     private readonly ISerializer serializer = new SerializerBuilder().DisableAliases().Build();
 
+    /// <summary>
+    /// Serializers the.
+    /// </summary>
+    /// <returns>A string.</returns>
     [Benchmark]
     public string Serializer()
     {

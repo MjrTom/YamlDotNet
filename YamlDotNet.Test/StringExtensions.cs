@@ -23,8 +23,16 @@ using System;
 
 namespace YamlDotNet.Test
 {
+    /// <summary>
+    /// The string extensions.
+    /// </summary>
     public static class StringExtensions
     {
+        /// <summary>
+        /// Normalizes the new lines.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>A string.</returns>
         public static string NormalizeNewLines(this string value)
         {
             return value
@@ -32,6 +40,11 @@ namespace YamlDotNet.Test
                 .Replace("\n", Environment.NewLine);
         }
 
+        /// <summary>
+        /// Trims the new lines.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>A string.</returns>
         public static string TrimNewLines(this string value)
         {
             return value.TrimEnd('\r', '\n');

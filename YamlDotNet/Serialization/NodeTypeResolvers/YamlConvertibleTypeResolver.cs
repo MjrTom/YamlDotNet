@@ -23,6 +23,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeTypeResolvers
 {
+    /// <summary>
+    /// The yaml convertible type resolver.
+    /// </summary>
     public sealed class YamlConvertibleTypeResolver : INodeTypeResolver
     {
         /// <inheritdoc />

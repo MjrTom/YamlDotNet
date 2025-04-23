@@ -29,6 +29,9 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Samples
 {
+    /// <summary>
+    /// The deserialize generic object.
+    /// </summary>
     public class DeserializeGenericObject
     {
         private readonly ITestOutputHelper output;
@@ -38,6 +41,9 @@ namespace YamlDotNet.Samples
             this.output = output;
         }
 
+        /// <summary>
+        /// Mains the.
+        /// </summary>
         [Sample(
             DisplayName = "Deserializing generic objects with basic types",
             Description = "Shows how to convert a YAML document to basic types such as String  and Dictionary"

@@ -28,44 +28,98 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The hidden property tests.
+    /// </summary>
     public class HiddenPropertyTests
     {
+        /// <summary>
+        /// The hidden property base.
+        /// </summary>
         public class HiddenPropertyBase
         {
             protected object value;
 
+            /// <summary>
+            /// Gets the value.
+            /// </summary>
             public object Value => this.value;
 
+            /// <summary>
+            /// Gets or sets the set only.
+            /// </summary>
             [YamlIgnore]
             public object SetOnly { set => this.value = value; }
 
+            /// <summary>
+            /// Gets or sets the get and set.
+            /// </summary>
             [YamlIgnore]
             public object GetAndSet { get; set; }
         }
 
+        /// <summary>
+        /// The hidden property derived.
+        /// </summary>
         public class HiddenPropertyDerived<T> : HiddenPropertyBase
         {
+            /// <summary>
+            /// Gets the value.
+            /// </summary>
             public new T Value { get => (T)this.value; }
+            /// <summary>
+            /// Gets or sets the set only.
+            /// </summary>
             public new T SetOnly { set => this.value = value; }
+            /// <summary>
+            /// Gets or sets the get and set.
+            /// </summary>
             public new T GetAndSet { get; set; }
         }
 
+        /// <summary>
+        /// The duplicate property base.
+        /// </summary>
         public class DuplicatePropertyBase
         {
             protected object value;
 
+            /// <summary>
+            /// Gets the value.
+            /// </summary>
             public object Value => this.value;
+            /// <summary>
+            /// Gets or sets the set only.
+            /// </summary>
             public object SetOnly { set => this.value = value; }
+            /// <summary>
+            /// Gets or sets the get and set.
+            /// </summary>
             public object GetAndSet { get; set; }
         }
 
+        /// <summary>
+        /// The duplicate property derived.
+        /// </summary>
         public class DuplicatePropertyDerived<T> : DuplicatePropertyBase
         {
+            /// <summary>
+            /// Gets the value.
+            /// </summary>
             public new T Value { get => (T)this.value; }
+            /// <summary>
+            /// Gets or sets the set only.
+            /// </summary>
             public new T SetOnly { set => this.value = value; }
+            /// <summary>
+            /// Gets or sets the get and set.
+            /// </summary>
             public new T GetAndSet { get; set; }
         }
 
+        /// <summary>
+        /// Tests the hidden.
+        /// </summary>
         [Fact]
         public void TestHidden()
         {
@@ -82,6 +136,9 @@ getAndSet: getAndSet
             Assert.Equal("getAndSet", o.GetAndSet);
         }
 
+        /// <summary>
+        /// Tests the duplicate.
+        /// </summary>
         [Fact]
         public void TestDuplicate()
         {

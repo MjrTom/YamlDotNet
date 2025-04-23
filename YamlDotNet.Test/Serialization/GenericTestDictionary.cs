@@ -35,31 +35,58 @@ namespace YamlDotNet.Test.Serialization
         {
             dictionary = new Dictionary<TKey, TValue>();
         }
+        /// <summary>
+        /// Adds the.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
         public void Add(TKey key, TValue value)
         {
             dictionary.Add(key, value);
         }
 
+        /// <summary>
+        /// Contains the key.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>A bool.</returns>
         public bool ContainsKey(TKey key)
         {
             return dictionary.ContainsKey(key);
         }
 
+        /// <summary>
+        /// Gets the keys.
+        /// </summary>
         public ICollection<TKey> Keys
         {
             get { return dictionary.Keys; }
         }
 
+        /// <summary>
+        /// Removes the.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns>A bool.</returns>
         public bool Remove(TKey key)
         {
             return dictionary.Remove(key);
         }
 
+        /// <summary>
+        /// Tries the get value.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        /// <returns>A bool.</returns>
         public bool TryGetValue(TKey key, out TValue value)
         {
             return dictionary.TryGetValue(key, out value);
         }
 
+        /// <summary>
+        /// Gets the values.
+        /// </summary>
         public ICollection<TValue> Values
         {
             get { return dictionary.Values; }
@@ -71,41 +98,73 @@ namespace YamlDotNet.Test.Serialization
             set { dictionary[key] = value; }
         }
 
+        /// <summary>
+        /// Adds the.
+        /// </summary>
+        /// <param name="item">The item.</param>
         public void Add(KeyValuePair<TKey, TValue> item)
         {
             ((IDictionary<TKey, TValue>)dictionary).Add(item);
         }
 
+        /// <summary>
+        /// Clears the.
+        /// </summary>
         public void Clear()
         {
             dictionary.Clear();
         }
 
+        /// <summary>
+        /// Contains the.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>A bool.</returns>
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
             return ((IDictionary<TKey, TValue>)dictionary).Contains(item);
         }
 
+        /// <summary>
+        /// Copies the to.
+        /// </summary>
+        /// <param name="array">The array.</param>
+        /// <param name="arrayIndex">The array index.</param>
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
             ((IDictionary<TKey, TValue>)dictionary).CopyTo(array, arrayIndex);
         }
 
+        /// <summary>
+        /// Gets the count.
+        /// </summary>
         public int Count
         {
             get { return dictionary.Count; }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether read is only.
+        /// </summary>
         public bool IsReadOnly
         {
             get { return false; }
         }
 
+        /// <summary>
+        /// Removes the.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <returns>A bool.</returns>
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
             return ((IDictionary<TKey, TValue>)dictionary).Remove(item);
         }
 
+        /// <summary>
+        /// Gets the enumerator.
+        /// </summary>
+        /// <returns>An IEnumerator.</returns>
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             return dictionary.GetEnumerator();

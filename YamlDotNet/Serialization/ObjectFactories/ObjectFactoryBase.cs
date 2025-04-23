@@ -24,6 +24,9 @@ using YamlDotNet.Helpers;
 
 namespace YamlDotNet.Serialization.ObjectFactories
 {
+    /// <summary>
+    /// The object factory base.
+    /// </summary>
     public abstract class ObjectFactoryBase : IObjectFactory
     {
         /// <inheritdoc />

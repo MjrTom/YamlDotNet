@@ -28,13 +28,26 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Test
 {
+    /// <summary>
+    /// The yaml.
+    /// </summary>
     public static class Yaml
     {
+        /// <summary>
+        /// Readers the from.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>A TextReader.</returns>
         public static TextReader ReaderFrom(string name)
         {
             return new StreamReader(StreamFrom(name));
         }
 
+        /// <summary>
+        /// Streams the from.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>A Stream.</returns>
         public static Stream StreamFrom(string name)
         {
             var fromType = typeof(Yaml);
@@ -44,48 +57,92 @@ namespace YamlDotNet.Test
             return stream;
         }
 
+        /// <summary>
+        /// Templateds the on.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <returns>A string.</returns>
         public static string TemplatedOn<T>(this TextReader reader)
         {
             var text = reader.ReadToEnd();
             return text.TemplatedOn<T>();
         }
 
+        /// <summary>
+        /// Templateds the on.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <returns>A string.</returns>
         public static string TemplatedOn<T>(this string text)
         {
             return Regex.Replace(text, @"{type}", match =>
                 Uri.EscapeDataString(typeof(T).Name));
         }
 
+        /// <summary>
+        /// Parsers the for empty content.
+        /// </summary>
+        /// <returns>An IParser.</returns>
         public static IParser ParserForEmptyContent()
         {
             return new Parser(new StringReader(string.Empty));
         }
 
+        /// <summary>
+        /// Parsers the for resource.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>An IParser.</returns>
         public static IParser ParserForResource(string name)
         {
             return new Parser(Yaml.ReaderFrom(name));
         }
 
+        /// <summary>
+        /// Parsers the for text.
+        /// </summary>
+        /// <param name="yamlText">The yaml text.</param>
+        /// <returns>An IParser.</returns>
         public static IParser ParserForText(string yamlText)
         {
             return new Parser(ReaderForText(yamlText));
         }
 
+        /// <summary>
+        /// Scanners the for resource.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns>A Scanner.</returns>
         public static Scanner ScannerForResource(string name)
         {
             return new Scanner(Yaml.ReaderFrom(name));
         }
 
+        /// <summary>
+        /// Scanners the for text.
+        /// </summary>
+        /// <param name="yamlText">The yaml text.</param>
+        /// <returns>A Scanner.</returns>
         public static Scanner ScannerForText(string yamlText)
         {
             return new Scanner(ReaderForText(yamlText));
         }
 
+        /// <summary>
+        /// Readers the for text.
+        /// </summary>
+        /// <param name="yamlText">The yaml text.</param>
+        /// <returns>A StringReader.</returns>
         public static StringReader ReaderForText(string yamlText)
         {
             return new StringReader(Text(yamlText));
         }
 
+        /// <summary>
+        /// Texts the.
+        /// </summary>
+        /// <param name="yamlText">The yaml text.</param>
+        /// <returns>A string.</returns>
         public static string Text(string yamlText)
         {
             var lines = yamlText

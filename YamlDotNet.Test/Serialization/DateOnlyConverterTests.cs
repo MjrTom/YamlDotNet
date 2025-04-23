@@ -322,6 +322,9 @@ namespace YamlDotNet.Test.Serialization
             serialised.Should().ContainEquivalentOf($"dateonly: {formatted}");
         }
 
+        /// <summary>
+        /// Jsons the compatible_ encase date only in double quotes.
+        /// </summary>
         [Fact]
         public void JsonCompatible_EncaseDateOnlyInDoubleQuotes()
         {

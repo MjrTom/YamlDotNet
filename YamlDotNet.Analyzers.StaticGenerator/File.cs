@@ -24,6 +24,9 @@ using Microsoft.CodeAnalysis;
 
 namespace YamlDotNet.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The file.
+    /// </summary>
     public abstract class File
     {
         private readonly Action<string, bool> _write;
@@ -37,21 +40,36 @@ namespace YamlDotNet.Analyzers.StaticGenerator
             _unindent = unindent;
         }
 
+        /// <summary>
+        /// Writes the.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="newLine">If true, new line.</param>
         public void Write(string text, bool newLine = true)
         {
             _write(text, newLine);
         }
 
+        /// <summary>
+        /// Indents the.
+        /// </summary>
         public void Indent()
         {
             _indent();
         }
 
+        /// <summary>
+        /// Uns the indent.
+        /// </summary>
         public void UnIndent()
         {
             _unindent();
         }
 
+        /// <summary>
+        /// Writes the.
+        /// </summary>
+        /// <param name="classSyntaxReceiver">The class syntax receiver.</param>
         public abstract void Write(SerializableSyntaxReceiver classSyntaxReceiver);
     }
 }

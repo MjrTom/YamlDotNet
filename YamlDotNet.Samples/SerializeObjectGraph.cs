@@ -26,6 +26,9 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Samples
 {
+    /// <summary>
+    /// The serialize object graph.
+    /// </summary>
     public class SerializeObjectGraph
     {
         private readonly ITestOutputHelper output;
@@ -35,6 +38,9 @@ namespace YamlDotNet.Samples
             this.output = output;
         }
 
+        /// <summary>
+        /// Mains the.
+        /// </summary>
         [Sample(
             DisplayName = "Serializing an object graph",
             Description = "Shows how to convert an object to its YAML representation."
@@ -89,35 +95,95 @@ namespace YamlDotNet.Samples
     }
 
 #pragma warning disable IDE1006 // Naming Styles
+    /// <summary>
+    /// The address.
+    /// </summary>
     public class Address
     {
+        /// <summary>
+        /// Gets or sets the street.
+        /// </summary>
         public string street { get; set; }
+        /// <summary>
+        /// Gets or sets the city.
+        /// </summary>
         public string city { get; set; }
+        /// <summary>
+        /// Gets or sets the state.
+        /// </summary>
         public string state { get; set; }
     }
 
+    /// <summary>
+    /// The receipt.
+    /// </summary>
     public class Receipt
     {
+        /// <summary>
+        /// Gets or sets the receipt.
+        /// </summary>
         public string receipt { get; set; }
+        /// <summary>
+        /// Gets or sets the date.
+        /// </summary>
         public DateTime date { get; set; }
+        /// <summary>
+        /// Gets or sets the customer.
+        /// </summary>
         public Customer customer { get; set; }
+        /// <summary>
+        /// Gets or sets the items.
+        /// </summary>
         public Item[] items { get; set; }
+        /// <summary>
+        /// Gets or sets the bill_to.
+        /// </summary>
         public Address bill_to { get; set; }
+        /// <summary>
+        /// Gets or sets the ship_to.
+        /// </summary>
         public Address ship_to { get; set; }
+        /// <summary>
+        /// Gets or sets the special delivery.
+        /// </summary>
         public string specialDelivery { get; set; }
     }
 
+    /// <summary>
+    /// The customer.
+    /// </summary>
     public class Customer
     {
+        /// <summary>
+        /// Gets or sets the given.
+        /// </summary>
         public string given { get; set; }
+        /// <summary>
+        /// Gets or sets the family.
+        /// </summary>
         public string family { get; set; }
     }
 
+    /// <summary>
+    /// The item.
+    /// </summary>
     public class Item
     {
+        /// <summary>
+        /// Gets or sets the part_no.
+        /// </summary>
         public string part_no { get; set; }
+        /// <summary>
+        /// Gets or sets the descrip.
+        /// </summary>
         public string descrip { get; set; }
+        /// <summary>
+        /// Gets or sets the price.
+        /// </summary>
         public decimal price { get; set; }
+        /// <summary>
+        /// Gets or sets the quantity.
+        /// </summary>
         public int quantity { get; set; }
     }
 #pragma warning restore IDE1006 // Naming Styles

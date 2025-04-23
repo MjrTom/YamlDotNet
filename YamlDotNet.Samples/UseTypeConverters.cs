@@ -31,6 +31,9 @@ using YamlDotNet.Serialization.Converters;
 
 namespace YamlDotNet.Samples
 {
+    /// <summary>
+    /// The use type converters.
+    /// </summary>
     public class UseTypeConverters
     {
         private readonly ITestOutputHelper output;
@@ -40,6 +43,9 @@ namespace YamlDotNet.Samples
             this.output = output;
         }
 
+        /// <summary>
+        /// Mains the.
+        /// </summary>
         [Sample(
             Description = "Shows how to deserialize objects with a type converter",
             DisplayName = "Type Converters")]

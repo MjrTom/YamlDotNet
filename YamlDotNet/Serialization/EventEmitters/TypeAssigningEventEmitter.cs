@@ -25,6 +25,9 @@ using YamlDotNet.Serialization.Schemas;
 
 namespace YamlDotNet.Serialization.EventEmitters
 {
+    /// <summary>
+    /// The type assigning event emitter.
+    /// </summary>
     public sealed class TypeAssigningEventEmitter : ChainedEventEmitter
     {
         private readonly IDictionary<Type, TagName> tagMappings;
@@ -95,6 +98,11 @@ namespace YamlDotNet.Serialization.EventEmitters
             this.typeInspector = typeInspector;
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public override void Emit(ScalarEventInfo eventInfo, IEmitter emitter)
         {
             var suggestedStyle = ScalarStyle.Plain;
@@ -208,12 +216,22 @@ namespace YamlDotNet.Serialization.EventEmitters
             base.Emit(eventInfo, emitter);
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public override void Emit(MappingStartEventInfo eventInfo, IEmitter emitter)
         {
             AssignTypeIfNeeded(eventInfo);
             base.Emit(eventInfo, emitter);
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public override void Emit(SequenceStartEventInfo eventInfo, IEmitter emitter)
         {
             AssignTypeIfNeeded(eventInfo);

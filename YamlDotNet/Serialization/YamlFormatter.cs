@@ -23,10 +23,19 @@ using System.Globalization;
 
 namespace YamlDotNet.Serialization
 {
+    /// <summary>
+    /// The yaml formatter.
+    /// </summary>
     public class YamlFormatter
     {
+        /// <summary>
+        /// Gets the default.
+        /// </summary>
         public static YamlFormatter Default { get; } = new YamlFormatter();
 
+        /// <summary>
+        /// Gets or sets the number format.
+        /// </summary>
         public NumberFormatInfo NumberFormat { get; set; } = new NumberFormatInfo
         {
             CurrencyDecimalSeparator = ".",
@@ -43,22 +52,42 @@ namespace YamlDotNet.Serialization
             NegativeInfinitySymbol = "-.inf"
         };
 
+        /// <summary>
+        /// Formats the number.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>A string.</returns>
         public string FormatNumber(object number)
         {
             return Convert.ToString(number, NumberFormat)!;
         }
 
+        /// <summary>
+        /// Formats the number.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>A string.</returns>
         public string FormatNumber(double number)
         {
             return number.ToString("G", NumberFormat);
         }
 
+        /// <summary>
+        /// Formats the number.
+        /// </summary>
+        /// <param name="number">The number.</param>
+        /// <returns>A string.</returns>
         public string FormatNumber(float number)
         {
             return number.ToString("G", NumberFormat);
         }
 
 #pragma warning disable CA1822 // Mark members as static
+        /// <summary>
+        /// Formats the boolean.
+        /// </summary>
+        /// <param name="boolean">The boolean.</param>
+        /// <returns>A string.</returns>
         public string FormatBoolean(object boolean)
 #pragma warning restore CA1822
         {
@@ -66,6 +95,11 @@ namespace YamlDotNet.Serialization
         }
 
 #pragma warning disable CA1822 // Mark members as static
+        /// <summary>
+        /// Formats the date time.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns>A string.</returns>
         public string FormatDateTime(object dateTime)
 #pragma warning restore CA1822
         {
@@ -73,6 +107,11 @@ namespace YamlDotNet.Serialization
         }
 
 #pragma warning disable CA1822 // Mark members as static
+        /// <summary>
+        /// Formats the time span.
+        /// </summary>
+        /// <param name="timeSpan">The time span.</param>
+        /// <returns>A string.</returns>
         public string FormatTimeSpan(object timeSpan)
 #pragma warning restore CA1822
         {

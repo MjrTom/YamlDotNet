@@ -23,6 +23,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
 {
+    /// <summary>
+    /// The chained object graph visitor.
+    /// </summary>
     public abstract class ChainedObjectGraphVisitor : IObjectGraphVisitor<IEmitter>
     {
         private readonly IObjectGraphVisitor<IEmitter> nextVisitor;

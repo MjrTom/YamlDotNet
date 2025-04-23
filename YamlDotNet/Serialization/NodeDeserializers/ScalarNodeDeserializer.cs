@@ -29,6 +29,9 @@ using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Serialization.NodeDeserializers
 {
+    /// <summary>
+    /// The scalar node deserializer.
+    /// </summary>
     public sealed class ScalarNodeDeserializer : INodeDeserializer
     {
         private const string BooleanTruePattern = "^(true|y|yes|on)$";
@@ -52,6 +55,15 @@ namespace YamlDotNet.Serialization.NodeDeserializers
             this.enumNamingConvention = enumNamingConvention;
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <param name="expectedType">The expected type.</param>
+        /// <param name="nestedObjectDeserializer">The nested object deserializer.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="rootDeserializer">The root deserializer.</param>
+        /// <returns>A bool.</returns>
         public bool Deserialize(IParser parser, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer, out object? value, ObjectDeserializer rootDeserializer)
         {
             if (!parser.TryConsume<Scalar>(out var scalar))

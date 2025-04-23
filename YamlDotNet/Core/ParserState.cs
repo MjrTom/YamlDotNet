@@ -21,6 +21,9 @@
 
 namespace YamlDotNet.Core
 {
+    /// <summary>
+    /// The parser state.
+    /// </summary>
     internal enum ParserState
     {
         StreamStart,

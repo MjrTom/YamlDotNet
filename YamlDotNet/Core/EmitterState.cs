@@ -21,6 +21,9 @@
 
 namespace YamlDotNet.Core
 {
+    /// <summary>
+    /// The emitter state.
+    /// </summary>
     internal enum EmitterState
     {
         StreamStart,

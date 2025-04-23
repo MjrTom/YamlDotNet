@@ -21,6 +21,9 @@
 
 namespace YamlDotNet.Core.Events
 {
+    /// <summary>
+    /// The event type.
+    /// </summary>
     internal enum EventType
     {
         None,

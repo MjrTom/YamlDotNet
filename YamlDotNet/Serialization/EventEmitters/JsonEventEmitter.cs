@@ -25,6 +25,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.EventEmitters
 {
+    /// <summary>
+    /// The json event emitter.
+    /// </summary>
     public sealed class JsonEventEmitter : ChainedEventEmitter
     {
         private readonly YamlFormatter formatter;
@@ -39,11 +42,21 @@ namespace YamlDotNet.Serialization.EventEmitters
             this.typeInspector = typeInspector;
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public override void Emit(AliasEventInfo eventInfo, IEmitter emitter)
         {
             eventInfo.NeedsExpansion = true;
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public override void Emit(ScalarEventInfo eventInfo, IEmitter emitter)
         {
             eventInfo.IsPlainImplicit = true;
@@ -134,6 +147,11 @@ namespace YamlDotNet.Serialization.EventEmitters
             base.Emit(eventInfo, emitter);
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public override void Emit(MappingStartEventInfo eventInfo, IEmitter emitter)
         {
             eventInfo.Style = MappingStyle.Flow;
@@ -141,6 +159,11 @@ namespace YamlDotNet.Serialization.EventEmitters
             base.Emit(eventInfo, emitter);
         }
 
+        /// <summary>
+        /// Emits the.
+        /// </summary>
+        /// <param name="eventInfo">The event info.</param>
+        /// <param name="emitter">The emitter.</param>
         public override void Emit(SequenceStartEventInfo eventInfo, IEmitter emitter)
         {
             eventInfo.Style = SequenceStyle.Flow;

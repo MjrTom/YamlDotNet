@@ -54,6 +54,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(expected);
         }
 
+        /// <summary>
+        /// Invalids the format throws exception.
+        /// </summary>
         [Fact]
         public void InvalidFormatThrowsException()
         {
@@ -69,6 +72,9 @@ namespace YamlDotNet.Test.Serialization
             action.Should().Throw<FormatException>();
         }
 
+        /// <summary>
+        /// Valids the yaml returns date time offset default format.
+        /// </summary>
         [Fact]
         public void ValidYamlReturnsDateTimeOffsetDefaultFormat()
         {
@@ -81,6 +87,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal(_expected, actual);
         }
 
+        /// <summary>
+        /// Valids the yaml returns date time offset additional formats.
+        /// </summary>
         [Fact]
         public void ValidYamlReturnsDateTimeOffsetAdditionalFormats()
         {
@@ -101,6 +110,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal(_expected, actual);
         }
 
+        /// <summary>
+        /// Shoulds the serialize round trip with defaults.
+        /// </summary>
         [Fact]
         public void ShouldSerializeRoundTripWithDefaults()
         {
@@ -111,6 +123,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal(actual, expected);
         }
 
+        /// <summary>
+        /// Shoulds the serialize with custom format.
+        /// </summary>
         [Fact]
         public void ShouldSerializeWithCustomFormat()
         {
@@ -126,6 +141,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal(actual, expected);
         }
 
+        /// <summary>
+        /// Shoulds the serialize and respect quoting style.
+        /// </summary>
         [Fact]
         public void ShouldSerializeAndRespectQuotingStyle()
         {

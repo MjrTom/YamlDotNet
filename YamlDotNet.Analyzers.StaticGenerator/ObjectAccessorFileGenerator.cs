@@ -26,12 +26,19 @@ using Microsoft.CodeAnalysis;
 
 namespace YamlDotNet.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The object accessor file generator.
+    /// </summary>
     public class ObjectAccessorFileGenerator : File
     {
         public ObjectAccessorFileGenerator(Action<string, bool> Write, Action indent, Action unindent, GeneratorExecutionContext context) : base(Write, indent, unindent, context)
         {
         }
 
+        /// <summary>
+        /// Writes the.
+        /// </summary>
+        /// <param name="syntaxReceiver">The syntax receiver.</param>
         public override void Write(SerializableSyntaxReceiver syntaxReceiver)
         {
             foreach (var o in syntaxReceiver.Classes)
