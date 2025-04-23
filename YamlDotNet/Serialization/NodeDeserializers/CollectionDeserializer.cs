@@ -25,6 +25,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeDeserializers
 {
+    /// <summary>
+    /// The collection deserializer.
+    /// </summary>
     public abstract class CollectionDeserializer
     {
         protected static void DeserializeHelper(Type tItem, IParser parser, Func<IParser, Type, object?> nestedObjectDeserializer, IList result, bool canUpdate, IObjectFactory objectFactory)

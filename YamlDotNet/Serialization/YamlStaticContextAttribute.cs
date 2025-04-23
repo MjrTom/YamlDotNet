@@ -21,6 +21,9 @@
 
 namespace YamlDotNet.Serialization
 {
+    /// <summary>
+    /// The yaml static context attribute.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Class)]
     public sealed class YamlStaticContextAttribute : Attribute
     {

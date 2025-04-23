@@ -24,8 +24,17 @@ using System.Collections.Generic;
 
 namespace YamlDotNet.Test
 {
+    /// <summary>
+    /// The enumerable extensions.
+    /// </summary>
     public static class EnumerableExtensions
     {
+        /// <summary>
+        /// Dos the.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="action">The action.</param>
+        /// <returns>A list of TS.</returns>
         public static IEnumerable<T> Do<T>(this IEnumerable<T> source, Action<T> action)
         {
             foreach (var item in source)
@@ -35,6 +44,11 @@ namespace YamlDotNet.Test
             }
         }
 
+        /// <summary>
+        /// Runs the.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="action">The action.</param>
         public static void Run<T>(this IEnumerable<T> source, Action<T> action)
         {
             foreach (var element in source)

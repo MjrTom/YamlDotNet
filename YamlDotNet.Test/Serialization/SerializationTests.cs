@@ -46,6 +46,9 @@ using YamlDotNet.Serialization.ObjectFactories;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The serialization tests.
+    /// </summary>
     public class SerializationTests : SerializationTestHelper
     {
         #region Test Cases
@@ -53,6 +56,9 @@ namespace YamlDotNet.Test.Serialization
         private static readonly string[] TrueStrings = { "true", "y", "yes", "on" };
         private static readonly string[] FalseStrings = { "false", "n", "no", "off" };
 
+        /// <summary>
+        /// Gets the deserialize scalar boolean_ test cases.
+        /// </summary>
         public static IEnumerable<object[]> DeserializeScalarBoolean_TestCases
         {
             get
@@ -73,6 +79,9 @@ namespace YamlDotNet.Test.Serialization
 
         #endregion
 
+        /// <summary>
+        /// Deserializes the empty document.
+        /// </summary>
         [Fact]
         public void DeserializeEmptyDocument()
         {
@@ -83,6 +92,9 @@ namespace YamlDotNet.Test.Serialization
             array.Should().BeNull();
         }
 
+        /// <summary>
+        /// Deserializes the scalar.
+        /// </summary>
         [Fact]
         public void DeserializeScalar()
         {
@@ -93,6 +105,11 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be("a scalar");
         }
 
+        /// <summary>
+        /// Deserializes the scalar boolean.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="expected">If true, expected.</param>
         [Theory]
         [MemberData(nameof(DeserializeScalarBoolean_TestCases))]
         public void DeserializeScalarBoolean(string value, bool expected)
@@ -102,6 +119,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(expected);
         }
 
+        /// <summary>
+        /// Deserializes the scalar boolean throws when invalid.
+        /// </summary>
         [Fact]
         public void DeserializeScalarBooleanThrowsWhenInvalid()
         {
@@ -110,6 +130,9 @@ namespace YamlDotNet.Test.Serialization
             action.Should().Throw<YamlException>().WithInnerException<FormatException>();
         }
 
+        /// <summary>
+        /// Deserializes the scalar zero.
+        /// </summary>
         [Fact]
         public void DeserializeScalarZero()
         {
@@ -118,6 +141,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(0);
         }
 
+        /// <summary>
+        /// Deserializes the scalar decimal.
+        /// </summary>
         [Fact]
         public void DeserializeScalarDecimal()
         {
@@ -126,6 +152,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(1234567);
         }
 
+        /// <summary>
+        /// Deserializes the scalar binary number.
+        /// </summary>
         [Fact]
         public void DeserializeScalarBinaryNumber()
         {
@@ -134,6 +163,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(-4754);
         }
 
+        /// <summary>
+        /// Deserializes the scalar octal number.
+        /// </summary>
         [Fact]
         public void DeserializeScalarOctalNumber()
         {
@@ -142,6 +174,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(29418);
         }
 
+        /// <summary>
+        /// Deserializes the nullable scalar octal number.
+        /// </summary>
         [Fact]
         public void DeserializeNullableScalarOctalNumber()
         {
@@ -150,6 +185,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(29418);
         }
 
+        /// <summary>
+        /// Deserializes the scalar hex number.
+        /// </summary>
         [Fact]
         public void DeserializeScalarHexNumber()
         {
@@ -158,6 +196,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(-0xFB9);
         }
 
+        /// <summary>
+        /// Deserializes the scalar long base60 number.
+        /// </summary>
         [Fact]
         public void DeserializeScalarLongBase60Number()
         {
@@ -166,6 +207,10 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(77744246530L);
         }
 
+        /// <summary>
+        /// Roundtrips the enums.
+        /// </summary>
+        /// <param name="value">The value.</param>
         [Theory]
         [InlineData(EnumExample.One)]
         [InlineData(EnumExample.One | EnumExample.Two)]
@@ -176,6 +221,10 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(value);
         }
 
+        /// <summary>
+        /// Roundtrips the nullable enums.
+        /// </summary>
+        /// <param name="value">The value.</param>
         [Theory]
         [InlineData(EnumExample.One)]
         [InlineData(EnumExample.One | EnumExample.Two)]
@@ -187,6 +236,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(value);
         }
 
+        /// <summary>
+        /// Roundtrips the nullable struct with value.
+        /// </summary>
         [Fact]
         public void RoundtripNullableStructWithValue()
         {
@@ -197,6 +249,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(value);
         }
 
+        /// <summary>
+        /// Roundtrips the nullable struct without value.
+        /// </summary>
         [Fact]
         public void RoundtripNullableStructWithoutValue()
         {
@@ -205,6 +260,9 @@ namespace YamlDotNet.Test.Serialization
             result.Should().Be(null);
         }
 
+        /// <summary>
+        /// Serializes the circular reference.
+        /// </summary>
         [Fact]
         public void SerializeCircularReference()
         {
@@ -220,6 +278,9 @@ namespace YamlDotNet.Test.Serialization
             action.Should().NotThrow();
         }
 
+        /// <summary>
+        /// Deserializes the incomplete directive.
+        /// </summary>
         [Fact]
         public void DeserializeIncompleteDirective()
         {
@@ -229,6 +290,9 @@ namespace YamlDotNet.Test.Serialization
                 .WithMessage("While scanning a directive, found unexpected end of stream.");
         }
 
+        /// <summary>
+        /// Deserializes the skipped reserved directive.
+        /// </summary>
         [Fact]
         public void DeserializeSkippedReservedDirective()
         {
@@ -237,6 +301,9 @@ namespace YamlDotNet.Test.Serialization
             action.Should().NotThrow();
         }
 
+        /// <summary>
+        /// Deserializes the custom tags.
+        /// </summary>
         [Fact]
         public void DeserializeCustomTags()
         {
@@ -250,6 +317,9 @@ namespace YamlDotNet.Test.Serialization
                 .Should().BeEquivalentTo(new { X = 10, Y = 20 }, o => o.ExcludingMissingMembers());
         }
 
+        /// <summary>
+        /// Deserializes the with gaps between keys.
+        /// </summary>
         [Fact]
         public void DeserializeWithGapsBetweenKeys()
         {
@@ -262,6 +332,9 @@ Value: foo");
             result.Should().NotBeNull();
         }
 
+        /// <summary>
+        /// Serializes the custom tags.
+        /// </summary>
         [Fact]
         public void SerializeCustomTags()
         {
@@ -276,6 +349,9 @@ Value: foo");
             result.Should().Be(expectedResult);
         }
 
+        /// <summary>
+        /// Serializes the with c r l f new line.
+        /// </summary>
         [Fact]
         public void SerializeWithCRLFNewLine()
         {
@@ -294,6 +370,9 @@ Value: foo");
             result.Should().Be(expectedResult);
         }
 
+        /// <summary>
+        /// Serializes the with l f new line.
+        /// </summary>
         [Fact]
         public void SerializeWithLFNewLine()
         {
@@ -312,6 +391,9 @@ Value: foo");
             result.Should().Be(expectedResult);
         }
 
+        /// <summary>
+        /// Serializes the with c r new line.
+        /// </summary>
         [Fact]
         public void SerializeWithCRNewLine()
         {
@@ -359,6 +441,9 @@ Value: foo");
             lines.Skip(1).Take(lines.Length - 2).Where(element => element.StartsWith(indent)).Should().HaveCount(items.Count);
         }
 
+        /// <summary>
+        /// Deserializes the explicit type.
+        /// </summary>
         [Fact]
         public void DeserializeExplicitType()
         {
@@ -372,6 +457,9 @@ Value: foo");
             result.aaa.Should().Be("bbb");
         }
 
+        /// <summary>
+        /// Deserializes the convertible.
+        /// </summary>
         [Fact]
         public void DeserializeConvertible()
         {
@@ -385,6 +473,9 @@ Value: foo");
             result.aaa.Should().Be("[hello, world]");
         }
 
+        /// <summary>
+        /// Deserializations the fails for undefined forward references.
+        /// </summary>
         [Fact]
         public void DeserializationFailsForUndefinedForwardReferences()
         {
@@ -397,6 +488,9 @@ Value: foo");
             action.Should().Throw<AnchorNotFoundException>();
         }
 
+        /// <summary>
+        /// Roundtrips the object.
+        /// </summary>
         [Fact]
         public void RoundtripObject()
         {
@@ -416,6 +510,9 @@ Value: foo");
             result.Should().BeEquivalentTo(obj);
         }
 
+        /// <summary>
+        /// Roundtrips the object with defaults.
+        /// </summary>
         [Fact]
         public void RoundtripObjectWithDefaults()
         {
@@ -435,6 +532,9 @@ Value: foo");
             result.Should().BeEquivalentTo(obj);
         }
 
+        /// <summary>
+        /// Roundtrips the anonymous type.
+        /// </summary>
         [Fact]
         public void RoundtripAnonymousType()
         {
@@ -447,6 +547,9 @@ Value: foo");
             });
         }
 
+        /// <summary>
+        /// Roundtrips the with yaml type converter.
+        /// </summary>
         [Fact]
         public void RoundtripWithYamlTypeConverter()
         {
@@ -464,6 +567,9 @@ Value: foo");
             result.Value.Should().Be("Yo");
         }
 
+        /// <summary>
+        /// Roundtrips the alias.
+        /// </summary>
         [Fact]
         public void RoundtripAlias()
         {
@@ -484,6 +590,9 @@ Value: foo");
             output.AliasTest.Should().Be(input.AliasTest);
         }
 
+        /// <summary>
+        /// Roundtrips the alias override.
+        /// </summary>
         [Fact]
         public void RoundtripAliasOverride()
         {
@@ -512,6 +621,9 @@ Value: foo");
             output.AliasTest.Should().Be(input.AliasTest);
         }
 
+        /// <summary>
+        /// Roundtrips the derived class.
+        /// </summary>
         [Fact]
         // Todo: is the assert on the string necessary?
         public void RoundtripDerivedClass()
@@ -540,6 +652,9 @@ Value: foo");
                 .Subject.As<Derived>().Should().BeEquivalentTo(new { ChildProp = "bar" }, o => o.ExcludingMissingMembers());
         }
 
+        /// <summary>
+        /// Roundtrips the derived class with serialize as.
+        /// </summary>
         [Fact]
         public void RoundtripDerivedClassWithSerializeAs()
         {
@@ -564,6 +679,9 @@ Value: foo");
                 .Subject.As<Base>().Should().BeEquivalentTo(new { ParentProp = "foo" }, o => o.ExcludingMissingMembers());
         }
 
+        /// <summary>
+        /// Roundtrips the interface properties.
+        /// </summary>
         [Fact]
         public void RoundtripInterfaceProperties()
         {
@@ -585,6 +703,9 @@ Value: foo");
                 .Subject.As<IDerived>().Should().BeEquivalentTo(new { BaseProperty = "foo", DerivedProperty = "bar" }, o => o.ExcludingMissingMembers());
         }
 
+        /// <summary>
+        /// Deserializes the guid.
+        /// </summary>
         [Fact]
         public void DeserializeGuid()
         {
@@ -594,6 +715,9 @@ Value: foo");
             result.Should().Be(new Guid("9462790d5c44468985425e2dd38ebd98"));
         }
 
+        /// <summary>
+        /// Deserializations the of ordered properties.
+        /// </summary>
         [Fact]
         public void DeserializationOfOrderedProperties()
         {
@@ -605,6 +729,9 @@ Value: foo");
             orderExample.Order2.Should().Be("Order2 value");
         }
 
+        /// <summary>
+        /// Deserializes the enumerable.
+        /// </summary>
         [Fact]
         public void DeserializeEnumerable()
         {
@@ -615,6 +742,9 @@ Value: foo");
             result.Should().ContainSingle(item => "bbb".Equals(item.aaa));
         }
 
+        /// <summary>
+        /// Deserializes the array.
+        /// </summary>
         [Fact]
         public void DeserializeArray()
         {
@@ -625,6 +755,9 @@ Value: foo");
             result.Should().Equal(new[] { "one", "two", "three" });
         }
 
+        /// <summary>
+        /// Deserializes the list.
+        /// </summary>
         [Fact]
         public void DeserializeList()
         {
@@ -635,6 +768,9 @@ Value: foo");
             result.Should().BeEquivalentTo(new[] { "one", "two", "three" });
         }
 
+        /// <summary>
+        /// Deserializes the explicit list.
+        /// </summary>
         [Fact]
         public void DeserializeExplicitList()
         {
@@ -649,6 +785,9 @@ Value: foo");
                 .Subject.As<IList<int>>().Should().Equal(3, 4, 5);
         }
 
+        /// <summary>
+        /// Roundtrips the list.
+        /// </summary>
         [Fact]
         public void RoundtripList()
         {
@@ -659,6 +798,9 @@ Value: foo");
             result.Should().Equal(obj);
         }
 
+        /// <summary>
+        /// Roundtrips the array with type conversion.
+        /// </summary>
         [Fact]
         public void RoundtripArrayWithTypeConversion()
         {
@@ -669,6 +811,9 @@ Value: foo");
             result.Should().Equal(1, 2, 3);
         }
 
+        /// <summary>
+        /// Roundtrips the array of identical objects.
+        /// </summary>
         [Fact]
         public void RoundtripArrayOfIdenticalObjects()
         {
@@ -681,6 +826,9 @@ Value: foo");
             result[0].Should().BeSameAs(result[1]).And.BeSameAs(result[2]);
         }
 
+        /// <summary>
+        /// Deserializes the dictionary.
+        /// </summary>
         [Fact]
         public void DeserializeDictionary()
         {
@@ -695,6 +843,9 @@ Value: foo");
                 });
         }
 
+        /// <summary>
+        /// Deserializes the explicit dictionary.
+        /// </summary>
         [Fact]
         public void DeserializeExplicitDictionary()
         {
@@ -712,6 +863,9 @@ Value: foo");
                 });
         }
 
+        /// <summary>
+        /// Roundtrips the dictionary.
+        /// </summary>
         [Fact]
         public void RoundtripDictionary()
         {
@@ -726,6 +880,9 @@ Value: foo");
             result.Should().Equal(obj);
         }
 
+        /// <summary>
+        /// Deserializes the list of dictionaries.
+        /// </summary>
         [Fact]
         public void DeserializeListOfDictionaries()
         {
@@ -744,6 +901,9 @@ Value: foo");
                 }}, opt => opt.WithStrictOrderingFor(root => root));
         }
 
+        /// <summary>
+        /// Deserializes the two documents.
+        /// </summary>
         [Fact]
         public void DeserializeTwoDocuments()
         {
@@ -762,6 +922,9 @@ Value: foo");
             two.Should().BeEquivalentTo(new { aaa = "222" });
         }
 
+        /// <summary>
+        /// Deserializes the three documents.
+        /// </summary>
         [Fact]
         public void DeserializeThreeDocuments()
         {
@@ -785,6 +948,9 @@ Value: foo");
             three.Should().BeEquivalentTo(new { aaa = "333" });
         }
 
+        /// <summary>
+        /// Serializes the guid.
+        /// </summary>
         [Fact]
         public void SerializeGuid()
         {
@@ -797,6 +963,9 @@ Value: foo");
             Regex.IsMatch(serialized, "^" + guid.ToString("D")).Should().BeTrue("serialized content should contain the guid, but instead contained: " + serialized);
         }
 
+        /// <summary>
+        /// Serializes the null object.
+        /// </summary>
         [Fact]
         public void SerializeNullObject()
         {
@@ -811,6 +980,9 @@ Value: foo");
 #nullable restore
         }
 
+        /// <summary>
+        /// Serializations the of null in lists are always emitted without using emit defaults.
+        /// </summary>
         [Fact]
         public void SerializationOfNullInListsAreAlwaysEmittedWithoutUsingEmitDefaults()
         {
@@ -823,6 +995,9 @@ Value: foo");
             Regex.Matches(serialized, "-").Count.Should().Be(3, "there should have been 3 elements");
         }
 
+        /// <summary>
+        /// Serializations the of null in lists are always emitted when using emit defaults.
+        /// </summary>
         [Fact]
         public void SerializationOfNullInListsAreAlwaysEmittedWhenUsingEmitDefaults()
         {
@@ -835,6 +1010,9 @@ Value: foo");
             Regex.Matches(serialized, "-").Count.Should().Be(3, "there should have been 3 elements");
         }
 
+        /// <summary>
+        /// Serializations the includes key when emitting defaults.
+        /// </summary>
         [Fact]
         public void SerializationIncludesKeyWhenEmittingDefaults()
         {
@@ -846,6 +1024,9 @@ Value: foo");
             writer.ToString().Should().Contain("MyString");
         }
 
+        /// <summary>
+        /// Serializations the includes key from anonymous type when emitting defaults.
+        /// </summary>
         [Fact]
         [Trait("Motive", "Bug fix")]
         public void SerializationIncludesKeyFromAnonymousTypeWhenEmittingDefaults()
@@ -858,6 +1039,9 @@ Value: foo");
             writer.ToString().Should().Contain("MyString");
         }
 
+        /// <summary>
+        /// Serializations the does not include key when disregarding defaults.
+        /// </summary>
         [Fact]
         public void SerializationDoesNotIncludeKeyWhenDisregardingDefaults()
         {
@@ -872,6 +1056,9 @@ Value: foo");
             writer.ToString().Should().NotContain("MyString");
         }
 
+        /// <summary>
+        /// Serializations the of defaults work in json.
+        /// </summary>
         [Fact]
         public void SerializationOfDefaultsWorkInJson()
         {
@@ -883,6 +1070,9 @@ Value: foo");
             writer.ToString().Should().Contain("MyString");
         }
 
+        /// <summary>
+        /// Serializations the of long keys works in json.
+        /// </summary>
         [Fact]
         public void SerializationOfLongKeysWorksInJson()
         {
@@ -897,6 +1087,9 @@ Value: foo");
             writer.ToString().Should().NotContain("?");
         }
 
+        /// <summary>
+        /// Serializations the of anchor works in json.
+        /// </summary>
         [Fact]
         public void SerializationOfAnchorWorksInJson()
         {
@@ -916,6 +1109,9 @@ y:
                 .BeEquivalentTo(@"{""x"": {""z"": {""v"": ""1""}}, ""y"": {""k"": {""z"": {""v"": ""1""}}}}");
         }
 
+        /// <summary>
+        /// Serializations the of utf32 works in json.
+        /// </summary>
         [Fact]
         public void SerializationOfUtf32WorksInJson()
         {
@@ -925,6 +1121,9 @@ y:
                 .Be(@"{""TestProperty"": ""Sea life \uD83E\uDD9E""}");
         }
 
+        /// <summary>
+        /// Deserializations the of defaults work in json.
+        /// </summary>
         [Fact]
         // Todo: this is actually roundtrip
         public void DeserializationOfDefaultsWorkInJson()
@@ -938,6 +1137,9 @@ y:
             result.MyString.Should().BeNull();
         }
 
+        /// <summary>
+        /// Nulls the round trip.
+        /// </summary>
         [Fact]
         public void NullsRoundTrip()
         {
@@ -950,6 +1152,9 @@ y:
             result.MyString.Should().BeNull();
         }
 
+        /// <summary>
+        /// Serializations the of numerics as json rount trip.
+        /// </summary>
         [Fact]
         public void SerializationOfNumericsAsJsonRountTrip()
         {
@@ -999,6 +1204,10 @@ y:
 #endif
         }
 
+        /// <summary>
+        /// Deserializations the of enum works in json.
+        /// </summary>
+        /// <param name="enumType">The enum type.</param>
         [Theory]
         [InlineData(typeof(SByteEnum))]
         [InlineData(typeof(ByteEnum))]
@@ -1020,6 +1229,9 @@ y:
             jsonSerializedEnum.Should().Contain($"\"{nonDefaultEnumValue}\"");
         }
 
+        /// <summary>
+        /// Serializations the of ordered properties.
+        /// </summary>
         [Fact]
         public void SerializationOfOrderedProperties()
         {
@@ -1033,6 +1245,9 @@ y:
                 .Be("Order1: Order1 value\r\nOrder2: Order2 value\r\n".NormalizeNewLines(), "the properties should be in the right order");
         }
 
+        /// <summary>
+        /// Serializations the respects yaml ignore attribute.
+        /// </summary>
         [Fact]
         public void SerializationRespectsYamlIgnoreAttribute()
         {
@@ -1046,6 +1261,9 @@ y:
             serialized.Should().NotContain("IgnoreMe");
         }
 
+        /// <summary>
+        /// Serializations the respects yaml ignore attribute of derived classes.
+        /// </summary>
         [Fact]
         public void SerializationRespectsYamlIgnoreAttributeOfDerivedClasses()
         {
@@ -1059,6 +1277,9 @@ y:
             serialized.Should().NotContain("IgnoreMe");
         }
 
+        /// <summary>
+        /// Serializations the respects yaml ignore override.
+        /// </summary>
         [Fact]
         public void SerializationRespectsYamlIgnoreOverride()
         {
@@ -1077,6 +1298,9 @@ y:
             serialized.Should().NotContain("aaa");
         }
 
+        /// <summary>
+        /// Serializations the respects scalar style.
+        /// </summary>
         [Fact]
         public void SerializationRespectsScalarStyle()
         {
@@ -1090,6 +1314,9 @@ y:
                 .Be("LiteralString: |-\r\n  Test\r\nDoubleQuotedString: \"Test\"\r\n".NormalizeNewLines(), "the properties should be specifically styled");
         }
 
+        /// <summary>
+        /// Serializations the respects scalar style override.
+        /// </summary>
         [Fact]
         public void SerializationRespectsScalarStyleOverride()
         {
@@ -1108,6 +1335,9 @@ y:
                 .Be("LiteralString: \"Test\"\r\nDoubleQuotedString: |-\r\n  Test\r\n".NormalizeNewLines(), "the properties should be specifically styled");
         }
 
+        /// <summary>
+        /// Serializations the respects default scalar style.
+        /// </summary>
         [Fact]
         public void SerializationRespectsDefaultScalarStyle()
         {
@@ -1130,6 +1360,9 @@ y:
             Assert.Equal(expected.NormalizeNewLines(), yaml.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Serializations the derived attribute override.
+        /// </summary>
         [Fact]
         public void SerializationDerivedAttributeOverride()
         {
@@ -1148,6 +1381,9 @@ y:
                 .Be("BaseProperty: Base\r\n".NormalizeNewLines(), "the derived property should be specifically ignored");
         }
 
+        /// <summary>
+        /// Serializations the base attribute override.
+        /// </summary>
         [Fact]
         public void SerializationBaseAttributeOverride()
         {
@@ -1166,6 +1402,9 @@ y:
                 .Be("DerivedProperty: Derived\r\n".NormalizeNewLines(), "the base property should be specifically ignored");
         }
 
+        /// <summary>
+        /// Serializations the skips property when using default value attribute.
+        /// </summary>
         [Fact]
         public void SerializationSkipsPropertyWhenUsingDefaultValueAttribute()
         {
@@ -1181,6 +1420,9 @@ y:
             serialized.Should().NotContain("Value");
         }
 
+        /// <summary>
+        /// Serializations the emits property when using emit defaults and default value attribute.
+        /// </summary>
         [Fact]
         public void SerializationEmitsPropertyWhenUsingEmitDefaultsAndDefaultValueAttribute()
         {
@@ -1193,6 +1435,9 @@ y:
             serialized.Should().Contain("Value");
         }
 
+        /// <summary>
+        /// Serializations the emits property when value differ from default value attribute.
+        /// </summary>
         [Fact]
         public void SerializationEmitsPropertyWhenValueDifferFromDefaultValueAttribute()
         {
@@ -1205,6 +1450,9 @@ y:
             serialized.Should().Contain("Value");
         }
 
+        /// <summary>
+        /// Serializings the a generic dictionary should not throw target exception.
+        /// </summary>
         [Fact]
         public void SerializingAGenericDictionaryShouldNotThrowTargetException()
         {
@@ -1217,6 +1465,9 @@ y:
             action.Should().NotThrow<TargetException>();
         }
 
+        /// <summary>
+        /// Serializations the utilize naming conventions.
+        /// </summary>
         [Fact]
         public void SerializationUtilizeNamingConventions()
         {
@@ -1234,6 +1485,9 @@ y:
             A.CallTo(() => convention.Apply("SecondTest")).MustHaveHappened();
         }
 
+        /// <summary>
+        /// Deserializations the utilize naming conventions.
+        /// </summary>
         [Fact]
         public void DeserializationUtilizeNamingConventions()
         {
@@ -1253,6 +1507,9 @@ y:
             A.CallTo(() => convention.Apply("SecondTest")).MustHaveHappened();
         }
 
+        /// <summary>
+        /// Types the converter is used on list items.
+        /// </summary>
         [Fact]
         public void TypeConverterIsUsedOnListItems()
         {
@@ -1272,6 +1529,9 @@ y:
                 .And.ContainSingle(c => c.Equals("[hello, world]"));
         }
 
+        /// <summary>
+        /// Backreferences the are merged with mappings.
+        /// </summary>
         [Fact]
         public void BackreferencesAreMergedWithMappings()
         {
@@ -1287,6 +1547,9 @@ y:
                 .And.Contain("key3", "value3", "key3 is defined in the actual mapping");
         }
 
+        /// <summary>
+        /// Mergings the does not produce duplicate anchors.
+        /// </summary>
         [Fact]
         public void MergingDoesNotProduceDuplicateAnchors()
         {
@@ -1313,6 +1576,9 @@ y:
                 .Contain("key", "value1", "key should be copied");
         }
 
+        /// <summary>
+        /// Examples the from specification is handled correctly.
+        /// </summary>
         [Fact]
         public void ExampleFromSpecificationIsHandledCorrectly()
         {
@@ -1361,6 +1627,9 @@ y:
             }
         }
 
+        /// <summary>
+        /// Merges the nested reference correctly.
+        /// </summary>
         [Fact]
         public void MergeNestedReferenceCorrectly()
         {
@@ -1398,6 +1667,9 @@ y:
                 .And.Contain("level", "1", "level should be inherited from the backreferenced mapping");
         }
 
+        /// <summary>
+        /// Ignores the extra properties if wanted.
+        /// </summary>
         [Fact]
         public void IgnoreExtraPropertiesIfWanted()
         {
@@ -1407,6 +1679,9 @@ y:
             actual.aaa.Should().Be("hello");
         }
 
+        /// <summary>
+        /// Donts the ignore extra properties if wanted.
+        /// </summary>
         [Fact]
         public void DontIgnoreExtraPropertiesIfWanted()
         {
@@ -1422,6 +1697,9 @@ y:
             ((YamlException)actual).Message.Should().Be("Property 'bbb' not found on type 'YamlDotNet.Test.Serialization.Simple'.");
         }
 
+        /// <summary>
+        /// Ignores the extra properties if wanted before.
+        /// </summary>
         [Fact]
         public void IgnoreExtraPropertiesIfWantedBefore()
         {
@@ -1431,6 +1709,9 @@ y:
             actual.aaa.Should().Be("hello");
         }
 
+        /// <summary>
+        /// Ignores the extra properties if wanted naming scheme.
+        /// </summary>
         [Fact]
         public void IgnoreExtraPropertiesIfWantedNamingScheme()
         {
@@ -1453,6 +1734,9 @@ y:
             actual.MappedScratch.Should().ContainInOrder(new[] { "/work/" });
         }
 
+        /// <summary>
+        /// Invalids the type conversions produce proper exceptions.
+        /// </summary>
         [Fact]
         public void InvalidTypeConversionsProduceProperExceptions()
         {
@@ -1465,6 +1749,10 @@ y:
             Assert.Equal(3, exception.Start.Column);
         }
 
+        /// <summary>
+        /// Values the allowed after document start token.
+        /// </summary>
+        /// <param name="text">The text.</param>
         [Theory]
         [InlineData("blah")]
         [InlineData("hello=world")]
@@ -1480,6 +1768,9 @@ y:
             Assert.Equal(text, actual);
         }
 
+        /// <summary>
+        /// Mappings the disallowed after document start token.
+        /// </summary>
         [Fact]
         public void MappingDisallowedAfterDocumentStartToken()
         {
@@ -1492,6 +1783,9 @@ y:
             Assert.Equal(6, exception.Start.Column);
         }
 
+        /// <summary>
+        /// Serializes the dynamic property and apply naming convention.
+        /// </summary>
         [Fact]
         public void SerializeDynamicPropertyAndApplyNamingConvention()
         {
@@ -1512,6 +1806,9 @@ y:
             writer.ToString().Should().Contain("xxx: new_value");
         }
 
+        /// <summary>
+        /// Serializes the generic dictionary property and do not apply naming convention.
+        /// </summary>
         [Fact]
         public void SerializeGenericDictionaryPropertyAndDoNotApplyNamingConvention()
         {
@@ -1535,6 +1832,10 @@ y:
             writer.ToString().Should().Contain("new_key_here: new_value");
         }
 
+        /// <summary>
+        /// Specials the floats are handled correctly.
+        /// </summary>
+        /// <param name="testCase">The test case.</param>
         [Theory, MemberData(nameof(SpecialFloats))]
         public void SpecialFloatsAreHandledCorrectly(FloatTestCase testCase)
         {
@@ -1550,6 +1851,10 @@ y:
             Assert.Equal(testCase.Value, deserializedValue);
         }
 
+        /// <summary>
+        /// Rounds the trip special enum.
+        /// </summary>
+        /// <param name="testValue">The test value.</param>
         [Theory]
         [InlineData(TestEnum.True)]
         [InlineData(TestEnum.False)]
@@ -1565,6 +1870,9 @@ y:
             Assert.Equal(testValue, actual.TestEnum);
         }
 
+        /// <summary>
+        /// Empties the strings are quoted.
+        /// </summary>
         [Fact]
         public void EmptyStringsAreQuoted()
         {
@@ -1576,6 +1884,9 @@ y:
         }
 
 #if NET6_0_OR_GREATER
+        /// <summary>
+        /// Enums the serialization uses enum member attribute.
+        /// </summary>
         [Fact]
         public void EnumSerializationUsesEnumMemberAttribute()
         {
@@ -1584,6 +1895,9 @@ y:
             Assert.Equal("goodbye", actual.TrimNewLines());
         }
 
+        /// <summary>
+        /// Enums the serialization uses enum member attribute with empty value.
+        /// </summary>
         [Fact]
         public void EnumSerializationUsesEnumMemberAttributeWithEmptyValue()
         {
@@ -1592,6 +1906,9 @@ y:
             Assert.Equal("Test: ''", actual.TrimNewLines());
         }
 
+        /// <summary>
+        /// Enums the serialization uses enum member attribute with null value.
+        /// </summary>
         [Fact]
         public void EnumSerializationUsesEnumMemberAttributeWithNullValue()
         {
@@ -1600,6 +1917,9 @@ y:
             Assert.Equal("NullValue", actual.TrimNewLines());
         }
 
+        /// <summary>
+        /// The enum membered enum.
+        /// </summary>
         public enum EnumMemberedEnum
         {
             [System.Runtime.Serialization.EnumMember(Value = "goodbye")]
@@ -1613,6 +1933,9 @@ y:
         }
 #endif
 
+        /// <summary>
+        /// The test enum.
+        /// </summary>
         public enum TestEnum
         {
             True,
@@ -1621,15 +1944,30 @@ y:
             Null
         }
 
+        /// <summary>
+        /// The test enum test case.
+        /// </summary>
         public class TestEnumTestCase
         {
+            /// <summary>
+            /// Gets or sets the test enum.
+            /// </summary>
             public TestEnum TestEnum { get; set; }
         }
 
+        /// <summary>
+        /// The float test case.
+        /// </summary>
         public class FloatTestCase
         {
             private readonly string description;
+            /// <summary>
+            /// Gets the value.
+            /// </summary>
             public object Value { get; private set; }
+            /// <summary>
+            /// Gets the expected text representation.
+            /// </summary>
             public string ExpectedTextRepresentation { get; private set; }
 
             public FloatTestCase(string description, object value, string expectedTextRepresentation)
@@ -1639,12 +1977,19 @@ y:
                 ExpectedTextRepresentation = expectedTextRepresentation;
             }
 
+            /// <summary>
+            /// Tos the string.
+            /// </summary>
+            /// <returns>A string.</returns>
             public override string ToString()
             {
                 return description;
             }
         }
 
+        /// <summary>
+        /// Gets the special floats.
+        /// </summary>
         public static IEnumerable<object[]> SpecialFloats
         {
             get
@@ -1675,6 +2020,9 @@ y:
             }
         }
 
+        /// <summary>
+        /// Negatives the integers can be deserialized.
+        /// </summary>
         [Fact]
         public void NegativeIntegersCanBeDeserialized()
         {
@@ -1686,6 +2034,9 @@ y:
             Assert.Equal(-123, value);
         }
 
+        /// <summary>
+        /// Generics the dictionary that does not implement i dictionary can be deserialized.
+        /// </summary>
         [Fact]
         public void GenericDictionaryThatDoesNotImplementIDictionaryCanBeDeserialized()
         {
@@ -1699,6 +2050,9 @@ y:
             Assert.Equal("2", deserialized["b"]);
         }
 
+        /// <summary>
+        /// Generics the list that does not implement i list can be deserialized.
+        /// </summary>
         [Fact]
         public void GenericListThatDoesNotImplementIListCanBeDeserialized()
         {
@@ -1712,6 +2066,9 @@ y:
             Assert.Contains("b", deserialized);
         }
 
+        /// <summary>
+        /// Guids the should be quoted when serialized as json.
+        /// </summary>
         [Fact]
         public void GuidsShouldBeQuotedWhenSerializedAsJson()
         {
@@ -1728,11 +2085,20 @@ y:
             Assert.Contains("\"00000000-0000-0000-0000-000000000000\"", yamlAsJson.ToString());
         }
 
+        /// <summary>
+        /// The foo.
+        /// </summary>
         public class Foo
         {
+            /// <summary>
+            /// Gets or sets a value indicating whether is required.
+            /// </summary>
             public bool IsRequired { get; set; }
         }
 
+        /// <summary>
+        /// Attributes the overrides and naming convention do not conflict.
+        /// </summary>
         [Fact]
         public void AttributeOverridesAndNamingConventionDoNotConflict()
         {
@@ -1760,6 +2126,9 @@ y:
             Assert.True(deserializedFoo.IsRequired);
         }
 
+        /// <summary>
+        /// Yamls the convertibles are able to emit and parse comments.
+        /// </summary>
         [Fact]
         public void YamlConvertiblesAreAbleToEmitAndParseComments()
         {
@@ -1774,11 +2143,26 @@ y:
             Assert.Equal("The value", parsed.Value);
         }
 
+        /// <summary>
+        /// The comment wrapper.
+        /// </summary>
         public class CommentWrapper<T> : IYamlConvertible
         {
+            /// <summary>
+            /// Gets or sets the comment.
+            /// </summary>
             public string Comment { get; set; }
+            /// <summary>
+            /// Gets or sets the value.
+            /// </summary>
             public T Value { get; set; }
 
+            /// <summary>
+            /// Reads the.
+            /// </summary>
+            /// <param name="parser">The parser.</param>
+            /// <param name="expectedType">The expected type.</param>
+            /// <param name="nestedObjectDeserializer">The nested object deserializer.</param>
             public void Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer)
             {
                 if (parser.TryConsume<Comment>(out var comment))
@@ -1789,6 +2173,11 @@ y:
                 Value = (T)nestedObjectDeserializer(typeof(T));
             }
 
+            /// <summary>
+            /// Writes the.
+            /// </summary>
+            /// <param name="emitter">The emitter.</param>
+            /// <param name="nestedObjectSerializer">The nested object serializer.</param>
             public void Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer)
             {
                 if (!string.IsNullOrEmpty(Comment))
@@ -1800,6 +2189,10 @@ y:
             }
         }
 
+        /// <summary>
+        /// Deserializations the of u int64 succeeds.
+        /// </summary>
+        /// <param name="value">The value.</param>
         [Theory]
         [InlineData(uint.MinValue)]
         [InlineData(uint.MaxValue)]
@@ -1813,6 +2206,10 @@ y:
             Assert.Equal(value, parsed);
         }
 
+        /// <summary>
+        /// Deserializations the of int64 succeeds.
+        /// </summary>
+        /// <param name="value">The value.</param>
         [Theory]
         [InlineData(int.MinValue)]
         [InlineData(int.MaxValue)]
@@ -1826,14 +2223,32 @@ y:
             Assert.Equal(value, parsed);
         }
 
+        /// <summary>
+        /// The anchors overwriting test case.
+        /// </summary>
         public class AnchorsOverwritingTestCase
         {
+            /// <summary>
+            /// Gets or sets the a.
+            /// </summary>
             public List<string> a { get; set; }
+            /// <summary>
+            /// Gets or sets the b.
+            /// </summary>
             public List<string> b { get; set; }
+            /// <summary>
+            /// Gets or sets the c.
+            /// </summary>
             public List<string> c { get; set; }
+            /// <summary>
+            /// Gets or sets the d.
+            /// </summary>
             public List<string> d { get; set; }
         }
 
+        /// <summary>
+        /// Deserializations the of stream with duplicate anchors succeeds.
+        /// </summary>
         [Fact]
         public void DeserializationOfStreamWithDuplicateAnchorsSucceeds()
         {
@@ -1858,6 +2273,9 @@ y:
             public string c { get; set; }
         }
 
+        /// <summary>
+        /// Deserializations the with duplicate anchors succeeds.
+        /// </summary>
         [Fact]
         public void DeserializationWithDuplicateAnchorsSucceeds()
         {
@@ -1877,6 +2295,9 @@ c:  *anchor1");
             Assert.Equal("test2", deserialized.c);
         }
 
+        /// <summary>
+        /// Serializes the exception with stack trace.
+        /// </summary>
         [Fact]
         public void SerializeExceptionWithStackTrace()
         {
@@ -1919,6 +2340,9 @@ c:  *anchor1");
             }
         }
 
+        /// <summary>
+        /// Registerings the a type converter prevents the type from being visited.
+        /// </summary>
         [Fact]
         public void RegisteringATypeConverterPreventsTheTypeFromBeingVisited()
         {
@@ -1940,6 +2364,9 @@ c:  *anchor1");
             Assert.Equal("hello", result.Value.Text);
         }
 
+        /// <summary>
+        /// Namings the convention is not applied by serializer when apply naming conventions is false.
+        /// </summary>
         [Fact]
         public void NamingConventionIsNotAppliedBySerializerWhenApplyNamingConventionsIsFalse()
         {
@@ -1952,6 +2379,9 @@ c:  *anchor1");
             Assert.Contains("NoConvention", yaml);
         }
 
+        /// <summary>
+        /// Namings the convention is not applied by deserializer when apply naming conventions is false.
+        /// </summary>
         [Fact]
         public void NamingConventionIsNotAppliedByDeserializerWhenApplyNamingConventionsIsFalse()
         {
@@ -1966,6 +2396,9 @@ c:  *anchor1");
             Assert.Equal("value", parsed.NoConvention);
         }
 
+        /// <summary>
+        /// Types the are serializable.
+        /// </summary>
         [Fact]
         public void TypesAreSerializable()
         {
@@ -1977,6 +2410,9 @@ c:  *anchor1");
             Assert.Contains(typeof(string).AssemblyQualifiedName, yaml);
         }
 
+        /// <summary>
+        /// Types the are deserializable.
+        /// </summary>
         [Fact]
         public void TypesAreDeserializable()
         {
@@ -1988,6 +2424,9 @@ c:  *anchor1");
             Assert.Equal(typeof(string), type);
         }
 
+        /// <summary>
+        /// Types the are converted when needed from scalars.
+        /// </summary>
         [Fact]
         public void TypesAreConvertedWhenNeededFromScalars()
         {
@@ -2000,6 +2439,9 @@ c:  *anchor1");
             Assert.Equal(5, result);
         }
 
+        /// <summary>
+        /// Types the are converted when needed inside lists.
+        /// </summary>
         [Fact]
         public void TypesAreConvertedWhenNeededInsideLists()
         {
@@ -2012,6 +2454,9 @@ c:  *anchor1");
             Assert.Equal(5, result[0]);
         }
 
+        /// <summary>
+        /// Types the are converted when needed inside dictionary.
+        /// </summary>
         [Fact]
         public void TypesAreConvertedWhenNeededInsideDictionary()
         {
@@ -2025,6 +2470,9 @@ c:  *anchor1");
             Assert.Equal(3, result[5]);
         }
 
+        /// <summary>
+        /// Infinites the recursion is detected.
+        /// </summary>
         [Fact]
         public void InfiniteRecursionIsDetected()
         {
@@ -2045,6 +2493,9 @@ c:  *anchor1");
             var exception = Assert.Throws<MaximumRecursionLevelReachedException>(() => sut.Serialize(recursionRoot));
         }
 
+        /// <summary>
+        /// Tuples the are serializable.
+        /// </summary>
         [Fact]
         public void TuplesAreSerializable()
         {
@@ -2067,6 +2518,9 @@ c:  *anchor1");
             Assert.Equal(expected.NormalizeNewLines(), yaml.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Values the tuples are serializable without metadata.
+        /// </summary>
         [Fact]
         public void ValueTuplesAreSerializableWithoutMetadata()
         {
@@ -2089,6 +2543,9 @@ c:  *anchor1");
             Assert.Equal(expected.NormalizeNewLines(), yaml.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Anchors the name with trailing colon referenced in key can be deserialized.
+        /// </summary>
         [Fact]
         public void AnchorNameWithTrailingColonReferencedInKeyCanBeDeserialized()
         {
@@ -2104,6 +2561,9 @@ c:  *anchor1");
             Assert.Equal(@"anchor "" value """, deserialized["myvalue"]);
         }
 
+        /// <summary>
+        /// Aliases the before anchor cannot be deserialized.
+        /// </summary>
         [Fact]
         public void AliasBeforeAnchorCannotBeDeserialized()
         {
@@ -2116,6 +2576,9 @@ c: *anchor1");
             action.Should().Throw<AnchorNotFoundException>();
         }
 
+        /// <summary>
+        /// Anchors the with allowed characters can be deserialized.
+        /// </summary>
         [Fact]
         public void AnchorWithAllowedCharactersCanBeDeserialized()
         {
@@ -2131,6 +2594,9 @@ c: *anchor1");
             Assert.Equal("some value", deserialized["interpolated value"]);
         }
 
+        /// <summary>
+        /// Serializations the non public properties are ignored.
+        /// </summary>
         [Fact]
         public void SerializationNonPublicPropertiesAreIgnored()
         {
@@ -2139,6 +2605,9 @@ c: *anchor1");
             Assert.Equal("Public: public", yaml.TrimNewLines());
         }
 
+        /// <summary>
+        /// Serializations the non public properties are included.
+        /// </summary>
         [Fact]
         public void SerializationNonPublicPropertiesAreIncluded()
         {
@@ -2155,6 +2624,9 @@ c: *anchor1");
             Assert.Equal(expected.NormalizeNewLines(), yaml.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Deserializations the non public properties are ignored.
+        /// </summary>
         [Fact]
         public void DeserializationNonPublicPropertiesAreIgnored()
         {
@@ -2169,6 +2641,9 @@ c: *anchor1");
             Assert.Equal("public2,internal,protected,private", deserialized.ToString());
         }
 
+        /// <summary>
+        /// Deserializations the non public properties are included.
+        /// </summary>
         [Fact]
         public void DeserializationNonPublicPropertiesAreIncluded()
         {
@@ -2183,6 +2658,9 @@ c: *anchor1");
             Assert.Equal("public2,internal2,protected2,private2", deserialized.ToString());
         }
 
+        /// <summary>
+        /// Serializations the non public fields are ignored.
+        /// </summary>
         [Fact]
         public void SerializationNonPublicFieldsAreIgnored()
         {
@@ -2191,6 +2669,9 @@ c: *anchor1");
             Assert.Equal("Public: public", yaml.TrimNewLines());
         }
 
+        /// <summary>
+        /// Deserializations the non public fields are ignored.
+        /// </summary>
         [Fact]
         public void DeserializationNonPublicFieldsAreIgnored()
         {
@@ -2205,6 +2686,9 @@ c: *anchor1");
             Assert.Equal("public2,internal,protected,private", deserialized.ToString());
         }
 
+        /// <summary>
+        /// Shoulds the not indent sequences.
+        /// </summary>
         [Fact]
         public void ShouldNotIndentSequences()
         {
@@ -2248,6 +2732,9 @@ c: *anchor1");
             Assert.Equal(expected.NormalizeNewLines(), yaml.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Shoulds the indent sequences.
+        /// </summary>
         [Fact]
         public void ShouldIndentSequences()
         {
@@ -2292,6 +2779,9 @@ c: *anchor1");
             Assert.Equal(expected.NormalizeNewLines(), yaml.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Examples the from specification is handled correctly with late define.
+        /// </summary>
         [Fact]
         public void ExampleFromSpecificationIsHandledCorrectlyWithLateDefine()
         {
@@ -2340,11 +2830,20 @@ c: *anchor1");
             }
         }
 
+        /// <summary>
+        /// The cycle test entity.
+        /// </summary>
         public class CycleTestEntity
         {
+            /// <summary>
+            /// Gets or sets the cycle.
+            /// </summary>
             public CycleTestEntity Cycle { get; set; }
         }
 
+        /// <summary>
+        /// Serializes the cycle with alias.
+        /// </summary>
         [Fact]
         public void SerializeCycleWithAlias()
         {
@@ -2361,6 +2860,9 @@ Cycle: *o0");
             Assert.Equal(expected.NormalizeNewLines(), yaml.NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Deserializes the cycle with alias.
+        /// </summary>
         [Fact]
         public void DeserializeCycleWithAlias()
         {
@@ -2375,6 +2877,9 @@ Cycle: *o0");
             Assert.Same(obj, obj.Cycle);
         }
 
+        /// <summary>
+        /// Deserializes the cycle without alias.
+        /// </summary>
         [Fact]
         public void DeserializeCycleWithoutAlias()
         {
@@ -2388,8 +2893,15 @@ Cycle: *o0");
             Assert.Same(obj, obj.Cycle);
         }
 
+        /// <summary>
+        /// Gets the depths.
+        /// </summary>
         public static IEnumerable<object[]> Depths => Enumerable.Range(1, 10).Select(i => new[] { (object)i });
 
+        /// <summary>
+        /// Deserializes the cycle with anchors with depth.
+        /// </summary>
+        /// <param name="depth">The depth.</param>
         [Theory]
         [MemberData(nameof(Depths))]
         public void DeserializeCycleWithAnchorsWithDepth(int? depth)
@@ -2418,6 +2930,9 @@ Cycle: *o0");
             Assert.Same(obj, iterator);
         }
 
+        /// <summary>
+        /// Roundtrips the windows newlines.
+        /// </summary>
         [Fact]
         public void RoundtripWindowsNewlines()
         {
@@ -2435,6 +2950,10 @@ Cycle: *o0");
             Assert.Equal(text, roundtrippedText);
         }
 
+        /// <summary>
+        /// Strings the that match keywords are quoted.
+        /// </summary>
+        /// <param name="input">The input.</param>
         [Theory]
         [InlineData("NULL")]
         [InlineData("Null")]
@@ -2477,6 +2996,10 @@ Cycle: *o0");
             "y", "Y", "yes", "Yes", "YES"
         }.Select(v => new object[] { v }).ToList();
 
+        /// <summary>
+        /// Strings the that match yaml1_1 keywords are quoted.
+        /// </summary>
+        /// <param name="input">The input.</param>
         [Theory]
         [MemberData(nameof(Yaml1_1SpecialStringsData))]
         public void StringsThatMatchYaml1_1KeywordsAreQuoted(string input)
@@ -2487,6 +3010,9 @@ Cycle: *o0");
             Assert.Equal($"text: \"{input}\"{Environment.NewLine}", yaml);
         }
 
+        /// <summary>
+        /// Keys the on concrete class dont get quoted_ type string gets quoted.
+        /// </summary>
         [Fact]
         public void KeysOnConcreteClassDontGetQuoted_TypeStringGetsQuoted()
         {
@@ -2505,6 +3031,9 @@ Null: true
             result.Should().Be($"True: {Environment.NewLine}False: hello{Environment.NewLine}Null: \"true\"{Environment.NewLine}");
         }
 
+        /// <summary>
+        /// Keys the on concrete class dont get quoted_ type bool does not get quoted.
+        /// </summary>
         [Fact]
         public void KeysOnConcreteClassDontGetQuoted_TypeBoolDoesNotGetQuoted()
         {
@@ -2523,6 +3052,9 @@ Null: true
             result.Should().Be($"True: {Environment.NewLine}False: hello{Environment.NewLine}Null: true{Environment.NewLine}");
         }
 
+        /// <summary>
+        /// Serializes the state methods get called once.
+        /// </summary>
         [Fact]
         public void SerializeStateMethodsGetCalledOnce()
         {
@@ -2534,6 +3066,9 @@ Null: true
             Assert.Equal(1, test.OnSerializingCallCount);
         }
 
+        /// <summary>
+        /// Serializes the concurrently.
+        /// </summary>
         [Fact]
         public void SerializeConcurrently()
         {
@@ -2584,6 +3119,9 @@ Null: true
             }
         }
 
+        /// <summary>
+        /// Serializes the enum as number.
+        /// </summary>
         [Fact]
         public void SerializeEnumAsNumber()
         {
@@ -2605,6 +3143,9 @@ Null: true
             Assert.Equal(TestEnumAsNumber.Test1 | TestEnumAsNumber.Test2, v);
         }
 
+        /// <summary>
+        /// Tabs the get quoted when quote necessary strings is on.
+        /// </summary>
         [Fact]
         public void TabsGetQuotedWhenQuoteNecessaryStringsIsOn()
         {
@@ -2619,6 +3160,9 @@ Null: true
             Assert.Equal(s, value);
         }
 
+        /// <summary>
+        /// Spaces the get quoted when quote necessary strings is on.
+        /// </summary>
         [Fact]
         public void SpacesGetQuotedWhenQuoteNecessaryStringsIsOn()
         {
@@ -2633,6 +3177,9 @@ Null: true
             Assert.Equal(s, value);
         }
 
+        /// <summary>
+        /// The test enum as number.
+        /// </summary>
         [Flags]
         private enum TestEnumAsNumber
         {
@@ -2640,6 +3187,9 @@ Null: true
             Test2 = 2
         }
 
+        /// <summary>
+        /// Namings the convention applied to enum.
+        /// </summary>
         [Fact]
         public void NamingConventionAppliedToEnum()
         {
@@ -2649,6 +3199,9 @@ Null: true
             Assert.Equal("plain", serialized.Replace("\r\n", "").Replace("\n", ""));
         }
 
+        /// <summary>
+        /// Namings the convention applied to enum when deserializing.
+        /// </summary>
         [Fact]
         public void NamingConventionAppliedToEnumWhenDeserializing()
         {
@@ -2659,6 +3212,9 @@ Null: true
             Assert.Equal(expected, actual);
         }
 
+        /// <summary>
+        /// Nesteds the dictionary types_ should roundtrip.
+        /// </summary>
         [Fact]
         [Trait("motive", "issue #656")]
         public void NestedDictionaryTypes_ShouldRoundtrip()
@@ -2669,100 +3225,221 @@ Null: true
             Assert.Contains(new KeyValuePair<int, HasNestedDictionary.Payload>(1, new HasNestedDictionary.Payload { I = 1 }), dct.Lookups);
         }
 
+        /// <summary>
+        /// The test state.
+        /// </summary>
         public class TestState
         {
+            /// <summary>
+            /// Gets or sets the on serialized call count.
+            /// </summary>
             public int OnSerializedCallCount { get; set; }
+            /// <summary>
+            /// Gets or sets the on serializing call count.
+            /// </summary>
             public int OnSerializingCallCount { get; set; }
 
+            /// <summary>
+            /// Gets or sets the test.
+            /// </summary>
             public string Test { get; set; } = string.Empty;
 
+            /// <summary>
+            /// Serializeds the.
+            /// </summary>
             [OnSerialized]
             public void Serialized() => OnSerializedCallCount++;
 
+            /// <summary>
+            /// Serializings the.
+            /// </summary>
             [OnSerializing]
             public void Serializing() => OnSerializingCallCount++;
         }
 
+        /// <summary>
+        /// The reserved words test class.
+        /// </summary>
         public class ReservedWordsTestClass<TNullType>
         {
+            /// <summary>
+            /// Gets or sets the true.
+            /// </summary>
             public string True { get; set; }
+            /// <summary>
+            /// Gets or sets the false.
+            /// </summary>
             public string False { get; set; }
+            /// <summary>
+            /// Gets or sets the null.
+            /// </summary>
             public TNullType Null { get; set; }
         }
 
+        /// <summary>
+        /// The doubly converted.
+        /// </summary>
         [TypeConverter(typeof(DoublyConvertedTypeConverter))]
         public class DoublyConverted
         {
+            /// <summary>
+            /// Gets or sets the value.
+            /// </summary>
             public string Value { get; set; }
         }
 
+        /// <summary>
+        /// The doubly converted type converter.
+        /// </summary>
         public class DoublyConvertedTypeConverter : TypeConverter
         {
+            /// <summary>
+            /// Cans the convert to.
+            /// </summary>
+            /// <param name="context">The context.</param>
+            /// <param name="destinationType">The destination type.</param>
+            /// <returns>A bool.</returns>
             public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
             {
                 return destinationType == typeof(int);
             }
 
+            /// <summary>
+            /// Converts the to.
+            /// </summary>
+            /// <param name="context">The context.</param>
+            /// <param name="culture">The culture.</param>
+            /// <param name="value">The value.</param>
+            /// <param name="destinationType">The destination type.</param>
+            /// <returns>An object.</returns>
             public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
             {
                 return ((DoublyConverted)value).Value.Length;
             }
 
+            /// <summary>
+            /// Cans the convert from.
+            /// </summary>
+            /// <param name="context">The context.</param>
+            /// <param name="sourceType">The source type.</param>
+            /// <returns>A bool.</returns>
             public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
             {
                 return sourceType == typeof(string);
             }
 
+            /// <summary>
+            /// Converts the from.
+            /// </summary>
+            /// <param name="context">The context.</param>
+            /// <param name="culture">The culture.</param>
+            /// <param name="value">The value.</param>
+            /// <returns>An object.</returns>
             public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
             {
                 return new DoublyConverted { Value = (string)value };
             }
         }
 
+        /// <summary>
+        /// The naming convention disabled.
+        /// </summary>
         public class NamingConventionDisabled
         {
+            /// <summary>
+            /// Gets or sets the no convention.
+            /// </summary>
             [YamlMember(ApplyNamingConventions = false)]
             public string NoConvention { get; set; }
         }
 
+        /// <summary>
+        /// The non serializable container.
+        /// </summary>
         public class NonSerializableContainer
         {
+            /// <summary>
+            /// Gets or sets the value.
+            /// </summary>
             public NonSerializable Value { get; set; }
         }
 
+        /// <summary>
+        /// The non serializable.
+        /// </summary>
         public class NonSerializable
         {
+            /// <summary>
+            /// Gets the will throw.
+            /// </summary>
             public string WillThrow { get { throw new Exception(); } }
 
+            /// <summary>
+            /// Gets or sets the text.
+            /// </summary>
             public string Text { get; set; }
         }
 
+        /// <summary>
+        /// The string container.
+        /// </summary>
         public class StringContainer
         {
+            /// <summary>
+            /// Gets or sets the text.
+            /// </summary>
             public string Text { get; set; }
         }
 
+        /// <summary>
+        /// The non serializable type converter.
+        /// </summary>
         public class NonSerializableTypeConverter : IYamlTypeConverter
         {
+            /// <summary>
+            /// Accepts the.
+            /// </summary>
+            /// <param name="type">The type.</param>
+            /// <returns>A bool.</returns>
             public bool Accepts(Type type)
             {
                 return typeof(NonSerializable).IsAssignableFrom(type);
             }
 
+            /// <summary>
+            /// Reads the yaml.
+            /// </summary>
+            /// <param name="parser">The parser.</param>
+            /// <param name="type">The type.</param>
+            /// <param name="rootDeserializer">The root deserializer.</param>
+            /// <returns>An object.</returns>
             public object ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
             {
                 var scalar = parser.Consume<Scalar>();
                 return new NonSerializable { Text = scalar.Value };
             }
 
+            /// <summary>
+            /// Writes the yaml.
+            /// </summary>
+            /// <param name="emitter">The emitter.</param>
+            /// <param name="value">The value.</param>
+            /// <param name="type">The type.</param>
+            /// <param name="serializer">The serializer.</param>
             public void WriteYaml(IEmitter emitter, object value, Type type, ObjectSerializer serializer)
             {
                 emitter.Emit(new Scalar(((NonSerializable)value).Text));
             }
         }
 
+        /// <summary>
+        /// The has nested dictionary.
+        /// </summary>
         public sealed class HasNestedDictionary
         {
+            /// <summary>
+            /// Gets or sets the lookups.
+            /// </summary>
             public Dictionary<int, Payload> Lookups { get; set; } = new Dictionary<int, Payload>();
 
             public struct Payload

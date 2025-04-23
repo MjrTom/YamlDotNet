@@ -26,8 +26,16 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The naming convention tests.
+    /// </summary>
     public class NamingConventionTests
     {
+        /// <summary>
+        /// Applies the camel case convention.
+        /// </summary>
+        /// <param name="expectedName">The expected name.</param>
+        /// <param name="input">The input.</param>
         [Theory]
         [InlineData("test", "test")]
         [InlineData("thisIsATest", "this-is-a-test")]
@@ -38,6 +46,11 @@ namespace YamlDotNet.Test.Serialization
             ShouldApplyConventionGiven(input, expectedName, CamelCaseNamingConvention.Instance);
         }
 
+        /// <summary>
+        /// Applies the pascal case convention.
+        /// </summary>
+        /// <param name="expectedName">The expected name.</param>
+        /// <param name="input">The input.</param>
         [Theory]
         [InlineData("Test", "test")]
         [InlineData("ThisIsATest", "this-is-a-test")]
@@ -48,6 +61,11 @@ namespace YamlDotNet.Test.Serialization
             ShouldApplyConventionGiven(input, expectedName, PascalCaseNamingConvention.Instance);
         }
 
+        /// <summary>
+        /// Applies the hyphenated convention.
+        /// </summary>
+        /// <param name="expectedName">The expected name.</param>
+        /// <param name="input">The input.</param>
         [Theory]
         [InlineData("test", "test")]
         [InlineData("this-is-a-test", "thisIsATest")]
@@ -57,6 +75,11 @@ namespace YamlDotNet.Test.Serialization
             ShouldApplyConventionGiven(input, expectedName, HyphenatedNamingConvention.Instance);
         }
 
+        /// <summary>
+        /// Applies the underscored convention.
+        /// </summary>
+        /// <param name="expectedName">The expected name.</param>
+        /// <param name="input">The input.</param>
         [Theory]
         [InlineData("test", "test")]
         [InlineData("this_is_a_test", "thisIsATest")]
@@ -66,6 +89,11 @@ namespace YamlDotNet.Test.Serialization
             ShouldApplyConventionGiven(input, expectedName, UnderscoredNamingConvention.Instance);
         }
 
+        /// <summary>
+        /// Applies the lower case convention.
+        /// </summary>
+        /// <param name="expectedName">The expected name.</param>
+        /// <param name="input">The input.</param>
         [Theory]
         [InlineData("test", "test")]
         [InlineData("thisisatest", "thisIsATest")]

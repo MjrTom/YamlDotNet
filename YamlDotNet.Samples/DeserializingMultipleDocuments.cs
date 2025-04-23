@@ -29,6 +29,9 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Samples
 {
+    /// <summary>
+    /// The deserializing multiple documents.
+    /// </summary>
     public class DeserializingMultipleDocuments
     {
         private readonly ITestOutputHelper output;
@@ -38,6 +41,9 @@ namespace YamlDotNet.Samples
             this.output = output;
         }
 
+        /// <summary>
+        /// Mains the.
+        /// </summary>
         [Sample(
             DisplayName = "Deserializing multiple documents",
             Description = "Explains how to load multiple YAML documents from a stream."

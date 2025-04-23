@@ -49,6 +49,9 @@ namespace YamlDotNet.Serialization
         ScalarStyle ScalarStyle { get; }
     }
 
+    /// <summary>
+    /// The object descriptor extensions.
+    /// </summary>
     public static class ObjectDescriptorExtensions
     {
         /// <summary>

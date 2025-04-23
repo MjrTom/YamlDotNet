@@ -26,6 +26,9 @@ using YamlDotNet.Serialization.ObjectFactories;
 
 namespace YamlDotNet.Serialization.NodeDeserializers
 {
+    /// <summary>
+    /// The static collection node deserializer.
+    /// </summary>
     public sealed class StaticCollectionNodeDeserializer : INodeDeserializer
     {
         private readonly StaticObjectFactory factory;
@@ -35,6 +38,15 @@ namespace YamlDotNet.Serialization.NodeDeserializers
             this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <param name="expectedType">The expected type.</param>
+        /// <param name="nestedObjectDeserializer">The nested object deserializer.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="rootDeserializer">The root deserializer.</param>
+        /// <returns>A bool.</returns>
         public bool Deserialize(IParser parser, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer, out object? value, ObjectDeserializer rootDeserializer)
         {
             if (!factory.IsList(expectedType))

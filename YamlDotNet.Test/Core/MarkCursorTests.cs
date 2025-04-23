@@ -25,8 +25,14 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Test.Core
 {
+    /// <summary>
+    /// The mark cursor tests.
+    /// </summary>
     public class MarkCursorTests
     {
+        /// <summary>
+        /// Shoulds the provide an one indexed mark.
+        /// </summary>
         [Fact]
         public void ShouldProvideAnOneIndexedMark()
         {

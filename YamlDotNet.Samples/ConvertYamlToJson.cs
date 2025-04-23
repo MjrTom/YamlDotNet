@@ -26,6 +26,9 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Samples
 {
+    /// <summary>
+    /// The convert yaml to json.
+    /// </summary>
     public class ConvertYamlToJson
     {
         private readonly ITestOutputHelper output;
@@ -35,6 +38,9 @@ namespace YamlDotNet.Samples
             this.output = output;
         }
 
+        /// <summary>
+        /// Mains the.
+        /// </summary>
         [Sample(
             DisplayName = "Convert YAML to JSON",
             Description = "Shows how to convert a YAML document to JSON."

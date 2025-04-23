@@ -60,43 +60,85 @@ namespace YamlDotNet.Serialization
             return new Deserializer(valueDeserializer);
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns>A T.</returns>
         public T Deserialize<T>(string input)
         {
             using var reader = new StringReader(input);
             return Deserialize<T>(reader);
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns>A T.</returns>
         public T Deserialize<T>(TextReader input)
         {
             return Deserialize<T>(new Parser(input));
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <returns>A T.</returns>
         public T Deserialize<T>(IParser parser)
         {
             return (T)Deserialize(parser, typeof(T))!; // We really want an exception if we are trying to deserialize null into a non-nullable type
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns>An object? .</returns>
         public object? Deserialize(string input)
         {
             return Deserialize<object>(input);
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns>An object? .</returns>
         public object? Deserialize(TextReader input)
         {
             return Deserialize<object>(input);
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <returns>An object? .</returns>
         public object? Deserialize(IParser parser)
         {
             return Deserialize<object>(parser);
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="type">The type.</param>
+        /// <returns>An object? .</returns>
         public object? Deserialize(string input, Type type)
         {
             using var reader = new StringReader(input);
             return Deserialize(reader, type);
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="type">The type.</param>
+        /// <returns>An object? .</returns>
         public object? Deserialize(TextReader input, Type type)
         {
             return Deserialize(new Parser(input), type);

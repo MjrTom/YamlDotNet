@@ -29,6 +29,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Test.Core
 {
+    /// <summary>
+    /// The insertion queue tests.
+    /// </summary>
     public class InsertionQueueTests
     {
         private readonly ITestOutputHelper output;
@@ -38,6 +41,12 @@ namespace YamlDotNet.Test.Core
             this.output = output;
         }
 
+        /// <summary>
+        /// Calculates the insertion parameters_is_correct.
+        /// </summary>
+        /// <param name="initialState">The initial state.</param>
+        /// <param name="index">The index.</param>
+        /// <param name="expectedFinalState">The expected final state.</param>
         [Theory]
         [InlineData("-43210--", 0, "-43210X-")]
         [InlineData("---43210", 0, "X--43210")]
@@ -160,6 +169,11 @@ namespace YamlDotNet.Test.Core
             Assert.Equal(expected, actual);
         }
 
+        /// <summary>
+        /// Resize_is_is_correct_when_enqueuings the.
+        /// </summary>
+        /// <param name="offsetBeforeResize">The offset before resize.</param>
+        /// <param name="initialCapacity">The initial capacity.</param>
         [Theory]
         [InlineData(0, 4)]
         [InlineData(1, 4)]
@@ -190,6 +204,12 @@ namespace YamlDotNet.Test.Core
             Assert.Equal(Enumerable.Range(1, initialCapacity + 1), sut);
         }
 
+        /// <summary>
+        /// Resize_is_is_correct_when_insertings the.
+        /// </summary>
+        /// <param name="offsetBeforeResize">The offset before resize.</param>
+        /// <param name="insertionIndex">The insertion index.</param>
+        /// <param name="initialCapacity">The initial capacity.</param>
         [Theory]
         [InlineData(0, 0, 4)]
         [InlineData(0, 1, 4)]
@@ -260,6 +280,9 @@ namespace YamlDotNet.Test.Core
             output.WriteLine(new string(text));
         }
 
+        /// <summary>
+        /// Shoulds the throw exception when dequeuing empty container.
+        /// </summary>
         [Fact]
         public void ShouldThrowExceptionWhenDequeuingEmptyContainer()
         {
@@ -270,6 +293,9 @@ namespace YamlDotNet.Test.Core
             action.Should().Throw<InvalidOperationException>();
         }
 
+        /// <summary>
+        /// Shoulds the throw exception when dequeuing container that becomes empty.
+        /// </summary>
         [Fact]
         public void ShouldThrowExceptionWhenDequeuingContainerThatBecomesEmpty()
         {
@@ -282,6 +308,9 @@ namespace YamlDotNet.Test.Core
             action.Should().Throw<InvalidOperationException>();
         }
 
+        /// <summary>
+        /// Shoulds the correctly dequeue elements after enqueuing.
+        /// </summary>
         [Fact]
         public void ShouldCorrectlyDequeueElementsAfterEnqueuing()
         {
@@ -292,6 +321,9 @@ namespace YamlDotNet.Test.Core
             OrderOfElementsIn(queue).Should().Equal(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
         }
 
+        /// <summary>
+        /// Shoulds the correctly dequeue elements when intermixing enqueuing.
+        /// </summary>
         [Fact]
         public void ShouldCorrectlyDequeueElementsWhenIntermixingEnqueuing()
         {
@@ -304,6 +336,9 @@ namespace YamlDotNet.Test.Core
             OrderOfElementsIn(queue).Should().Equal(5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
         }
 
+        /// <summary>
+        /// Shoulds the throw exception when dequeuing after inserting.
+        /// </summary>
         [Fact]
         public void ShouldThrowExceptionWhenDequeuingAfterInserting()
         {
@@ -317,6 +352,9 @@ namespace YamlDotNet.Test.Core
             action.Should().Throw<InvalidOperationException>();
         }
 
+        /// <summary>
+        /// Shoulds the correctly dequeue elements when inserting.
+        /// </summary>
         [Fact]
         public void ShouldCorrectlyDequeueElementsWhenInserting()
         {

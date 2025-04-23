@@ -42,6 +42,9 @@ namespace YamlDotNet.Serialization
             entries.Clear();
         }
 
+        /// <summary>
+        /// The lazy component registration.
+        /// </summary>
         public sealed class LazyComponentRegistration
         {
             public readonly Type ComponentType;
@@ -54,6 +57,9 @@ namespace YamlDotNet.Serialization
             }
         }
 
+        /// <summary>
+        /// The tracking lazy component registration.
+        /// </summary>
         public sealed class TrackingLazyComponentRegistration
         {
             public readonly Type ComponentType;

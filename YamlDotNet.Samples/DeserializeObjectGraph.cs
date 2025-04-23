@@ -29,6 +29,9 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Samples
 {
+    /// <summary>
+    /// The deserialize object graph.
+    /// </summary>
     public class DeserializeObjectGraph
     {
         private readonly ITestOutputHelper output;
@@ -38,6 +41,9 @@ namespace YamlDotNet.Samples
             this.output = output;
         }
 
+        /// <summary>
+        /// Mains the.
+        /// </summary>
         [Sample(
             DisplayName = "Deserializing an object graph",
             Description = "Shows how to convert a YAML document to an object graph."
@@ -90,41 +96,101 @@ namespace YamlDotNet.Samples
             output.WriteLine(order.SpecialDelivery);
         }
 
+        /// <summary>
+        /// The order.
+        /// </summary>
         public class Order
         {
+            /// <summary>
+            /// Gets or sets the receipt.
+            /// </summary>
             public string Receipt { get; set; }
+            /// <summary>
+            /// Gets or sets the date.
+            /// </summary>
             public DateTime Date { get; set; }
+            /// <summary>
+            /// Gets or sets the customer.
+            /// </summary>
             public Customer Customer { get; set; }
+            /// <summary>
+            /// Gets or sets the items.
+            /// </summary>
             public List<OrderItem> Items { get; set; }
 
+            /// <summary>
+            /// Gets or sets the bill to.
+            /// </summary>
             [YamlMember(Alias = "bill-to", ApplyNamingConventions = false)]
             public Address BillTo { get; set; }
 
+            /// <summary>
+            /// Gets or sets the ship to.
+            /// </summary>
             [YamlMember(Alias = "ship-to", ApplyNamingConventions = false)]
             public Address ShipTo { get; set; }
 
+            /// <summary>
+            /// Gets or sets the special delivery.
+            /// </summary>
             public string SpecialDelivery { get; set; }
         }
 
+        /// <summary>
+        /// The customer.
+        /// </summary>
         public class Customer
         {
+            /// <summary>
+            /// Gets or sets the given.
+            /// </summary>
             public string Given { get; set; }
+            /// <summary>
+            /// Gets or sets the family.
+            /// </summary>
             public string Family { get; set; }
         }
 
+        /// <summary>
+        /// The order item.
+        /// </summary>
         public class OrderItem
         {
+            /// <summary>
+            /// Gets or sets the part no.
+            /// </summary>
             [YamlMember(Alias = "part_no", ApplyNamingConventions = false)]
             public string PartNo { get; set; }
+            /// <summary>
+            /// Gets or sets the descrip.
+            /// </summary>
             public string Descrip { get; set; }
+            /// <summary>
+            /// Gets or sets the price.
+            /// </summary>
             public decimal Price { get; set; }
+            /// <summary>
+            /// Gets or sets the quantity.
+            /// </summary>
             public int Quantity { get; set; }
         }
 
+        /// <summary>
+        /// The address.
+        /// </summary>
         public class Address
         {
+            /// <summary>
+            /// Gets or sets the street.
+            /// </summary>
             public string Street { get; set; }
+            /// <summary>
+            /// Gets or sets the city.
+            /// </summary>
             public string City { get; set; }
+            /// <summary>
+            /// Gets or sets the state.
+            /// </summary>
             public string State { get; set; }
         }
 

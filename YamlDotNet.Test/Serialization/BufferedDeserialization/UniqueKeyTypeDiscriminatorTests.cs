@@ -28,8 +28,14 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Test.Serialization.BufferedDeserialization
 {
+    /// <summary>
+    /// The unique key type discriminator tests.
+    /// </summary>
     public class UniqueKeyTypeDiscriminatorTests
     {
+        /// <summary>
+        /// Uniques the key type discriminator_ with interface base type.
+        /// </summary>
         [Fact]
         public void UniqueKeyTypeDiscriminator_WithInterfaceBaseType()
         {
@@ -54,6 +60,9 @@ namespace YamlDotNet.Test.Serialization.BufferedDeserialization
             characters[1].Should().BeOfType<Cat>();
         }
 
+        /// <summary>
+        /// Uniques the key type discriminator_ with object base type.
+        /// </summary>
         [Fact]
         public void UniqueKeyTypeDiscriminator_WithObjectBaseType()
         {
@@ -88,15 +97,33 @@ namespace YamlDotNet.Test.Serialization.BufferedDeserialization
 
         public interface ICharacter { }
 
+        /// <summary>
+        /// The mouse.
+        /// </summary>
         public class Mouse : ICharacter
         {
+            /// <summary>
+            /// Gets or sets the name.
+            /// </summary>
             public string Name { get; set; }
+            /// <summary>
+            /// Gets or sets the cheese supply.
+            /// </summary>
             public int CheeseSupply { get; set; }
         }
 
+        /// <summary>
+        /// The cat.
+        /// </summary>
         public class Cat : ICharacter
         {
+            /// <summary>
+            /// Gets or sets the name.
+            /// </summary>
             public string Name { get; set; }
+            /// <summary>
+            /// Gets or sets the avg daily meows.
+            /// </summary>
             public float AvgDailyMeows { get; set; }
         }
     }

@@ -23,6 +23,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeTypeResolvers
 {
+    /// <summary>
+    /// The yaml serializable type resolver.
+    /// </summary>
     public sealed class YamlSerializableTypeResolver : INodeTypeResolver
     {
         /// <inheritdoc />

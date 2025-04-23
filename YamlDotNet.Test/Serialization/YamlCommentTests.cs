@@ -30,6 +30,9 @@ using YamlDotNet.Serialization.EventEmitters;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The yaml comment tests.
+    /// </summary>
     public class YamlCommentTests
     {
         protected readonly ITestOutputHelper Output;
@@ -39,6 +42,9 @@ namespace YamlDotNet.Test.Serialization
         }
 
         #region Simple block comments
+        /// <summary>
+        /// Serializations the with block comments.
+        /// </summary>
         [Fact]
         public void SerializationWithBlockComments()
         {
@@ -58,6 +64,9 @@ namespace YamlDotNet.Test.Serialization
             lines.Should().Contain("# The person's age");
         }
 
+        /// <summary>
+        /// Serializations the with block comments_ multiline.
+        /// </summary>
         [Fact]
         public void SerializationWithBlockComments_Multiline()
         {
@@ -81,6 +90,9 @@ namespace YamlDotNet.Test.Serialization
             lines[5].Should().Be("# too");
         }
 
+        /// <summary>
+        /// Serializations the with block comments_ null value.
+        /// </summary>
         [Fact]
         public void SerializationWithBlockComments_NullValue()
         {
@@ -91,6 +103,9 @@ namespace YamlDotNet.Test.Serialization
         #endregion
 
         #region Indentation of block comments
+        /// <summary>
+        /// Serializations the with block comments_ indented in sequence.
+        /// </summary>
         [Fact]
         public void SerializationWithBlockComments_IndentedInSequence()
         {
@@ -111,6 +126,9 @@ namespace YamlDotNet.Test.Serialization
             lines.Should().Contain(indent + "# The person's age");
         }
 
+        /// <summary>
+        /// Serializations the with block comments_ indented in block.
+        /// </summary>
         [Fact]
         public void SerializationWithBlockComments_IndentedInBlock()
         {
@@ -139,6 +157,9 @@ namespace YamlDotNet.Test.Serialization
             lines.Should().Contain(indent2 + "# The person's age");
         }
 
+        /// <summary>
+        /// Serializations the with block comments_ indented in block and sequence.
+        /// </summary>
         [Fact]
         public void SerializationWithBlockComments_IndentedInBlockAndSequence()
         {
@@ -172,6 +193,9 @@ namespace YamlDotNet.Test.Serialization
         #endregion
 
         #region Flow mapping
+        /// <summary>
+        /// Serializations the with block comments_ indented in block and sequence_ with flow mapping.
+        /// </summary>
         [Fact]
         public void SerializationWithBlockComments_IndentedInBlockAndSequence_WithFlowMapping()
         {
@@ -218,6 +242,11 @@ namespace YamlDotNet.Test.Serialization
                 this.types = types;
             }
 
+            /// <summary>
+            /// Emits the.
+            /// </summary>
+            /// <param name="eventInfo">The event info.</param>
+            /// <param name="emitter">The emitter.</param>
             public override void Emit(MappingStartEventInfo eventInfo, IEmitter emitter)
             {
                 foreach (var type in types)

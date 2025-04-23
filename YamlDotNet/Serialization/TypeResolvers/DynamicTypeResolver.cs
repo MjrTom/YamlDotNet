@@ -26,6 +26,12 @@ namespace YamlDotNet.Serialization.TypeResolvers
     /// </summary>
     public sealed class DynamicTypeResolver : ITypeResolver
     {
+        /// <summary>
+        /// Resolves the.
+        /// </summary>
+        /// <param name="staticType">The static type.</param>
+        /// <param name="actualValue">The actual value.</param>
+        /// <returns>A Type.</returns>
         public Type Resolve(Type staticType, object? actualValue)
         {
             return actualValue != null ? actualValue.GetType() : staticType;

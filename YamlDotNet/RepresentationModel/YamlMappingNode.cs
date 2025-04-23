@@ -360,6 +360,10 @@ namespace YamlDotNet.RepresentationModel
 
         #region IEnumerable<KeyValuePair<YamlNode,YamlNode>> Members
 
+        /// <summary>
+        /// Gets the enumerator.
+        /// </summary>
+        /// <returns>An IEnumerator.</returns>
         public IEnumerator<KeyValuePair<YamlNode, YamlNode>> GetEnumerator()
         {
             return children.GetEnumerator();

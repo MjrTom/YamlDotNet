@@ -23,18 +23,51 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Helpers
 {
+    /// <summary>
+    /// The fsharp helper.
+    /// </summary>
     public static class FsharpHelper
     {
+        /// <summary>
+        /// Gets or sets the instance.
+        /// </summary>
         public static IFsharpHelper? Instance { get; set; }
 
+        /// <summary>
+        /// Are the option type.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns>A bool.</returns>
         public static bool IsOptionType(Type t) => Instance?.IsOptionType(t) ?? false;
 
+        /// <summary>
+        /// Gets the option underlying type.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns>A Type? .</returns>
         public static Type? GetOptionUnderlyingType(Type t) => Instance?.GetOptionUnderlyingType(t);
 
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
+        /// <param name="objectDescriptor">The object descriptor.</param>
+        /// <returns>An object? .</returns>
         public static object? GetValue(IObjectDescriptor objectDescriptor) => Instance?.GetValue(objectDescriptor);
 
+        /// <summary>
+        /// Are the fsharp list type.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <returns>A bool.</returns>
         public static bool IsFsharpListType(Type t) => Instance?.IsFsharpListType(t) ?? false;
 
+        /// <summary>
+        /// Creates the fsharp list from array.
+        /// </summary>
+        /// <param name="t">The t.</param>
+        /// <param name="itemsType">The items type.</param>
+        /// <param name="arr">The arr.</param>
+        /// <returns>An object? .</returns>
         public static object? CreateFsharpListFromArray(Type t, Type itemsType, Array arr) => Instance?.CreateFsharpListFromArray(t, itemsType, arr);
     }
 }

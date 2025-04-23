@@ -27,6 +27,9 @@ using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Serialization.NodeDeserializers
 {
+    /// <summary>
+    /// The object node deserializer.
+    /// </summary>
     public sealed class ObjectNodeDeserializer : INodeDeserializer
     {
         private readonly IObjectFactory objectFactory;
@@ -63,6 +66,15 @@ namespace YamlDotNet.Serialization.NodeDeserializers
             this.typeConverters = new TypeConverterCache(typeConverters);
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <param name="expectedType">The expected type.</param>
+        /// <param name="nestedObjectDeserializer">The nested object deserializer.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="rootDeserializer">The root deserializer.</param>
+        /// <returns>A bool.</returns>
         public bool Deserialize(IParser parser, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer, out object? value, ObjectDeserializer rootDeserializer)
         {
             if (!parser.TryConsume<MappingStart>(out var mapping))
@@ -172,6 +184,12 @@ namespace YamlDotNet.Serialization.NodeDeserializers
             return true;
         }
 
+        /// <summary>
+        /// Nulls the check.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="property">The property.</param>
+        /// <param name="propertyName">The property name.</param>
         public void NullCheck(object value, IPropertyDescriptor property, Scalar propertyName)
         {
             if (enforceNullability &&

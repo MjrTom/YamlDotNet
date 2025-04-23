@@ -63,6 +63,9 @@ namespace YamlDotNet.Core
         /// Gets the number of items that are contained by the queue.
         /// </summary>
         public int Count => count;
+        /// <summary>
+        /// Gets the capacity.
+        /// </summary>
         public int Capacity => items.Length;
 
         /// <summary>

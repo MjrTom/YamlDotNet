@@ -1,4 +1,4 @@
-// This file is part of YamlDotNet - A .NET library for YAML.
+﻿// This file is part of YamlDotNet - A .NET library for YAML.
 // Copyright (c) Antoine Aubry and contributors
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -26,8 +26,14 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Test.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The struct tests.
+    /// </summary>
     public class StructTests
     {
+        /// <summary>
+        /// Regulars the struct works.
+        /// </summary>
         [Fact]
         public void RegularStructWorks()
         {

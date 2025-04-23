@@ -24,6 +24,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.EventEmitters
 {
+    /// <summary>
+    /// The writer event emitter.
+    /// </summary>
     public sealed class WriterEventEmitter : IEventEmitter
     {
         void IEventEmitter.Emit(AliasEventInfo eventInfo, IEmitter emitter)

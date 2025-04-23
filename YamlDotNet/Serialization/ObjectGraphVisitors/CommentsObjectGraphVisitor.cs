@@ -23,6 +23,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
 {
+    /// <summary>
+    /// The comments object graph visitor.
+    /// </summary>
     public sealed class CommentsObjectGraphVisitor : ChainedObjectGraphVisitor
     {
         public CommentsObjectGraphVisitor(IObjectGraphVisitor<IEmitter> nextVisitor)

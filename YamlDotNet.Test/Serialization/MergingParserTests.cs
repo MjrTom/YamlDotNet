@@ -29,8 +29,14 @@ using YamlDotNet.Test.Core;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The merging parser tests.
+    /// </summary>
     public class MergingParserTests : EmitterTestsHelper
     {
+        /// <summary>
+        /// Mergings the parser with merge object with sequence_ each levels should equals.
+        /// </summary>
         [Fact]
         public void MergingParserWithMergeObjectWithSequence_EachLevelsShouldEquals()
         {
@@ -59,6 +65,9 @@ Level2: &Level2
             serializer.Serialize(yamlObject["Level2"]).NormalizeNewLines().Should().Be(etalonLevel);
         }
 
+        /// <summary>
+        /// Mergings the parser with merge object with sequence_ emitted text should not contains deleted events.
+        /// </summary>
         [Fact]
         public void MergingParserWithMergeObjectWithSequence_EmittedTextShouldNotContainsDeletedEvents()
         {
@@ -91,6 +100,9 @@ Level2:
             EmittedTextFrom(events).NormalizeNewLines().Should().Be(etalonEmittedText);
         }
 
+        /// <summary>
+        /// Mergings the parser with merge object with sequence and scalar items_ emitted text should not contains deleted events.
+        /// </summary>
         [Fact]
         public void MergingParserWithMergeObjectWithSequenceAndScalarItems_EmittedTextShouldNotContainsDeletedEvents()
         {
@@ -128,6 +140,9 @@ Level2:
             EmittedTextFrom(events).NormalizeNewLines().Should().Be(etalonEmittedText);
         }
 
+        /// <summary>
+        /// Mergings the parser with nested sequence_ should not throw exception.
+        /// </summary>
         [Fact]
         public void MergingParserWithNestedSequence_ShouldNotThrowException()
         {

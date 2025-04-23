@@ -27,8 +27,14 @@ using YamlDotNet.Serialization.Converters;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The date time8601 converter tests.
+    /// </summary>
     public class DateTime8601ConverterTests
     {
+        /// <summary>
+        /// Uses8601S the time format_ u t c.
+        /// </summary>
         [Fact]
         public void Uses8601TimeFormat_UTC()
         {
@@ -39,6 +45,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal("2024-07-11T18:05:07.0000000Z", actual);
         }
 
+        /// <summary>
+        /// Uses8601S the time format_ unspecified.
+        /// </summary>
         [Fact]
         public void Uses8601TimeFormat_Unspecified()
         {
@@ -49,6 +58,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal("2024-07-11T18:05:07.0000000", actual);
         }
 
+        /// <summary>
+        /// Uses8601S the time format_ local.
+        /// </summary>
         [Fact]
         public void Uses8601TimeFormat_Local()
         {

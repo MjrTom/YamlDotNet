@@ -29,8 +29,14 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Test.Serialization.BufferedDeserialization
 {
+    /// <summary>
+    /// The type discriminating node deserializer tests.
+    /// </summary>
     public class TypeDiscriminatingNodeDeserializerTests
     {
+        /// <summary>
+        /// Types the discriminating node deserializer_ throws when_ max depth exceeded.
+        /// </summary>
         [Fact]
         public void TypeDiscriminatingNodeDeserializer_ThrowsWhen_MaxDepthExceeded()
         {
@@ -52,6 +58,9 @@ namespace YamlDotNet.Test.Serialization.BufferedDeserialization
               .WithMessage("Parser buffer exceeded max depth*");
         }
 
+        /// <summary>
+        /// Types the discriminating node deserializer_ throws when_ max length exceeded.
+        /// </summary>
         [Fact]
         public void TypeDiscriminatingNodeDeserializer_ThrowsWhen_MaxLengthExceeded()
         {

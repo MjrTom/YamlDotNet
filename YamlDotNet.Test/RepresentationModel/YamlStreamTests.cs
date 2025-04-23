@@ -32,8 +32,14 @@ using YamlDotNet.RepresentationModel;
 
 namespace YamlDotNet.Test.RepresentationModel
 {
+    /// <summary>
+    /// The yaml stream tests.
+    /// </summary>
     public class YamlStreamTests
     {
+        /// <summary>
+        /// Loads the simple document.
+        /// </summary>
         [Fact]
         public void LoadSimpleDocument()
         {
@@ -46,6 +52,10 @@ namespace YamlDotNet.Test.RepresentationModel
             Assert.Equal(YamlNodeType.Scalar, stream.Documents[0].RootNode.NodeType);
         }
 
+        /// <summary>
+        /// Accessings the all nodes on infinitely recursive document throws.
+        /// </summary>
+        /// <param name="yaml">The yaml.</param>
         [Theory]
         [InlineData("&a [*a]")]
         [InlineData("?\n  key: &id1\n    recursion: *id1\n: foo")]
@@ -59,6 +69,10 @@ namespace YamlDotNet.Test.RepresentationModel
             accessAllNodes.Should().Throw<MaximumRecursionLevelReachedException>("because the document is infinitely recursive.");
         }
 
+        /// <summary>
+        /// Infinitelies the recursive node to string succeeds.
+        /// </summary>
+        /// <param name="yaml">The yaml.</param>
         [Theory]
         [InlineData("&a [*a]")]
         [InlineData("?\n  key: &id1\n    recursion: *id1\n: foo")]
@@ -72,6 +86,9 @@ namespace YamlDotNet.Test.RepresentationModel
             toString.Should().Contain("WARNING! INFINITE RECURSION!");
         }
 
+        /// <summary>
+        /// Backwards the alias reference works.
+        /// </summary>
         [Fact]
         public void BackwardAliasReferenceWorks()
         {
@@ -90,6 +107,9 @@ namespace YamlDotNet.Test.RepresentationModel
             Assert.Same(sequence.Children[0], sequence.Children[2]);
         }
 
+        /// <summary>
+        /// Forwards the alias reference works.
+        /// </summary>
         [Fact]
         public void ForwardAliasReferenceWorks()
         {
@@ -108,6 +128,13 @@ namespace YamlDotNet.Test.RepresentationModel
             Assert.Same(sequence.Children[0], sequence.Children[2]);
         }
 
+        /// <summary>
+        /// Implicits the null roundtrips.
+        /// </summary>
+        /// <param name="yaml">The yaml.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="style">The style.</param>
+        /// <param name="implicitPlain">If true, implicit plain.</param>
         [Theory]
         [InlineData("B: !!null ", "", ScalarStyle.Plain, false)]
         [InlineData("B: ", "", ScalarStyle.Plain, true)]
@@ -137,6 +164,9 @@ namespace YamlDotNet.Test.RepresentationModel
 stringWriter.ToString().NormalizeNewLines().TrimNewLines());
         }
 
+        /// <summary>
+        /// Empties the scalars are empty single quoted.
+        /// </summary>
         [Fact]
         public void EmptyScalarsAreEmptySingleQuoted()
         {
@@ -151,6 +181,9 @@ stringWriter.ToString().NormalizeNewLines().TrimNewLines());
             Assert.Equal(expected, actual);
         }
 
+        /// <summary>
+        /// Nulls the scalars are empty plain.
+        /// </summary>
         [Fact]
         public void NullScalarsAreEmptyPlain()
         {
@@ -165,114 +198,171 @@ stringWriter.ToString().NormalizeNewLines().TrimNewLines());
             Assert.Equal(expected, actual);
         }
 
+        /// <summary>
+        /// Roundtrips the example1.
+        /// </summary>
         [Fact]
         public void RoundtripExample1()
         {
             RoundtripTest("01-directives.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example2.
+        /// </summary>
         [Fact]
         public void RoundtripExample2()
         {
             RoundtripTest("02-scalar-in-imp-doc.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example3.
+        /// </summary>
         [Fact]
         public void RoundtripExample3()
         {
             RoundtripTest("03-scalar-in-exp-doc.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example4.
+        /// </summary>
         [Fact]
         public void RoundtripExample4()
         {
             RoundtripTest("04-scalars-in-multi-docs.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example5.
+        /// </summary>
         [Fact]
         public void RoundtripExample5()
         {
             RoundtripTest("06-float-tag.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example6.
+        /// </summary>
         [Fact]
         public void RoundtripExample6()
         {
             RoundtripTest("06-float-tag.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example7.
+        /// </summary>
         [Fact]
         public void RoundtripExample7()
         {
             RoundtripTest("07-scalar-styles.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example8.
+        /// </summary>
         [Fact]
         public void RoundtripExample8()
         {
             RoundtripTest("08-flow-sequence.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example9.
+        /// </summary>
         [Fact]
         public void RoundtripExample9()
         {
             RoundtripTest("09-flow-mapping.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example10.
+        /// </summary>
         [Fact]
         public void RoundtripExample10()
         {
             RoundtripTest("10-mixed-nodes-in-sequence.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example11.
+        /// </summary>
         [Fact]
         public void RoundtripExample11()
         {
             RoundtripTest("11-mixed-nodes-in-mapping.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example12.
+        /// </summary>
         [Fact]
         public void RoundtripExample12()
         {
             RoundtripTest("12-compact-sequence.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example13.
+        /// </summary>
         [Fact]
         public void RoundtripExample13()
         {
             RoundtripTest("13-compact-mapping.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the example14.
+        /// </summary>
         [Fact]
         public void RoundtripExample14()
         {
             RoundtripTest("14-mapping-wo-indent.yaml");
         }
 
+        /// <summary>
+        /// Roundtrips the backreference.
+        /// </summary>
         [Fact]
         public void RoundtripBackreference()
         {
             RoundtripTest("backreference.yaml");
         }
 
+        /// <summary>
+        /// Fails the backreference.
+        /// </summary>
         [Fact]
         public void FailBackreference()
         {
             RoundtripTest("fail-backreference.yaml");
         }
 
+        /// <summary>
+        /// Roundtrip32S the bits unicode escape.
+        /// </summary>
         [Fact]
         public void Roundtrip32BitsUnicodeEscape()
         {
             RoundtripTest("unicode-32bits-escape.yaml");
         }
 
+        /// <summary>
+        /// Anchors the overwriting.
+        /// </summary>
         [Fact]
         public void AnchorsOverwriting()
         {
             RoundtripTest("anchors-overwriting.yaml");
         }
 
+        /// <summary>
+        /// Alls the aliases must be resolved.
+        /// </summary>
         [Fact]
         public void AllAliasesMustBeResolved()
         {
@@ -280,6 +370,9 @@ stringWriter.ToString().NormalizeNewLines().TrimNewLines());
             Assert.Throws<AnchorNotFoundException>(() => original.Load(Yaml.ReaderFrom("invalid-reference.yaml")));
         }
 
+        /// <summary>
+        /// Cans the read value with quotes.
+        /// </summary>
         [Fact]
         public void CanReadValueWithQuotes()
         {
@@ -367,6 +460,9 @@ stringWriter.ToString().NormalizeNewLines().TrimNewLines());
             }
         }
 
+        /// <summary>
+        /// The yaml node event type.
+        /// </summary>
         private enum YamlNodeEventType
         {
             SequenceStart,

@@ -24,6 +24,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeTypeResolvers
 {
+    /// <summary>
+    /// The prevent unknown tags node type resolver.
+    /// </summary>
     public class PreventUnknownTagsNodeTypeResolver : INodeTypeResolver
     {
         /// <inheritdoc />

@@ -24,12 +24,19 @@ using Microsoft.CodeAnalysis;
 
 namespace YamlDotNet.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The static context file.
+    /// </summary>
     public class StaticContextFile : File
     {
         public StaticContextFile(Action<string, bool> write, Action indent, Action unindent, GeneratorExecutionContext context) : base(write, indent, unindent, context)
         {
         }
 
+        /// <summary>
+        /// Writes the.
+        /// </summary>
+        /// <param name="syntaxReceiver">The syntax receiver.</param>
         public override void Write(SerializableSyntaxReceiver syntaxReceiver)
         {
             Write($"public partial class {syntaxReceiver.YamlStaticContextType?.Name ?? "StaticContext"} : YamlDotNet.Serialization.StaticContext");

@@ -24,12 +24,19 @@ using Microsoft.CodeAnalysis;
 
 namespace YamlDotNet.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The static property descriptor file.
+    /// </summary>
     public class StaticPropertyDescriptorFile : File
     {
         public StaticPropertyDescriptorFile(Action<string, bool> write, Action indent, Action unindent, GeneratorExecutionContext context) : base(write, indent, unindent, context)
         {
         }
 
+        /// <summary>
+        /// Writes the.
+        /// </summary>
+        /// <param name="syntaxReceiver">The syntax receiver.</param>
         public override void Write(SerializableSyntaxReceiver syntaxReceiver)
         {
             Write("class StaticPropertyDescriptor : YamlDotNet.Serialization.IPropertyDescriptor");

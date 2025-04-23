@@ -120,12 +120,22 @@ namespace YamlDotNet.Core
             while (depth > 0);
         }
 
+        /// <summary>
+        /// Expects the.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <returns>A T.</returns>
         [Obsolete("Please use Consume<T>() instead")]
         public static T Expect<T>(this IParser parser) where T : ParsingEvent
         {
             return parser.Consume<T>();
         }
 
+        /// <summary>
+        /// Allows the.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <returns>A T? .</returns>
         [Obsolete("Please use TryConsume<T>(out var evt) instead")]
         [return: MaybeNull]
         public static T? Allow<T>(this IParser parser) where T : ParsingEvent
@@ -133,6 +143,11 @@ namespace YamlDotNet.Core
             return parser.TryConsume<T>(out var @event) ? @event : default;
         }
 
+        /// <summary>
+        /// Peeks the.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <returns>A T? .</returns>
         [Obsolete("Please use Accept<T>(out var evt) instead")]
         [return: MaybeNull]
         public static T? Peek<T>(this IParser parser) where T : ParsingEvent
@@ -140,6 +155,11 @@ namespace YamlDotNet.Core
             return parser.Accept<T>(out var @event) ? @event : default;
         }
 
+        /// <summary>
+        /// Accepts the.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <returns>A bool.</returns>
         [Obsolete("Please use TryConsume<T>(out var evt) or Accept<T>(out var evt) instead")]
         public static bool Accept<T>(this IParser parser) where T : ParsingEvent
         {

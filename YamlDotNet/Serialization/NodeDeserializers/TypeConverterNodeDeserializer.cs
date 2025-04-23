@@ -24,6 +24,9 @@ using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Serialization.NodeDeserializers
 {
+    /// <summary>
+    /// The type converter node deserializer.
+    /// </summary>
     public sealed class TypeConverterNodeDeserializer : INodeDeserializer
     {
         private readonly TypeConverterCache converters;
@@ -33,6 +36,15 @@ namespace YamlDotNet.Serialization.NodeDeserializers
             this.converters = new TypeConverterCache(converters);
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <param name="expectedType">The expected type.</param>
+        /// <param name="nestedObjectDeserializer">The nested object deserializer.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="rootDeserializer">The root deserializer.</param>
+        /// <returns>A bool.</returns>
         public bool Deserialize(IParser parser, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer, out object? value, ObjectDeserializer rootDeserializer)
         {
             if (!converters.TryGetConverterForType(expectedType, out var converter))

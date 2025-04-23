@@ -237,95 +237,236 @@ Console.WriteLine("The next line should say goodbye");
 Console.WriteLine(serializer.Serialize(EnumMemberedEnum.Hello));
 Console.WriteLine("The next line should say hello");
 Console.WriteLine(deserializer.Deserialize<EnumMemberedEnum>("goodbye"));
+/// <summary>
+/// The my array.
+/// </summary>
 
 [YamlSerializable]
 public class MyArray
 {
+    /// <summary>
+    /// Gets or sets the my array.
+    /// </summary>
     public int[]? myArray { get; set; }
 }
+/// <summary>
+/// The inner.
+/// </summary>
 
 [YamlSerializable]
 public class Inner
 {
+    /// <summary>
+    /// Gets or sets the text.
+    /// </summary>
     public string? Text { get; set; }
 }
+/// <summary>
+/// The nullable test class.
+/// </summary>
 
 [YamlSerializable]
 public class NullableTestClass
 {
+    /// <summary>
+    /// Gets or sets the nullable.
+    /// </summary>
     public string? Nullable { get; set; }
+    /// <summary>
+    /// Gets or sets the not nullable.
+    /// </summary>
     public string NotNullable { get; set; }
 }
+/// <summary>
+/// The primitive types.
+/// </summary>
 
 [YamlSerializable]
 public class PrimitiveTypes
 {
+    /// <summary>
+    /// Gets or sets a value indicating whether my bool.
+    /// </summary>
     [YamlMember(Description = "hi world!")]
     public bool MyBool { get; set; }
+    /// <summary>
+    /// Gets or sets the my byte.
+    /// </summary>
     [YamlMember(Alias = "hi")]
     public byte MyByte { get; set; }
+    /// <summary>
+    /// Gets or sets the my char.
+    /// </summary>
     public char MyChar { get; set; }
+    /// <summary>
+    /// Gets or sets the my decimal.
+    /// </summary>
     public decimal MyDecimal { get; set; }
+    /// <summary>
+    /// Gets or sets the my double.
+    /// </summary>
     public double MyDouble { get; set; }
+    /// <summary>
+    /// Gets or sets the my date time.
+    /// </summary>
     public DateTime MyDateTime { get; set; }
+    /// <summary>
+    /// Gets or sets the my enum y.
+    /// </summary>
     public MyTestEnum MyEnumY { get; set; }
+    /// <summary>
+    /// Gets or sets the my enum z.
+    /// </summary>
     public MyTestEnum MyEnumZ { get; set; }
+    /// <summary>
+    /// Gets or sets the my int16.
+    /// </summary>
     public short MyInt16 { get; set; }
+    /// <summary>
+    /// Gets or sets the my int32.
+    /// </summary>
     public int MyInt32 { get; set; }
+    /// <summary>
+    /// Gets or sets the my int64.
+    /// </summary>
     public long MyInt64 { get; set; }
+    /// <summary>
+    /// Gets or sets the my s byte.
+    /// </summary>
     public sbyte MySByte { get; set; }
+    /// <summary>
+    /// Gets or sets the my single.
+    /// </summary>
     public float MySingle { get; set; }
+    /// <summary>
+    /// Gets or sets the my string.
+    /// </summary>
     [YamlMember(ScalarStyle = ScalarStyle.DoubleQuoted)]
     public string MyString { get; set; } = string.Empty;
+    /// <summary>
+    /// Gets or sets the my nullable string.
+    /// </summary>
     public string? MyNullableString { get; set; }
+    /// <summary>
+    /// Gets or sets the my u int16.
+    /// </summary>
     public ushort MyUInt16 { get; set; }
+    /// <summary>
+    /// Gets or sets the my u int32.
+    /// </summary>
     public uint MyUInt32 { get; set; }
+    /// <summary>
+    /// Gets or sets the my u int64.
+    /// </summary>
     public ulong MyUInt64 { get; set; }
+    /// <summary>
+    /// Gets or sets the inner.
+    /// </summary>
     public Inner? Inner { get; set; }
+    /// <summary>
+    /// Gets or sets the inner array.
+    /// </summary>
     public Inner[]? InnerArray { get; set; }
+    /// <summary>
+    /// Gets or sets the my array.
+    /// </summary>
     public MyArray? MyArray { get; set; }
+    /// <summary>
+    /// Gets or sets the my dictionary.
+    /// </summary>
     public Dictionary<string, string>? MyDictionary { get; set; }
+    /// <summary>
+    /// Gets or sets the my dictionary of arrays.
+    /// </summary>
     public Dictionary<string, string[]>? MyDictionaryOfArrays { get; set; }
+    /// <summary>
+    /// Gets or sets the my list.
+    /// </summary>
     public List<string>? MyList { get; set; }
+    /// <summary>
+    /// Gets or sets the inherited.
+    /// </summary>
     public Inherited Inherited { get; set; }
+    /// <summary>
+    /// Gets or sets the external.
+    /// </summary>
     public ExternalModel External { get; set; }
+    /// <summary>
+    /// Gets or sets the some enumerable strings.
+    /// </summary>
     public IEnumerable<string> SomeEnumerableStrings { get; set; }
+    /// <summary>
+    /// Gets or sets the some collection strings.
+    /// </summary>
     public ICollection<string> SomeCollectionStrings { get; set; }
+    /// <summary>
+    /// Gets or sets the some object.
+    /// </summary>
     public object SomeObject { get; set; }
+    /// <summary>
+    /// Gets or sets the some dictionary.
+    /// </summary>
     public object SomeDictionary { get; set; }
     public MyTestStruct StructField;
+    /// <summary>
+    /// Gets or sets the struct property.
+    /// </summary>
     public MyTestStruct StructProperty { get; set; }
 }
+/// <summary>
+/// The inherited base.
+/// </summary>
 
 public class InheritedBase
 {
+    /// <summary>
+    /// Gets or sets the inherited.
+    /// </summary>
     public string Inherited { get; set; }
 }
+/// <summary>
+/// The inherited.
+/// </summary>
 
 [YamlSerializable]
 public class Inherited : InheritedBase
 {
+    /// <summary>
+    /// Gets or sets the not inherited.
+    /// </summary>
     public string NotInherited { get; set; }
 
 
+    /// <summary>
+    /// Serializings the.
+    /// </summary>
     [OnSerializing]
     public void Serializing()
     {
         Console.WriteLine("Serializing");
     }
 
+    /// <summary>
+    /// Serializeds the.
+    /// </summary>
     [OnSerialized]
     public void Serialized()
     {
         Console.WriteLine("Serialized");
     }
 
+    /// <summary>
+    /// Deserializeds the.
+    /// </summary>
     [OnDeserialized]
     public void Deserialized()
     {
         Console.WriteLine("Deserialized");
     }
 
+    /// <summary>
+    /// Deserializings the.
+    /// </summary>
     [OnDeserializing]
     public void Deserializing()
     {
@@ -333,12 +474,18 @@ public class Inherited : InheritedBase
     }
 
 }
+/// <summary>
+/// The my test enum.
+/// </summary>
 
 public enum MyTestEnum
 {
     Y = 0,
     Z = 1,
 }
+/// <summary>
+/// The enum membered enum.
+/// </summary>
 
 [YamlSerializable]
 public enum EnumMemberedEnum

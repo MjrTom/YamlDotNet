@@ -24,6 +24,9 @@ using YamlDotNet.Core.Tokens;
 
 namespace YamlDotNet.Test.Core
 {
+    /// <summary>
+    /// The token helper.
+    /// </summary>
     public class TokenHelper
     {
         protected static StreamStart StreamStart
@@ -48,7 +51,7 @@ namespace YamlDotNet.Test.Core
 
         protected static VersionDirective VersionDirective(int major, int minor)
         {
-            return new VersionDirective(new Version(major, minor));
+            return new VersionDirective(new YamlDotNet.Core.Version(major, minor));
         }
 
         protected static TagDirective TagDirective(string handle, string prefix)

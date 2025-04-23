@@ -31,11 +31,21 @@ namespace YamlDotNet.Serialization.NamingConventions
         [Obsolete("Use the Instance static field instead of creating new instances")]
         public UnderscoredNamingConvention() { }
 
+        /// <summary>
+        /// Applies the.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>A string.</returns>
         public string Apply(string value)
         {
             return value.FromCamelCase("_");
         }
 
+        /// <summary>
+        /// Reverses the.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>A string.</returns>
         public string Reverse(string value)
         {
             var result = value.ToPascalCase();

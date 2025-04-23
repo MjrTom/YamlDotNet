@@ -23,6 +23,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization
 {
+    /// <summary>
+    /// The object descriptor.
+    /// </summary>
     public sealed class ObjectDescriptor : IObjectDescriptor
     {
         /// <inheritdoc />

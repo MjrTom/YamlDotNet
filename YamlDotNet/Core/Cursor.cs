@@ -23,11 +23,23 @@ using System.Diagnostics;
 
 namespace YamlDotNet.Core
 {
+    /// <summary>
+    /// The cursor.
+    /// </summary>
     [DebuggerStepThrough]
     public sealed class Cursor
     {
+        /// <summary>
+        /// Gets the index.
+        /// </summary>
         public long Index { get; private set; }
+        /// <summary>
+        /// Gets the line.
+        /// </summary>
         public long Line { get; private set; }
+        /// <summary>
+        /// Gets the line offset.
+        /// </summary>
         public long LineOffset { get; private set; }
 
         public Cursor()
@@ -42,17 +54,28 @@ namespace YamlDotNet.Core
             LineOffset = cursor.LineOffset;
         }
 
+        /// <summary>
+        /// Marks the.
+        /// </summary>
+        /// <returns>A Mark.</returns>
         public Mark Mark()
         {
             return new Mark(Index, Line, LineOffset + 1);
         }
 
+        /// <summary>
+        /// Skips the.
+        /// </summary>
         public void Skip()
         {
             Index++;
             LineOffset++;
         }
 
+        /// <summary>
+        /// Skips the line by offset.
+        /// </summary>
+        /// <param name="offset">The offset.</param>
         public void SkipLineByOffset(int offset)
         {
             Index += offset;
@@ -60,6 +83,9 @@ namespace YamlDotNet.Core
             LineOffset = 0;
         }
 
+        /// <summary>
+        /// Forces the skip line after non break.
+        /// </summary>
         public void ForceSkipLineAfterNonBreak()
         {
             if (LineOffset != 0)

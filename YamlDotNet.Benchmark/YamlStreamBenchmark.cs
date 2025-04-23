@@ -23,12 +23,18 @@ using BenchmarkDotNet.Attributes;
 using YamlDotNet.RepresentationModel;
 
 namespace YamlDotNet.Benchmark;
+/// <summary>
+/// The yaml stream benchmark.
+/// </summary>
 
 [MemoryDiagnoser]
 public class YamlStreamBenchmark
 {
     private string yamlString = "";
 
+    /// <summary>
+    /// Setups the.
+    /// </summary>
     [GlobalSetup]
     public void Setup()
     {
@@ -36,6 +42,9 @@ public class YamlStreamBenchmark
         yamlString = reader.ReadToEnd();
     }
 
+    /// <summary>
+    /// Loads the large.
+    /// </summary>
     [Benchmark]
     public void LoadLarge()
     {

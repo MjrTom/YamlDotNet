@@ -25,6 +25,9 @@ using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Serialization.ValueDeserializers
 {
+    /// <summary>
+    /// The node value deserializer.
+    /// </summary>
     public sealed class NodeValueDeserializer : IValueDeserializer
     {
         private readonly IList<INodeDeserializer> deserializers;
@@ -46,6 +49,14 @@ namespace YamlDotNet.Serialization.ValueDeserializers
             this.typeInspector = typeInspector;
         }
 
+        /// <summary>
+        /// Deserializes the value.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <param name="expectedType">The expected type.</param>
+        /// <param name="state">The state.</param>
+        /// <param name="nestedObjectDeserializer">The nested object deserializer.</param>
+        /// <returns>An object? .</returns>
         public object? DeserializeValue(IParser parser, Type expectedType, SerializerState state, IValueDeserializer nestedObjectDeserializer)
         {
             parser.Accept<NodeEvent>(out var nodeEvent);

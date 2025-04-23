@@ -1,4 +1,4 @@
-// This file is part of YamlDotNet - A .NET library for YAML.
+﻿// This file is part of YamlDotNet - A .NET library for YAML.
 // Copyright (c) Antoine Aubry and contributors
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy of
@@ -24,6 +24,9 @@ using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Test.Serialization;
+/// <summary>
+/// The forced plain style tests.
+/// </summary>
 
 public class ForcedPlainStyleTests
 {
@@ -45,6 +48,9 @@ public class ForcedPlainStyleTests
     }
 
     // Test the regular 'Plain' scalar type
+    /// <summary>
+    /// Plain_S the values_ with_ control_ flow_ chars_ should_ be_ quoted.
+    /// </summary>
     [Fact]
     public void Plain_Values_With_Control_Flow_Chars_Should_Be_Quoted()
     {
@@ -56,6 +62,9 @@ public class ForcedPlainStyleTests
         Assert.StartsWith("MightBeQuotedText: '{{ a.b.c }}'", yaml);
     }
 
+    /// <summary>
+    /// Values_S the with_ no_ control_ flow_ chars_ should_ not_ be_ quoted.
+    /// </summary>
     [Fact]
     public void Values_With_No_Control_Flow_Chars_Should_Not_Be_Quoted()
     {
@@ -68,6 +77,9 @@ public class ForcedPlainStyleTests
     }
 
     // Test the new regular 'ForcedPlain' scalar type
+    /// <summary>
+    /// Forced_S the plain_ values_ with_ control_ flow_ chars_ should_ not_ be_ quoted.
+    /// </summary>
     [Fact]
     public void Forced_Plain_Values_With_Control_Flow_Chars_Should_Not_Be_Quoted()
     {
@@ -80,6 +92,9 @@ public class ForcedPlainStyleTests
         Assert.DoesNotContain("'", yaml);
     }
 
+    /// <summary>
+    /// Forced_S the plain_ values_ with_ no_ control_ flow_ chars_ should_ not_ be_ quoted.
+    /// </summary>
     [Fact]
     public void Forced_Plain_Values_With_No_Control_Flow_Chars_Should_Not_Be_Quoted()
     {

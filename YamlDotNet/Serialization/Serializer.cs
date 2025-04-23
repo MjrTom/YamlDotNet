@@ -24,6 +24,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization
 {
+    /// <summary>
+    /// The serializer.
+    /// </summary>
     public sealed class Serializer : ISerializer
     {
         private readonly IValueSerializer valueSerializer;

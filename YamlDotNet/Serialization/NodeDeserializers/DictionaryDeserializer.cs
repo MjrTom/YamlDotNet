@@ -25,6 +25,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeDeserializers
 {
+    /// <summary>
+    /// The dictionary deserializer.
+    /// </summary>
     public abstract class DictionaryDeserializer
     {
         private readonly bool duplicateKeyChecking;

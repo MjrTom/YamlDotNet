@@ -24,6 +24,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.NodeDeserializers
 {
+    /// <summary>
+    /// The static dictionary node deserializer.
+    /// </summary>
     public class StaticDictionaryNodeDeserializer : DictionaryDeserializer, INodeDeserializer
     {
         private readonly ObjectFactories.StaticObjectFactory objectFactory;
@@ -34,6 +37,15 @@ namespace YamlDotNet.Serialization.NodeDeserializers
             this.objectFactory = objectFactory ?? throw new ArgumentNullException(nameof(objectFactory));
         }
 
+        /// <summary>
+        /// Deserializes the.
+        /// </summary>
+        /// <param name="reader">The reader.</param>
+        /// <param name="expectedType">The expected type.</param>
+        /// <param name="nestedObjectDeserializer">The nested object deserializer.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="rootDeserializer">The root deserializer.</param>
+        /// <returns>A bool.</returns>
         public bool Deserialize(IParser reader, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer, out object? value, ObjectDeserializer rootDeserializer)
         {
             if (objectFactory.IsDictionary(expectedType))

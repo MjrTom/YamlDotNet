@@ -29,6 +29,9 @@ using YamlDotNet.Core.Tokens;
 
 namespace YamlDotNet.Test.Core
 {
+    /// <summary>
+    /// The emitter tests helper.
+    /// </summary>
     public class EmitterTestsHelper : EventsHelper
     {
         protected const string FooTag = "%TAG !foo! tag:example.org:foo";

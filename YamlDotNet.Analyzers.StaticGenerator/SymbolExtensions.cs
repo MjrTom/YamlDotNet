@@ -29,21 +29,11 @@ namespace YamlDotNet.Analyzers.StaticGenerator
     {
         public static string GetFullName(this ITypeSymbol symbol, bool includeArrayDimensions = true)
         {
-            if (symbol is IArrayTypeSymbol arrayTypeSymbol)
-            {
-                if (includeArrayDimensions)
-                {
-                    return $"{arrayTypeSymbol.ElementType.GetFullName()}[{(new string(',', arrayTypeSymbol.Rank - 1))}]";
-                }
-                return arrayTypeSymbol.ElementType.GetFullName();
-            }
-
-            if (symbol is INamedTypeSymbol namedTypeSymbol)
-            {
-                return GetFullName(namedTypeSymbol);
-            }
-
-            return symbol.Name;
+            return symbol is IArrayTypeSymbol arrayTypeSymbol
+                ? includeArrayDimensions
+                    ? $"{arrayTypeSymbol.ElementType.GetFullName()}[{(new string(',', arrayTypeSymbol.Rank - 1))}]"
+                    : arrayTypeSymbol.ElementType.GetFullName()
+                : symbol is INamedTypeSymbol namedTypeSymbol ? GetFullName(namedTypeSymbol) : symbol.Name;
         }
 
         public static string GetNamespace(this ISymbol symbol)
@@ -69,12 +59,7 @@ namespace YamlDotNet.Analyzers.StaticGenerator
 
         static string GetNullable(this ITypeSymbol symbol)
         {
-            if (symbol.IsValueType || symbol.NullableAnnotation != NullableAnnotation.Annotated)
-            {
-                return string.Empty;
-            }
-
-            return "?";
+            return symbol.IsValueType || symbol.NullableAnnotation != NullableAnnotation.Annotated ? string.Empty : "?";
         }
 
         static string GetFullName(this INamedTypeSymbol symbol)
@@ -97,14 +82,9 @@ namespace YamlDotNet.Analyzers.StaticGenerator
                 containingSymbol = containingSymbol.ContainingType;
             }
 
-            if (!string.IsNullOrWhiteSpace(space))
-            {
-                return space + "." + symbol.Name + suffix + symbol.GetNullable();
-            }
-            else
-            {
-                return symbol.Name + suffix + symbol.GetNullable();
-            }
+            return !string.IsNullOrWhiteSpace(space)
+                ? space + "." + symbol.Name + suffix + symbol.GetNullable()
+                : symbol.Name + suffix + symbol.GetNullable();
         }
 
         static string GetGenericTypes(IReadOnlyList<ITypeSymbol> typeArguments)
@@ -129,12 +109,7 @@ namespace YamlDotNet.Analyzers.StaticGenerator
                 }
             }
 
-            if (output.Count > 0)
-            {
-                return $"<{string.Join(", ", typeArguments)}>";
-            }
-
-            return string.Empty;
+            return output.Count > 0 ? $"<{string.Join(", ", typeArguments)}>" : string.Empty;
         }
     }
 }

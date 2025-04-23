@@ -29,6 +29,9 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Test.Spec
 {
+    /// <summary>
+    /// The serializer spec tests.
+    /// </summary>
     public sealed class SerializerSpecTests
     {
         internal sealed class SerializerSpecTestsData : SpecTestsData
@@ -65,6 +68,15 @@ namespace YamlDotNet.Test.Spec
         };
 
 
+        /// <summary>
+        /// Conforms the with yaml spec.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="inputFile">The input file.</param>
+        /// <param name="outputFile">The output file.</param>
+        /// <param name="error">If true, error.</param>
+        /// <param name="quoting">If true, quoting.</param>
         [Theory, ClassData(typeof(SerializerSpecTestsData))]
         public void ConformsWithYamlSpec(string name, string description, string inputFile, string outputFile, bool error, bool quoting)
         {

@@ -32,11 +32,21 @@ namespace YamlDotNet.Serialization.NamingConventions
     {
         private LowerCaseNamingConvention() { }
 
+        /// <summary>
+        /// Applies the.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>A string.</returns>
         public string Apply(string value)
         {
             return value.ToCamelCase().ToLower(CultureInfo.InvariantCulture);
         }
 
+        /// <summary>
+        /// Reverses the.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>A string.</returns>
         public string Reverse(string value)
         {
             // lower case values don't have any context as to what should be upper or not. So we only do the first character

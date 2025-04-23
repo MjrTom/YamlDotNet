@@ -24,6 +24,9 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
 {
+    /// <summary>
+    /// The default exclusive object graph visitor.
+    /// </summary>
     public sealed class DefaultExclusiveObjectGraphVisitor : ChainedObjectGraphVisitor
     {
         public DefaultExclusiveObjectGraphVisitor(IObjectGraphVisitor<IEmitter> nextVisitor)

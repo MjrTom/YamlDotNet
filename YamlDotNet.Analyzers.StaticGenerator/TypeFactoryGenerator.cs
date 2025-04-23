@@ -25,11 +25,18 @@ using Microsoft.CodeAnalysis;
 
 namespace YamlDotNet.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The type factory generator.
+    /// </summary>
     [Generator]
     public class TypeFactoryGenerator : ISourceGenerator
     {
         private GeneratorExecutionContext _context;
 
+        /// <summary>
+        /// Executes the.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public void Execute(GeneratorExecutionContext context)
         {
             if (!(context.SyntaxContextReceiver is SerializableSyntaxReceiver receiver))
@@ -52,6 +59,10 @@ namespace YamlDotNet.Analyzers.StaticGenerator
             context.AddSource("YamlDotNetAutoGraph.g.cs", GenerateSource(receiver));
         }
 
+        /// <summary>
+        /// Initializes the.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public void Initialize(GeneratorInitializationContext context)
         {
             var syntaxReceiver = new SerializableSyntaxReceiver();

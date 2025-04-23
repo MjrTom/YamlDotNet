@@ -25,8 +25,14 @@ using Xunit;
 
 namespace YamlDotNet.Test.Helpers
 {
+    /// <summary>
+    /// The portability tests.
+    /// </summary>
     public class PortabilityTests
     {
+        /// <summary>
+        /// Gets the public static method returns correct method info.
+        /// </summary>
         [Fact]
         public void GetPublicStaticMethodReturnsCorrectMethodInfo()
         {

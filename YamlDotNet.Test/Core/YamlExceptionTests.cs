@@ -26,8 +26,14 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Test.Core
 {
+    /// <summary>
+    /// The yaml exception tests.
+    /// </summary>
     public class YamlExceptionTests
     {
+        /// <summary>
+        /// Verifies the to string with empty marks.
+        /// </summary>
         [Fact]
         public void VerifyToStringWithEmptyMarks()
         {
@@ -36,6 +42,9 @@ namespace YamlDotNet.Test.Core
             exception.Message.Should().Be("Test exception message");
         }
 
+        /// <summary>
+        /// Verifies the to string with non empty marks.
+        /// </summary>
         [Fact]
         public void VerifyToStringWithNonEmptyMarks()
         {
@@ -44,6 +53,9 @@ namespace YamlDotNet.Test.Core
             exception.Message.Should().Be("Test exception message");
         }
 
+        /// <summary>
+        /// Verifies the to string with inner exception and marks.
+        /// </summary>
         [Fact]
         public void VerifyToStringWithInnerExceptionAndMarks()
         {
@@ -52,6 +64,9 @@ namespace YamlDotNet.Test.Core
             exception.Message.Should().Be("Test exception message");
         }
 
+        /// <summary>
+        /// Verifies the to string with inner exception.
+        /// </summary>
         [Fact]
         public void VerifyToStringWithInnerException()
         {

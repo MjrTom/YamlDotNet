@@ -21,6 +21,9 @@
 
 namespace YamlDotNet.Core
 {
+    /// <summary>
+    /// The emitter settings.
+    /// </summary>
     public sealed class EmitterSettings
     {
         /// <summary>
@@ -103,6 +106,11 @@ namespace YamlDotNet.Core
             UseUtf16SurrogatePairs = useUtf16SurrogatePairs;
         }
 
+        /// <summary>
+        /// Withs the best indent.
+        /// </summary>
+        /// <param name="bestIndent">The best indent.</param>
+        /// <returns>An EmitterSettings.</returns>
         public EmitterSettings WithBestIndent(int bestIndent)
         {
             return new EmitterSettings(
@@ -117,6 +125,11 @@ namespace YamlDotNet.Core
             );
         }
 
+        /// <summary>
+        /// Withs the best width.
+        /// </summary>
+        /// <param name="bestWidth">The best width.</param>
+        /// <returns>An EmitterSettings.</returns>
         public EmitterSettings WithBestWidth(int bestWidth)
         {
             return new EmitterSettings(
@@ -131,6 +144,11 @@ namespace YamlDotNet.Core
             );
         }
 
+        /// <summary>
+        /// Withs the max simple key length.
+        /// </summary>
+        /// <param name="maxSimpleKeyLength">The max simple key length.</param>
+        /// <returns>An EmitterSettings.</returns>
         public EmitterSettings WithMaxSimpleKeyLength(int maxSimpleKeyLength)
         {
             return new EmitterSettings(
@@ -145,6 +163,11 @@ namespace YamlDotNet.Core
             );
         }
 
+        /// <summary>
+        /// Withs the new line.
+        /// </summary>
+        /// <param name="newLine">The new line.</param>
+        /// <returns>An EmitterSettings.</returns>
         public EmitterSettings WithNewLine(string newLine)
         {
             return new EmitterSettings(
@@ -159,6 +182,10 @@ namespace YamlDotNet.Core
             );
         }
 
+        /// <summary>
+        /// Canonicals the.
+        /// </summary>
+        /// <returns>An EmitterSettings.</returns>
         public EmitterSettings Canonical()
         {
             return new EmitterSettings(
@@ -170,6 +197,10 @@ namespace YamlDotNet.Core
             );
         }
 
+        /// <summary>
+        /// Withouts the anchor name.
+        /// </summary>
+        /// <returns>An EmitterSettings.</returns>
         public EmitterSettings WithoutAnchorName()
         {
             return new EmitterSettings(
@@ -184,6 +215,10 @@ namespace YamlDotNet.Core
             );
         }
 
+        /// <summary>
+        /// Withs the indented sequences.
+        /// </summary>
+        /// <returns>An EmitterSettings.</returns>
         public EmitterSettings WithIndentedSequences()
         {
             return new EmitterSettings(
@@ -198,6 +233,10 @@ namespace YamlDotNet.Core
             );
         }
 
+        /// <summary>
+        /// Withs the utf16 surrogate pairs.
+        /// </summary>
+        /// <returns>An EmitterSettings.</returns>
         public EmitterSettings WithUtf16SurrogatePairs()
         {
             return new EmitterSettings(

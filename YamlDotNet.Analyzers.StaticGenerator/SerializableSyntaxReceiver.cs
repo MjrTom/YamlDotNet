@@ -27,13 +27,32 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace YamlDotNet.Analyzers.StaticGenerator
 {
+    /// <summary>
+    /// The serializable syntax receiver.
+    /// </summary>
     public class SerializableSyntaxReceiver : ISyntaxContextReceiver
     {
+        /// <summary>
+        /// Gets the log.
+        /// </summary>
         public List<string> Log { get; } = new();
+        /// <summary>
+        /// Gets the classes.
+        /// </summary>
         public Dictionary<string, ClassObject> Classes { get; } = new Dictionary<string, ClassObject>();
+        /// <summary>
+        /// Gets the enum mappings.
+        /// </summary>
         public Dictionary<ITypeSymbol, List<EnumMappings>> EnumMappings { get; } = new Dictionary<ITypeSymbol, List<EnumMappings>>(SymbolEqualityComparer.Default);
+        /// <summary>
+        /// Gets or sets the yaml static context type.
+        /// </summary>
         public INamedTypeSymbol? YamlStaticContextType { get; set; }
 
+        /// <summary>
+        /// Ons the visit syntax node.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public void OnVisitSyntaxNode(GeneratorSyntaxContext context)
         {
             if (context.Node is EnumDeclarationSyntax enumDeclarationSyntax)

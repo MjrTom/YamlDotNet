@@ -111,6 +111,12 @@ namespace YamlDotNet.Serialization
 
         private readonly Dictionary<AttributeKey, List<AttributeMapping>> overrides = [];
 
+        /// <summary>
+        /// Gets the attribute.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <param name="member">The member.</param>
+        /// <returns>A T.</returns>
         [return: MaybeNull]
         public T GetAttribute<T>(Type type, string member) where T : Attribute
         {
@@ -182,6 +188,9 @@ namespace YamlDotNet.Serialization
 
 namespace YamlDotNet.Serialization
 {
+    /// <summary>
+    /// The yaml attribute overrides.
+    /// </summary>
     public partial class YamlAttributeOverrides
     {
         /// <summary>

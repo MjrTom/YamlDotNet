@@ -71,6 +71,9 @@ namespace YamlDotNet.Serialization
             set => defaultValuesHandling = value;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether default values handling is specified.
+        /// </summary>
         public bool IsDefaultValuesHandlingSpecified => defaultValuesHandling.HasValue;
 
         /// <summary>

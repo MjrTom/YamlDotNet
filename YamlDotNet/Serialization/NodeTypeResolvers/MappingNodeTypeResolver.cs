@@ -23,6 +23,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeTypeResolvers
 {
+    /// <summary>
+    /// The mapping node type resolver.
+    /// </summary>
     public class MappingNodeTypeResolver : INodeTypeResolver
     {
         private readonly IDictionary<Type, Type> mappings;

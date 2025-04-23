@@ -23,6 +23,9 @@ using YamlDotNet.Serialization.BufferedDeserialization.TypeDiscriminators;
 
 namespace YamlDotNet.Serialization.BufferedDeserialization
 {
+    /// <summary>
+    /// The type discriminating node deserializer options.
+    /// </summary>
     public class TypeDiscriminatingNodeDeserializerOptions : ITypeDiscriminatingNodeDeserializerOptions
     {
         internal readonly List<ITypeDiscriminator> discriminators = [];

@@ -20,9 +20,18 @@
 // SOFTWARE.
 
 namespace YamlDotNet.Core7AoTCompileTest.Model;
+/// <summary>
+/// The external model.
+/// </summary>
 
 public class ExternalModel
 {
+    /// <summary>
+    /// Gets or sets the text.
+    /// </summary>
     public string? Text { get; set; }
+    /// <summary>
+    /// Gets or sets the not null.
+    /// </summary>
     public string NotNull { get; set; } = string.Empty;
 }

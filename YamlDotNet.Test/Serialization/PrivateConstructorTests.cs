@@ -27,8 +27,14 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The private constructor tests.
+    /// </summary>
     public class PrivateConstructorTests
     {
+        /// <summary>
+        /// Privates the constructors are considered in round trip when enabled.
+        /// </summary>
         [Fact]
         public void PrivateConstructorsAreConsideredInRoundTripWhenEnabled()
         {
@@ -51,6 +57,9 @@ InnerValue: inner
             Assert.Equal(expected, actual);
         }
 
+        /// <summary>
+        /// Privates the constructors are not considered in round trip when not enabled.
+        /// </summary>
         [Fact]
         public void PrivateConstructorsAreNotConsideredInRoundTripWhenNotEnabled()
         {
@@ -70,6 +79,9 @@ InnerValue: inner
             });
         }
 
+        /// <summary>
+        /// Privates the constructors are considered when enabled.
+        /// </summary>
         [Fact]
         public void PrivateConstructorsAreConsideredWhenEnabled()
         {
@@ -86,6 +98,9 @@ InnerValue:
             Assert.Equal("inner test", value.InnerValue.Value);
         }
 
+        /// <summary>
+        /// Privates the constructors are not considered when not enabled.
+        /// </summary>
         [Fact]
         public void PrivateConstructorsAreNotConsideredWhenNotEnabled()
         {
@@ -103,6 +118,9 @@ InnerValue:
             Assert.IsType<MissingMethodException>(exception.InnerException.InnerException);
         }
 
+        /// <summary>
+        /// Internals the constructors.
+        /// </summary>
         [Fact]
         public void InternalConstructors()
         {
@@ -110,6 +128,9 @@ InnerValue:
             Test(() => new TestClassInternal("test"), false);
         }
 
+        /// <summary>
+        /// Privates the constructors.
+        /// </summary>
         [Fact]
         public void PrivateConstructors()
         {
@@ -117,6 +138,9 @@ InnerValue:
             Test(() => new TestClassPrivate("test"), false);
         }
 
+        /// <summary>
+        /// Protecteds the constructors.
+        /// </summary>
         [Fact]
         public void ProtectedConstructors()
         {
@@ -124,6 +148,9 @@ InnerValue:
             Test(() => new TestClassProtected("test"), false);
         }
 
+        /// <summary>
+        /// Publics the constructors.
+        /// </summary>
         [Fact]
         public void PublicConstructors()
         {
@@ -154,6 +181,9 @@ InnerValue:
             var o = deserializer.Deserialize<T>(stringWriter.ToString());
         }
 
+        /// <summary>
+        /// The test class internal.
+        /// </summary>
         public class TestClassInternal
         {
             internal TestClassInternal()
@@ -165,14 +195,24 @@ InnerValue:
                 Value = value;
             }
 
+            /// <summary>
+            /// Gets the value.
+            /// </summary>
             public string Value { get; private set; }
 
+            /// <summary>
+            /// Tos the string.
+            /// </summary>
+            /// <returns>A string.</returns>
             public override string ToString()
             {
                 return Value;
             }
         }
 
+        /// <summary>
+        /// The test class public.
+        /// </summary>
         public class TestClassPublic
         {
             public TestClassPublic()
@@ -184,14 +224,24 @@ InnerValue:
                 Value = value;
             }
 
+            /// <summary>
+            /// Gets the value.
+            /// </summary>
             public string Value { get; private set; }
 
+            /// <summary>
+            /// Tos the string.
+            /// </summary>
+            /// <returns>A string.</returns>
             public override string ToString()
             {
                 return Value;
             }
         }
 
+        /// <summary>
+        /// The test class private.
+        /// </summary>
         public class TestClassPrivate
         {
             public TestClassPrivate()
@@ -203,14 +253,24 @@ InnerValue:
                 Value = value;
             }
 
+            /// <summary>
+            /// Gets the value.
+            /// </summary>
             public string Value { get; private set; }
 
+            /// <summary>
+            /// Tos the string.
+            /// </summary>
+            /// <returns>A string.</returns>
             public override string ToString()
             {
                 return Value;
             }
         }
 
+        /// <summary>
+        /// The test class protected.
+        /// </summary>
         public class TestClassProtected
         {
             public TestClassProtected()
@@ -222,8 +282,15 @@ InnerValue:
                 Value = value;
             }
 
+            /// <summary>
+            /// Gets the value.
+            /// </summary>
             public string Value { get; private set; }
 
+            /// <summary>
+            /// Tos the string.
+            /// </summary>
+            /// <returns>A string.</returns>
             public override string ToString()
             {
                 return Value;

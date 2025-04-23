@@ -21,6 +21,9 @@
 
 namespace YamlDotNet.Serialization.Callbacks
 {
+    /// <summary>
+    /// The on serialized attribute.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Method)]
     public sealed class OnSerializedAttribute : Attribute
     {

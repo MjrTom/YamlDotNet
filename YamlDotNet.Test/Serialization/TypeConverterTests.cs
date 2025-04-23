@@ -27,8 +27,14 @@ using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The type converter tests.
+    /// </summary>
     public class TypeConverterTests
     {
+        /// <summary>
+        /// The implicit conversion int wrapper.
+        /// </summary>
         public class ImplicitConversionIntWrapper
         {
             public readonly int value;
@@ -44,6 +50,9 @@ namespace YamlDotNet.Test.Serialization
             }
         }
 
+        /// <summary>
+        /// The explicit conversion int wrapper.
+        /// </summary>
         public class ExplicitConversionIntWrapper
         {
             public readonly int value;
@@ -59,6 +68,9 @@ namespace YamlDotNet.Test.Serialization
             }
         }
 
+        /// <summary>
+        /// Implicit_conversion_operator_is_useds the.
+        /// </summary>
         [Fact]
         public void Implicit_conversion_operator_is_used()
         {
@@ -69,6 +81,9 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal(data.value, actual);
         }
 
+        /// <summary>
+        /// Explicit_conversion_operator_is_useds the.
+        /// </summary>
         [Fact]
         public void Explicit_conversion_operator_is_used()
         {

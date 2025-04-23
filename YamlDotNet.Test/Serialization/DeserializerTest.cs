@@ -33,8 +33,14 @@ using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The deserializer test.
+    /// </summary>
     public class DeserializerTest
     {
+        /// <summary>
+        /// Deserialize_S the yaml with interface type and mapping_ returns model.
+        /// </summary>
         [Fact]
         public void Deserialize_YamlWithInterfaceTypeAndMapping_ReturnsModel()
         {
@@ -69,6 +75,9 @@ cars:
             person.Cars[1].Spec.Should().BeNull();
         }
 
+        /// <summary>
+        /// Deserialize_S the yaml with two interface types and mappings_ returns model.
+        /// </summary>
         [Fact]
         public void Deserialize_YamlWithTwoInterfaceTypesAndMappings_ReturnsModel()
         {
@@ -112,6 +121,9 @@ cars:
             person.Cars[1].Spec.DriveType.Should().Be("FWD");
         }
 
+        /// <summary>
+        /// Setters the only sets without exception.
+        /// </summary>
         [Fact]
         public void SetterOnlySetsWithoutException()
         {
@@ -123,6 +135,9 @@ Value: bar
             result.Actual.Should().Be("bar");
         }
 
+        /// <summary>
+        /// Keys the on dynamic class dont get quoted.
+        /// </summary>
         [Fact]
         public void KeysOnDynamicClassDontGetQuoted()
         {
@@ -142,6 +157,9 @@ X:
             Assert.Equal(dictionary.Values, new object[] { null, "hello", true, null });
         }
 
+        /// <summary>
+        /// Empties the quoted strings arent null.
+        /// </summary>
         [Fact]
         public void EmptyQuotedStringsArentNull()
         {
@@ -151,6 +169,9 @@ X:
             Assert.Equal(string.Empty, result.Value);
         }
 
+        /// <summary>
+        /// Keys the anchor is handled with type deserialization.
+        /// </summary>
         [Fact]
         public void KeyAnchorIsHandledWithTypeDeserialization()
         {
@@ -166,6 +187,9 @@ b: &number 1
             Assert.Equal(new object[] { "this is also a key", (byte)1, "will this key be handled correctly?", (byte)1 }, dictionary.Values);
         }
 
+        /// <summary>
+        /// Nons the scalar key is handled with type deserialization.
+        /// </summary>
         [Fact]
         public void NonScalarKeyIsHandledWithTypeDeserialization()
         {
@@ -196,6 +220,9 @@ b: &number 1
             Assert.Equal("baz", item.Value);
         }
 
+        /// <summary>
+        /// News the lines in keys.
+        /// </summary>
         [Fact]
         public void NewLinesInKeys()
         {
@@ -220,6 +247,10 @@ b: &number 1
             Assert.Equal($"value\na\nb", dictionary.First().Value);
         }
 
+        /// <summary>
+        /// Unquoteds the string type deserialization_ regular numbers.
+        /// </summary>
+        /// <param name="expected">The expected.</param>
         [Theory]
         [InlineData(System.Byte.MinValue)]
         [InlineData(System.Byte.MaxValue)]
@@ -258,6 +289,10 @@ b: &number 1
             Assert.Equal(expected, resultDict["Value"]);
         }
 
+        /// <summary>
+        /// Unquoteds the string type deserialization_ hex numbers.
+        /// </summary>
+        /// <param name="expected">The expected.</param>
         [Theory]
         [InlineData(System.Byte.MinValue)]
         [InlineData(System.Byte.MaxValue)]
@@ -279,6 +314,11 @@ b: &number 1
             Assert.Equal(expected, resultDict["Value"]);
         }
 
+        /// <summary>
+        /// Unquoteds the string type deserialization handles inf and na n.
+        /// </summary>
+        /// <param name="yamlValue">The yaml value.</param>
+        /// <param name="expected">The expected.</param>
         [Theory]
         [InlineData(".nan", System.Single.NaN)]
         [InlineData(".NaN", System.Single.NaN)]
@@ -302,6 +342,9 @@ b: &number 1
             Assert.Equal(expected, resultDict["Value"]);
         }
 
+        /// <summary>
+        /// Gets the deserialize scalar edge cases_ test cases.
+        /// </summary>
         public static IEnumerable<object[]> DeserializeScalarEdgeCases_TestCases
         {
             get
@@ -335,6 +378,11 @@ b: &number 1
             }
         }
 
+        /// <summary>
+        /// Deserializes the scalar edge cases.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="type">The type.</param>
         [Theory]
         [MemberData(nameof(DeserializeScalarEdgeCases_TestCases))]
         public void DeserializeScalarEdgeCases(IConvertible value, Type type)
@@ -345,6 +393,9 @@ b: &number 1
             result.Should().Be(value);
         }
 
+        /// <summary>
+        /// Deserializes the with duplicate key checking_ yaml with duplicate keys_ throws yaml exception.
+        /// </summary>
         [Fact]
         public void DeserializeWithDuplicateKeyChecking_YamlWithDuplicateKeys_ThrowsYamlException()
         {
@@ -370,6 +421,9 @@ name: Jake
             act.Should().Throw<YamlException>("Because there are duplicate name keys with merging parser");
         }
 
+        /// <summary>
+        /// Deserializes the without duplicate key checking_ yaml with duplicate keys_ does not throw yaml exception.
+        /// </summary>
         [Fact]
         public void DeserializeWithoutDuplicateKeyChecking_YamlWithDuplicateKeys_DoesNotThrowYamlException()
         {
@@ -394,6 +448,9 @@ name: Jake
             act.Should().NotThrow<YamlException>("Because duplicate key checking is not enabled");
         }
 
+        /// <summary>
+        /// Enforces the nullable when class is default nullable throws.
+        /// </summary>
         [Fact]
         public void EnforceNullableWhenClassIsDefaultNullableThrows()
         {
@@ -418,6 +475,9 @@ TestBool1: null
             throw new Exception("Non nullable property was set to null.");
         }
 
+        /// <summary>
+        /// Enforces the nullable when class is not default nullable throws.
+        /// </summary>
         [Fact]
         public void EnforceNullableWhenClassIsNotDefaultNullableThrows()
         {
@@ -442,6 +502,9 @@ TestBool1: null
             throw new Exception("Non nullable property was set to null.");
         }
 
+        /// <summary>
+        /// Enforces the nullable types when null throws exception.
+        /// </summary>
         [Fact]
         public void EnforceNullableTypesWhenNullThrowsException()
         {
@@ -464,6 +527,9 @@ Test: null
             throw new Exception("Non nullable property was set to null.");
         }
 
+        /// <summary>
+        /// Enforces the nullable types when not null does not throw exception.
+        /// </summary>
         [Fact]
         public void EnforceNullableTypesWhenNotNullDoesNotThrowException()
         {
@@ -474,6 +540,9 @@ Test: test 123
             var o = deserializer.Deserialize<NonNullableClass>(yaml);
         }
 
+        /// <summary>
+        /// Serializes the state methods get called once.
+        /// </summary>
         [Fact]
         public void SerializeStateMethodsGetCalledOnce()
         {
@@ -485,6 +554,9 @@ Test: test 123
             Assert.Equal(1, test.OnDeserializingCallCount);
         }
 
+        /// <summary>
+        /// Deserializes the concurrently.
+        /// </summary>
         [Fact]
         public void DeserializeConcurrently()
         {
@@ -539,6 +611,9 @@ Test: test 123
             }
         }
 
+        /// <summary>
+        /// Withs the case insensitive property matching_ ignore case.
+        /// </summary>
         [Fact]
         public void WithCaseInsensitivePropertyMatching_IgnoreCase()
         {
@@ -551,6 +626,9 @@ fIeLd: Value
             Assert.Equal("Value", test.Field);
         }
 
+        /// <summary>
+        /// Privates the members expose yaml member attribute.
+        /// </summary>
         [Fact]
         public void PrivateMembersExposeYamlMemberAttribute()
         {
@@ -573,6 +651,9 @@ fIeLd: Value
         }
 
 #if NET8_0_OR_GREATER
+        /// <summary>
+        /// Withs the required member set_ throws when field not set.
+        /// </summary>
         [Fact]
         public void WithRequiredMemberSet_ThrowsWhenFieldNotSet()
         {
@@ -584,6 +665,9 @@ fIeLd: Value
             });
         }
 
+        /// <summary>
+        /// Withs the required member set_ throws when property not set.
+        /// </summary>
         [Fact]
         public void WithRequiredMemberSet_ThrowsWhenPropertyNotSet()
         {
@@ -595,6 +679,9 @@ fIeLd: Value
             });
         }
 
+        /// <summary>
+        /// Withs the required member set_ does not throw.
+        /// </summary>
         [Fact]
         public void WithRequiredMemberSet_DoesNotThrow()
         {
@@ -606,14 +693,23 @@ Property: test-property";
             Assert.Equal("test-property", actual.Property);
         }
 
+        /// <summary>
+        /// The required member class.
+        /// </summary>
         public class RequiredMemberClass
         {
             public required string Field = string.Empty;
+            /// <summary>
+            /// Gets or sets the property.
+            /// </summary>
             public required string Property { get; set; } = string.Empty;
         }
 #endif
 
 #if NET6_0_OR_GREATER
+        /// <summary>
+        /// Enums the deserialization uses enum member attribute.
+        /// </summary>
         [Fact]
         public void EnumDeserializationUsesEnumMemberAttribute()
         {
@@ -623,6 +719,9 @@ Property: test-property";
             Assert.Equal(EnumMemberedEnum.Hello, actual);
         }
 
+        /// <summary>
+        /// Enums the deserialized uses enum name when member is empty.
+        /// </summary>
         [Fact]
         public void EnumDeserializedUsesEnumNameWhenMemberIsEmpty()
         {
@@ -632,6 +731,9 @@ Property: test-property";
             Assert.Equal(EnumMemberedEnum.EmptyValue, actual);
         }
 
+        /// <summary>
+        /// Enums the deserialized uses enum name when member is null.
+        /// </summary>
         [Fact]
         public void EnumDeserializedUsesEnumNameWhenMemberIsNull()
         {
@@ -641,6 +743,9 @@ Property: test-property";
             Assert.Equal(EnumMemberedEnum.NullValue, actual);
         }
 
+        /// <summary>
+        /// The enum membered enum.
+        /// </summary>
         public enum EnumMemberedEnum
         {
             No = 0,
@@ -658,73 +763,166 @@ Property: test-property";
 #endif
 
 #nullable enable
+        /// <summary>
+        /// The nullable default class.
+        /// </summary>
         public class NullableDefaultClass
         {
+            /// <summary>
+            /// Gets or sets the test string.
+            /// </summary>
             public string? TestString { get; set; }
+            /// <summary>
+            /// Gets or sets the test bool.
+            /// </summary>
             public string? TestBool { get; set; }
+            /// <summary>
+            /// Gets or sets the test bool1.
+            /// </summary>
             public string TestBool1 { get; set; } = "";
         }
 
+        /// <summary>
+        /// The nullable not default class.
+        /// </summary>
         public class NullableNotDefaultClass
         {
+            /// <summary>
+            /// Gets or sets the test string.
+            /// </summary>
             public string? TestString { get; set; }
+            /// <summary>
+            /// Gets or sets the test bool.
+            /// </summary>
             public string TestBool { get; set; } = "";
+            /// <summary>
+            /// Gets or sets the test bool1.
+            /// </summary>
             public string TestBool1 { get; set; } = "";
         }
 
+        /// <summary>
+        /// The non nullable class.
+        /// </summary>
         public class NonNullableClass
         {
+            /// <summary>
+            /// Gets or sets the test.
+            /// </summary>
             public string Test { get; set; } = "Some default value";
         }
 #nullable disable
 
+        /// <summary>
+        /// The case insensitive test.
+        /// </summary>
         public class CaseInsensitiveTest
         {
+            /// <summary>
+            /// Gets or sets the property.
+            /// </summary>
             public string Property { get; set; }
             public string Field;
         }
 
+        /// <summary>
+        /// The test state.
+        /// </summary>
         public class TestState
         {
+            /// <summary>
+            /// Gets or sets the on deserialized call count.
+            /// </summary>
             public int OnDeserializedCallCount { get; set; }
+            /// <summary>
+            /// Gets or sets the on deserializing call count.
+            /// </summary>
             public int OnDeserializingCallCount { get; set; }
 
+            /// <summary>
+            /// Gets or sets the test.
+            /// </summary>
             public string Test { get; set; } = string.Empty;
 
+            /// <summary>
+            /// Deserializeds the.
+            /// </summary>
             [OnDeserialized]
             public void Deserialized() => OnDeserializedCallCount++;
 
+            /// <summary>
+            /// Deserializings the.
+            /// </summary>
             [OnDeserializing]
             public void Deserializing() => OnDeserializingCallCount++;
         }
 
+        /// <summary>
+        /// The test.
+        /// </summary>
         public class Test
         {
+            /// <summary>
+            /// Gets or sets the value.
+            /// </summary>
             public string Value { get; set; }
         }
 
+        /// <summary>
+        /// The setter only.
+        /// </summary>
         public class SetterOnly
         {
             private string _value;
+            /// <summary>
+            /// Gets or sets the value.
+            /// </summary>
             public string Value { set => _value = value; }
+            /// <summary>
+            /// Gets the actual.
+            /// </summary>
             public string Actual { get => _value; }
         }
 
+        /// <summary>
+        /// The person.
+        /// </summary>
         public class Person
         {
+            /// <summary>
+            /// Gets the name.
+            /// </summary>
             public string Name { get; private set; }
 
+            /// <summary>
+            /// Gets the moment of birth.
+            /// </summary>
             public DateTime MomentOfBirth { get; private set; }
 
+            /// <summary>
+            /// Gets the cars.
+            /// </summary>
             public IList<ICar> Cars { get; private set; }
         }
 
+        /// <summary>
+        /// The car.
+        /// </summary>
         public class Car : ICar
         {
+            /// <summary>
+            /// Gets the name.
+            /// </summary>
             public string Name { get; private set; }
 
+            /// <summary>
+            /// Gets the year.
+            /// </summary>
             public int Year { get; private set; }
 
+            /// <summary>
+            /// Gets the spec.
+            /// </summary>
             public IModelSpec Spec { get; private set; }
         }
 
@@ -736,10 +934,19 @@ Property: test-property";
             IModelSpec Spec { get; }
         }
 
+        /// <summary>
+        /// The model spec.
+        /// </summary>
         public class ModelSpec : IModelSpec
         {
+            /// <summary>
+            /// Gets the engine type.
+            /// </summary>
             public string EngineType { get; private set; }
 
+            /// <summary>
+            /// Gets the drive type.
+            /// </summary>
             public string DriveType { get; private set; }
         }
 
@@ -750,23 +957,50 @@ Property: test-property";
             string DriveType { get; }
         }
 
+        /// <summary>
+        /// The conference.
+        /// </summary>
         public class Conference
         {
+            /// <summary>
+            /// Gets the sessions.
+            /// </summary>
             public Session[] Sessions { get; private set; }
 
+            /// <summary>
+            /// Gets the attendees.
+            /// </summary>
             public Attendee[] Attendees { get; private set; }
         }
+        /// <summary>
+        /// The attendee.
+        /// </summary>
         public class Attendee
         {
+            /// <summary>
+            /// Gets the name.
+            /// </summary>
             public string Name { get; private set; }
 
+            /// <summary>
+            /// Gets the sessions.
+            /// </summary>
             public Session[] Sessions { get; private set; }
         }
 
+        /// <summary>
+        /// The session.
+        /// </summary>
         public class Session
         {
+            /// <summary>
+            /// Gets the name.
+            /// </summary>
             public string Name { get; private set; }
 
+            /// <summary>
+            /// Gets the greeter.
+            /// </summary>
             public Attendee Greeter { get; private set; }
         }
     }

@@ -25,6 +25,9 @@ using System.Reflection;
 
 namespace YamlDotNet.Helpers
 {
+    /// <summary>
+    /// The expression extensions.
+    /// </summary>
     public static class ExpressionExtensions
     {
         /// <summary>

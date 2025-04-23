@@ -25,6 +25,9 @@ using YamlDotNet.Serialization;
 namespace YamlDotNet.Core7AoTCompileTest
 {
     // The rest of this partial class gets generated at build time
+    /// <summary>
+    /// The static context.
+    /// </summary>
     [YamlStaticContext]
     [YamlSerializable(typeof(ExternalModel))]
     public partial class StaticContext : YamlDotNet.Serialization.StaticContext

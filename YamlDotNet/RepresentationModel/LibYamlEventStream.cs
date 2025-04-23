@@ -40,6 +40,10 @@ namespace YamlDotNet.RepresentationModel
             parser = iParser ?? throw new ArgumentNullException(nameof(iParser));
         }
 
+        /// <summary>
+        /// Writes the to.
+        /// </summary>
+        /// <param name="textWriter">The text writer.</param>
         public void WriteTo(TextWriter textWriter)
         {
             while (parser.MoveNext())

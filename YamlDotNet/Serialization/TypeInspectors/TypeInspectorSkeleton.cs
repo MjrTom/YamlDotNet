@@ -24,6 +24,9 @@ using System.Runtime.Serialization;
 
 namespace YamlDotNet.Serialization.TypeInspectors
 {
+    /// <summary>
+    /// The type inspector skeleton.
+    /// </summary>
     public abstract class TypeInspectorSkeleton : ITypeInspector
     {
         /// <inheritdoc />

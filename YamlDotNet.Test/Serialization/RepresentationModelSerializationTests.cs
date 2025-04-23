@@ -28,8 +28,16 @@ using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Test.Serialization
 {
+    /// <summary>
+    /// The representation model serialization tests.
+    /// </summary>
     public class RepresentationModelSerializationTests
     {
+        /// <summary>
+        /// Scalars the is serializable.
+        /// </summary>
+        /// <param name="yaml">The yaml.</param>
+        /// <param name="expectedValue">The expected value.</param>
         [Theory]
         [InlineData("hello", "hello")]
         [InlineData("'hello'", "hello")]
@@ -50,6 +58,11 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal(yaml, buffer.ToString().TrimEnd('\r', '\n', '.'));
         }
 
+        /// <summary>
+        /// Sequences the is serializable.
+        /// </summary>
+        /// <param name="yaml">The yaml.</param>
+        /// <param name="expectedValues">The expected values.</param>
         [Theory]
         [InlineData("[a]", new[] { "a" })]
         [InlineData("['a']", new[] { "a" })]
@@ -74,6 +87,11 @@ namespace YamlDotNet.Test.Serialization
             Assert.Equal(yaml.NormalizeNewLines(), buffer.ToString().TrimEnd('\r', '\n', '.'));
         }
 
+        /// <summary>
+        /// Mappings the is serializable.
+        /// </summary>
+        /// <param name="yaml">The yaml.</param>
+        /// <param name="expectedKeysAndValues">The expected keys and values.</param>
         [Theory]
         [InlineData("{a: b}", new[] { "a", "b" })]
         [InlineData("{'a': \"b\"}", new[] { "a", "b" })]
@@ -98,13 +116,28 @@ namespace YamlDotNet.Test.Serialization
         }
     }
 
+    /// <summary>
+    /// The byte array converter.
+    /// </summary>
     public class ByteArrayConverter : IYamlTypeConverter
     {
+        /// <summary>
+        /// Accepts the.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>A bool.</returns>
         public bool Accepts(Type type)
         {
             return type == typeof(byte[]);
         }
 
+        /// <summary>
+        /// Reads the yaml.
+        /// </summary>
+        /// <param name="parser">The parser.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="deserializer">The deserializer.</param>
+        /// <returns>An object.</returns>
         public object ReadYaml(IParser parser, Type type, ObjectDeserializer deserializer)
         {
             var scalar = (YamlDotNet.Core.Events.Scalar)parser.Current;
@@ -113,6 +146,13 @@ namespace YamlDotNet.Test.Serialization
             return bytes;
         }
 
+        /// <summary>
+        /// Writes the yaml.
+        /// </summary>
+        /// <param name="emitter">The emitter.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="serializer">The serializer.</param>
         public void WriteYaml(IEmitter emitter, object value, Type type, ObjectSerializer serializer)
         {
             var bytes = (byte[])value;

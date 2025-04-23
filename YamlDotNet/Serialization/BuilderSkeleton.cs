@@ -120,6 +120,12 @@ namespace YamlDotNet.Serialization
             return Self;
         }
 
+        /// <summary>
+        /// Withs the tag mapping.
+        /// </summary>
+        /// <param name="tag">The tag.</param>
+        /// <param name="type">The type.</param>
+        /// <returns>A TBuilder.</returns>
         public abstract TBuilder WithTagMapping(TagName tag, Type type);
 
 #if !NET20

@@ -21,9 +21,18 @@
 
 namespace YamlDotNet.Core.Events
 {
+    /// <summary>
+    /// The comment.
+    /// </summary>
     public sealed class Comment : ParsingEvent
     {
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
         public string Value { get; }
+        /// <summary>
+        /// Gets a value indicating whether is inline.
+        /// </summary>
         public bool IsInline { get; }
 
         public Comment(string value, bool isInline)

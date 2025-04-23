@@ -95,6 +95,9 @@ namespace YamlDotNet.Core
 
         private bool IsDocumentIndicator() => IsDocumentStart() || IsDocumentEnd();
 
+        /// <summary>
+        /// Gets a value indicating whether skip comments.
+        /// </summary>
         public bool SkipComments
         {
             get;

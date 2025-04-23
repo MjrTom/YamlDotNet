@@ -23,8 +23,14 @@ using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.Schemas
 {
+    /// <summary>
+    /// The failsafe schema.
+    /// </summary>
     public sealed class FailsafeSchema
     {
+        /// <summary>
+        /// The tags.
+        /// </summary>
         public static class Tags
         {
             public static readonly TagName Map = new TagName("tag:yaml.org,2002:map");
@@ -33,8 +39,14 @@ namespace YamlDotNet.Serialization.Schemas
         }
     }
 
+    /// <summary>
+    /// The json schema.
+    /// </summary>
     public sealed class JsonSchema
     {
+        /// <summary>
+        /// The tags.
+        /// </summary>
         public static class Tags
         {
             public static readonly TagName Null = new TagName("tag:yaml.org,2002:null");
@@ -46,15 +58,27 @@ namespace YamlDotNet.Serialization.Schemas
         }
     }
 
+    /// <summary>
+    /// The core schema.
+    /// </summary>
     public sealed class CoreSchema
     {
+        /// <summary>
+        /// The tags.
+        /// </summary>
         public static class Tags
         {
         }
     }
 
+    /// <summary>
+    /// The default schema.
+    /// </summary>
     public sealed class DefaultSchema
     {
+        /// <summary>
+        /// The tags.
+        /// </summary>
         public static class Tags
         {
             public static readonly TagName Timestamp = new TagName("tag:yaml.org,2002:timestamp");

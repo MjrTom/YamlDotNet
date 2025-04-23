@@ -32,8 +32,15 @@ using YamlDotNet.RepresentationModel;
 
 namespace YamlDotNet.Test.Core
 {
+    /// <summary>
+    /// The emitter tests.
+    /// </summary>
     public class EmitterTests : EmitterTestsHelper
     {
+        /// <summary>
+        /// Compares the original and emitted text.
+        /// </summary>
+        /// <param name="filename">The filename.</param>
         [Theory]
         [InlineData("01-directives.yaml")]
         [InlineData("02-scalar-in-imp-doc.yaml")]
@@ -72,6 +79,9 @@ namespace YamlDotNet.Test.Core
 
 
 
+        /// <summary>
+        /// Plains the scalar can be followed by implicit document.
+        /// </summary>
         [Fact]
         public void PlainScalarCanBeFollowedByImplicitDocument()
         {
@@ -84,6 +94,9 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Contain(Lines("test", "--- test"));
         }
 
+        /// <summary>
+        /// Plains the scalar can be followed by document with version.
+        /// </summary>
         [Fact]
         public void PlainScalarCanBeFollowedByDocumentWithVersion()
         {
@@ -96,6 +109,9 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Contain(Lines("test", "...", "%YAML 1.1", "--- test"));
         }
 
+        /// <summary>
+        /// Plains the scalar can be followed by document with default tags.
+        /// </summary>
         [Fact]
         public void PlainScalarCanBeFollowedByDocumentWithDefaultTags()
         {
@@ -108,6 +124,9 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Contain(Lines("test", "--- test"));
         }
 
+        /// <summary>
+        /// Plains the scalar can be followed by document with custom tags.
+        /// </summary>
         [Fact]
         public void PlainScalarCanBeFollowedByDocumentWithCustomTags()
         {
@@ -120,6 +139,9 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Contain(Lines("test", "...", FooTag, ExTag, ExExTag, "--- test"));
         }
 
+        /// <summary>
+        /// Blocks the can be followed by implicit document.
+        /// </summary>
         [Fact]
         public void BlockCanBeFollowedByImplicitDocument()
         {
@@ -132,6 +154,9 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Contain(Lines("- 'test'", "--- test"));
         }
 
+        /// <summary>
+        /// Blocks the can be followed by document with version.
+        /// </summary>
         [Fact]
         public void BlockCanBeFollowedByDocumentWithVersion()
         {
@@ -144,6 +169,9 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Contain(Lines("- 'test'", "...", "%YAML 1.1", "--- test"));
         }
 
+        /// <summary>
+        /// Blocks the can be followed by document with default tags.
+        /// </summary>
         [Fact]
         public void BlockCanBeFollowedByDocumentWithDefaultTags()
         {
@@ -156,6 +184,9 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Contain(Lines("- 'test'", "--- test"));
         }
 
+        /// <summary>
+        /// Blocks the can be followed by document with custom tags.
+        /// </summary>
         [Fact]
         public void BlockCanBeFollowedByDocumentWithCustomTags()
         {
@@ -168,6 +199,11 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Contain(Lines("- 'test'", "...", FooTag, ExTag, ExExTag, "--- test"));
         }
 
+        /// <summary>
+        /// Blocks the style generates indentation indicator.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [Theory]
         [InlineData("test", ">-\r\n  test\r\n")]    // No indentation indicator when no indent.
         [InlineData("  test", ">2-\r\n    test\r\n")]
@@ -181,6 +217,10 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Be(expected.NormalizeNewLines());
         }
 
+        /// <summary>
+        /// Foldeds the style does not loose characters.
+        /// </summary>
+        /// <param name="text">The text.</param>
         [Theory]
         [InlineData("LF hello\nworld")]
         [InlineData("CRLF hello\r\nworld")]
@@ -193,6 +233,9 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Contain("world");
         }
 
+        /// <summary>
+        /// Foldeds the style is selected when new lines are found in literal.
+        /// </summary>
         [Fact]
         public void FoldedStyleIsSelectedWhenNewLinesAreFoundInLiteral()
         {
@@ -204,6 +247,9 @@ namespace YamlDotNet.Test.Core
         }
 
 
+        /// <summary>
+        /// Allows the block style in multiline scalars with trailing spaces.
+        /// </summary>
         [Fact]
         [Trait("motive", "pr #540")]
         public void AllowBlockStyleInMultilineScalarsWithTrailingSpaces()
@@ -216,6 +262,9 @@ namespace YamlDotNet.Test.Core
         }
 
 
+        /// <summary>
+        /// Foldeds the style does not generate extra line breaks.
+        /// </summary>
         [Fact]
         public void FoldedStyleDoesNotGenerateExtraLineBreaks()
         {
@@ -232,6 +281,9 @@ namespace YamlDotNet.Test.Core
             scalar.Value.Should().Be("hello\nworld");
         }
 
+        /// <summary>
+        /// Foldeds the style does not collapse line breaks.
+        /// </summary>
         [Fact]
         public void FoldedStyleDoesNotCollapseLineBreaks()
         {
@@ -247,6 +299,9 @@ namespace YamlDotNet.Test.Core
             scalar.Value.Should().Be(">+\n");
         }
 
+        /// <summary>
+        /// Foldeds the style preserves new lines.
+        /// </summary>
         [Fact]
         [Trait("motive", "issue #39")]
         public void FoldedStylePreservesNewLines()
@@ -267,6 +322,9 @@ namespace YamlDotNet.Test.Core
             value.Value.Should().Be(input);
         }
 
+        /// <summary>
+        /// Comments the are emitted correctly.
+        /// </summary>
         [Fact]
         public void CommentsAreEmittedCorrectly()
         {
@@ -291,6 +349,9 @@ namespace YamlDotNet.Test.Core
                 .And.Contain("# Bottom comment");
         }
 
+        /// <summary>
+        /// Comments the between mapping key and value are emitted correctly.
+        /// </summary>
         [Fact]
         public void CommentsBetweenMappingKeyAndValueAreEmittedCorrectly()
         {
@@ -313,6 +374,9 @@ namespace YamlDotNet.Test.Core
                 ));
         }
 
+        /// <summary>
+        /// AS the comment as the first event adds a new line.
+        /// </summary>
         [Fact]
         public void ACommentAsTheFirstEventAddsANewLine()
         {
@@ -330,6 +394,11 @@ namespace YamlDotNet.Test.Core
                 .And.NotContain("# Top commentfirst");
         }
 
+        /// <summary>
+        /// Unicodes the in scalars can be single quoted when output encoding supports it.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="codePage">The code page.</param>
         [Theory]
         [InlineData("Гранит", 28595)] // Cyrillic (ISO)
         [InlineData("ГÀƊȽ˱ώҔׂۋᵷẁό₩וּﺪﺸﻸﭧ╬♫₹Ὰỗ᷁ݭ٭ӢР͞ʓǈĄë0", 65001)] // UTF-8
@@ -363,6 +432,9 @@ namespace YamlDotNet.Test.Core
                 .Contain("'" + text + "'");
         }
 
+        /// <summary>
+        /// Empties the strings are quoted.
+        /// </summary>
         [Fact]
         public void EmptyStringsAreQuoted()
         {
@@ -375,6 +447,11 @@ namespace YamlDotNet.Test.Core
                 .Contain("- ''");
         }
 
+        /// <summary>
+        /// News the lines are not duplicated when emitted.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [Theory]
         [InlineData("b-carriage-return,b-line-feed\r\nlll", "b-carriage-return,b-line-feed\nlll")]
         [InlineData("b-carriage-return,b-line-feed\r\n\r\nlll", "b-carriage-return,b-line-feed\n\nlll")]
@@ -397,6 +474,11 @@ namespace YamlDotNet.Test.Core
                 StreamEnd);
         }
 
+        /// <summary>
+        /// News the lines are not duplicated when emitted in folded scalar.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="expected">The expected.</param>
         [Theory]
         [InlineData("b-carriage-return,b-line-feed\r\nlll", "b-carriage-return,b-line-feed\nlll")]
         [InlineData("b-carriage-return,b-line-feed\r\n\r\nlll", "b-carriage-return,b-line-feed\n\nlll")]
@@ -419,6 +501,10 @@ namespace YamlDotNet.Test.Core
                                        StreamEnd);
         }
 
+        /// <summary>
+        /// Singles the quotes are double quoted.
+        /// </summary>
+        /// <param name="input">The input.</param>
         [Theory]
         [InlineData("'.'test")]
         [InlineData("'")]
@@ -435,6 +521,10 @@ namespace YamlDotNet.Test.Core
             yaml.Should().Contain(expected);
         }
 
+        /// <summary>
+        /// Singles the quotes are not double quoted unless necessary.
+        /// </summary>
+        /// <param name="input">The input.</param>
         [Theory]
         [InlineData("hello\n'world")]
         public void SingleQuotesAreNotDoubleQuotedUnlessNecessary(string input)
@@ -444,6 +534,10 @@ namespace YamlDotNet.Test.Core
             yaml.Should().NotContain("\"");
         }
 
+        /// <summary>
+        /// Leadings the backslash is not quoted.
+        /// </summary>
+        /// <param name="input">The input.</param>
         [Theory]
         [InlineData(@"\hello world")]
         public void LeadingBackslashIsNotQuoted(string input)

@@ -24,6 +24,9 @@ using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeTypeResolvers
 {
+    /// <summary>
+    /// The tag node type resolver.
+    /// </summary>
     public sealed class TagNodeTypeResolver : INodeTypeResolver
     {
         private readonly IDictionary<TagName, Type> tagMappings;

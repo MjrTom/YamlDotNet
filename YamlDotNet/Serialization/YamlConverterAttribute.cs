@@ -21,9 +21,15 @@
 
 namespace YamlDotNet.Serialization
 {
+    /// <summary>
+    /// The yaml converter attribute.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field)]
     public sealed class YamlConverterAttribute : Attribute
     {
+        /// <summary>
+        /// Gets the converter type.
+        /// </summary>
         public Type ConverterType { get; }
 
         public YamlConverterAttribute(Type converterType)
