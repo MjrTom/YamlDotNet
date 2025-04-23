@@ -111,10 +111,30 @@ namespace YamlDotNet.Test.Spec
 
                 if (!Directory.Exists(fixturesPath))
                 {
-                    throw new Exception("Path set as environment variable 'YAMLDOTNET_SPEC_SUITE_DIR' does not exist!");
-                }
+                    // Normalize the path to resolve any relative components
+                    fixturesPath = Path.GetFullPath(fixturesPath);
 
-                return fixturesPath;
+                    // Define a safe base directory
+                    var baseDirectory = Path.GetFullPath("/safe/base/directory");
+
+                    // Ensure the path is within the safe base directory
+                    var relativePath = Path.GetRelativePath(baseDirectory, fixturesPath);
+                    if (relativePath.StartsWith("..") || Path.IsPathRooted(relativePath))
+                    {
+                        throw new Exception("Path set as environment variable 'YAMLDOTNET_SPEC_SUITE_DIR' is not within the allowed base directory!");
+                    }
+
+                    if (!Directory.Exists(fixturesPath))
+                    {
+                        throw new Exception("Path set as environment variable 'YAMLDOTNET_SPEC_SUITE_DIR' does not exist!");
+                    }
+
+                    return fixturesPath;
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Invalid path set as environment variable 'YAMLDOTNET_SPEC_SUITE_DIR': " + ex.Message);
+                }
             }
 
             // In Microsoft.NET.Test.Sdk v15.0.0, the current working directory
