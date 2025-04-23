@@ -67,17 +67,15 @@
     <NoWarn>$(NoWarn);IDE0047</NoWarn>  <!-- Parentheses can be removed -->
     <NoWarn>$(NoWarn);IDE0078</NoWarn>  <!-- Use pattern matching  -->
     <NoWarn>$(NoWarn);IDE0083</NoWarn>  <!-- Use pattern matching  -->
-    <NoWarn>$(NoWarn);IDE0090</NoWarn>  <!-- 'new' expression can be simplified  -->
     <NoWarn>$(NoWarn);IDE0110</NoWarn>  <!-- Discard can be removed  -->
-    <NoWarn>$(NoWarn);IDE0290</NoWarn>
     <ImplicitUsings>enable</ImplicitUsings>
     <DelaySign>True</DelaySign>
-    <RepositoryUrl>https://github.com/MjrTom/YamlDotNet</RepositoryUrl>  <!-- Use primary constructor -->
+    <RepositoryUrl>https://github.com/MjrTom/YamlDotNet</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
-    <IsTrimmable>False</IsTrimmable>
-    <IsAotCompatible>False</IsAotCompatible>
+    <IsTrimmable>True</IsTrimmable>
+    <IsAotCompatible>True</IsAotCompatible>
     <WarningLevel>8</WarningLevel>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
@@ -97,8 +95,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
-    <IsTrimmable>False</IsTrimmable>
-    <IsAotCompatible>False</IsAotCompatible>
+    <IsTrimmable>True</IsTrimmable>
+    <IsAotCompatible>True</IsAotCompatible>
     <WarningLevel>8</WarningLevel>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
