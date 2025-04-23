@@ -19,10 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using YamlDotNet.Core.Events;
@@ -167,7 +164,6 @@ namespace YamlDotNet.Core
                 var current = events.Peek();
                 try
                 {
-
                     AnalyzeEvent(current);
                     StateMachine(current);
                 }
@@ -783,7 +779,6 @@ namespace YamlDotNet.Core
 
                 state = EmitterState.DocumentContent;
             }
-
             else if (evt is StreamEnd)
             {
                 state = EmitterState.StreamEnd;
@@ -1617,7 +1612,7 @@ namespace YamlDotNet.Core
         {
             if (isFirst)
             {
-                IncreaseIndent(false, (isMappingContext && !isIndentation));
+                IncreaseIndent(false, isMappingContext && !isIndentation);
             }
 
             if (evt is SequenceEnd)
@@ -1908,7 +1903,7 @@ namespace YamlDotNet.Core
 
         private static string UrlEncode(string text)
         {
-            return UriReplacer.Replace(text, delegate (Match match)
+            return UriReplacer.Replace(text, match =>
             {
                 using var bufferBuilder = StringBuilderPool.Rent();
                 var buffer = bufferBuilder.Builder;

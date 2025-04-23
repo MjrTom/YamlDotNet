@@ -38,8 +38,10 @@ namespace YamlDotNet.Core.Events
             IsInline = isInline;
         }
 
+        /// <inheritdoc />
         internal override EventType Type => EventType.Comment;
 
+        /// <inheritdoc />
         public override void Accept(IParsingEventVisitor visitor)
         {
             visitor.Visit(this);

@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeTypeResolvers
@@ -47,6 +45,7 @@ namespace YamlDotNet.Serialization.NodeTypeResolvers
             this.mappings = mappings;
         }
 
+        /// <inheritdoc />
         public bool Resolve(NodeEvent? nodeEvent, ref Type currentType)
         {
             if (mappings.TryGetValue(currentType, out var concreteType))

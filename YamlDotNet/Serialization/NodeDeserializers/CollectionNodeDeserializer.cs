@@ -19,9 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Helpers;
@@ -47,7 +45,7 @@ namespace YamlDotNet.Serialization.NodeDeserializers
             IList? list;
             var canUpdate = true;
             Type itemType;
-            var genericCollectionType = expectedType.GetImplementationOfOpenGenericInterface((typeof(ICollection<>)));
+            var genericCollectionType = expectedType.GetImplementationOfOpenGenericInterface(typeof(ICollection<>));
             if (genericCollectionType != null)
             {
                 var genericArguments = genericCollectionType.GetGenericArguments();

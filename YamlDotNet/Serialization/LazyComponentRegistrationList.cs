@@ -19,10 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace YamlDotNet.Serialization
 {
@@ -123,11 +120,13 @@ namespace YamlDotNet.Serialization
             );
         }
 
+        /// <inheritdoc />
         public IEnumerator<Func<TArgument, TComponent>> GetEnumerator()
         {
             return entries.Select(e => e.Factory).GetEnumerator();
         }
 
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
@@ -174,6 +173,7 @@ namespace YamlDotNet.Serialization
                 this.newRegistration = newRegistration;
             }
 
+            /// <inheritdoc />
             void IRegistrationLocationSelectionSyntax<TComponent>.InsteadOf<TRegistrationType>()
             {
                 if (newRegistration.ComponentType != typeof(TRegistrationType))
@@ -185,6 +185,7 @@ namespace YamlDotNet.Serialization
                 registrations.entries[registrationIndex] = newRegistration;
             }
 
+            /// <inheritdoc />
             void IRegistrationLocationSelectionSyntax<TComponent>.After<TRegistrationType>()
             {
                 registrations.EnsureNoDuplicateRegistrationType(newRegistration.ComponentType);
@@ -192,6 +193,7 @@ namespace YamlDotNet.Serialization
                 registrations.entries.Insert(registrationIndex + 1, newRegistration);
             }
 
+            /// <inheritdoc />
             void IRegistrationLocationSelectionSyntax<TComponent>.Before<TRegistrationType>()
             {
                 registrations.EnsureNoDuplicateRegistrationType(newRegistration.ComponentType);
@@ -199,12 +201,14 @@ namespace YamlDotNet.Serialization
                 registrations.entries.Insert(registrationIndex, newRegistration);
             }
 
+            /// <inheritdoc />
             void IRegistrationLocationSelectionSyntax<TComponent>.OnBottom()
             {
                 registrations.EnsureNoDuplicateRegistrationType(newRegistration.ComponentType);
                 registrations.entries.Add(newRegistration);
             }
 
+            /// <inheritdoc />
             void IRegistrationLocationSelectionSyntax<TComponent>.OnTop()
             {
                 registrations.EnsureNoDuplicateRegistrationType(newRegistration.ComponentType);
@@ -223,6 +227,7 @@ namespace YamlDotNet.Serialization
                 this.newRegistration = newRegistration;
             }
 
+            /// <inheritdoc />
             void ITrackingRegistrationLocationSelectionSyntax<TComponent>.InsteadOf<TRegistrationType>()
             {
                 if (newRegistration.ComponentType != typeof(TRegistrationType))

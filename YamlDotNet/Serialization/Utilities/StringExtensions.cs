@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
@@ -35,7 +34,6 @@ namespace YamlDotNet.Serialization.Utilities
             var text = Regex.Replace(str, "([_\\-])(?<char>[a-z])", match => match.Groups["char"].Value.ToUpperInvariant(), RegexOptions.IgnoreCase);
             return firstLetterTransform(text[0]) + text.Substring(1);
         }
-
 
         /// <summary>
         /// Convert the string with underscores (this_is_a_test) or hyphens (this-is-a-test) to 

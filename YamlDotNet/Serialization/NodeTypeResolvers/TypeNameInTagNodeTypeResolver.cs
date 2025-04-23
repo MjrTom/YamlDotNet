@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeTypeResolvers
@@ -27,6 +26,7 @@ namespace YamlDotNet.Serialization.NodeTypeResolvers
     [Obsolete("The mechanism that this class uses to specify type names is non-standard. Register the tags explicitly instead of using this convention.")]
     public sealed class TypeNameInTagNodeTypeResolver : INodeTypeResolver
     {
+        /// <inheritdoc />
         bool INodeTypeResolver.Resolve(NodeEvent? nodeEvent, ref Type currentType)
         {
             if (nodeEvent != null && !nodeEvent.Tag.IsEmpty)

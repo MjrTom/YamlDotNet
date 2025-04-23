@@ -19,11 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
-using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Serialization.ValueDeserializers
@@ -59,7 +56,6 @@ namespace YamlDotNet.Serialization.ValueDeserializers
             {
                 foreach (var deserializer in deserializers)
                 {
-
                     var result = deserializer.Deserialize(parser, nodeType, (r, t) => nestedObjectDeserializer.DeserializeValue(r, t, state, nestedObjectDeserializer), out var value, rootDeserializer);
                     if (result)
                     {

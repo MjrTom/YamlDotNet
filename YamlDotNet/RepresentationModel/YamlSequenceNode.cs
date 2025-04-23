@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
@@ -55,7 +53,6 @@ namespace YamlDotNet.RepresentationModel
         /// </summary>
         /// <value>The style.</value>
         public SequenceStyle Style { get; set; }
-
 
         /// <summary>
         /// Initializes a new instance of the <see cref="YamlSequenceNode"/> class.
@@ -170,7 +167,6 @@ namespace YamlDotNet.RepresentationModel
             visitor.Visit(this);
         }
 
-        /// <summary />
         public override bool Equals(object? obj)
         {
             var other = obj as YamlSequenceNode;
@@ -283,6 +279,7 @@ namespace YamlDotNet.RepresentationModel
 
         #region IEnumerable Members
 
+        /// <inheritdoc />
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
@@ -290,11 +287,13 @@ namespace YamlDotNet.RepresentationModel
 
         #endregion
 
+        /// <inheritdoc />
         void IYamlConvertible.Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer)
         {
             Load(parser, new DocumentLoadingState());
         }
 
+        /// <inheritdoc />
         void IYamlConvertible.Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer)
         {
             Emit(emitter, new EmitterState());

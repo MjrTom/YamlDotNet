@@ -19,9 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace YamlDotNet.Helpers
 {
@@ -38,6 +36,7 @@ namespace YamlDotNet.Helpers
             this.genericCollection = genericCollection ?? throw new ArgumentNullException(nameof(genericCollection));
         }
 
+        /// <inheritdoc />
         public int Add(object? value)
         {
             var index = genericCollection.Count;
@@ -45,46 +44,55 @@ namespace YamlDotNet.Helpers
             return index;
         }
 
+        /// <inheritdoc />
         public void Clear()
         {
             genericCollection.Clear();
         }
 
+        /// <inheritdoc />
         public bool Contains(object? value)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public int IndexOf(object? value)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public void Insert(int index, object? value)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public bool IsFixedSize
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public bool IsReadOnly
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public void Remove(object? value)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public void RemoveAt(int index)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public object? this[int index]
         {
             get
@@ -97,26 +105,31 @@ namespace YamlDotNet.Helpers
             }
         }
 
+        /// <inheritdoc />
         public void CopyTo(Array array, int index)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public int Count
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public bool IsSynchronized
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public object SyncRoot
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public IEnumerator GetEnumerator()
         {
             return genericCollection.GetEnumerator();

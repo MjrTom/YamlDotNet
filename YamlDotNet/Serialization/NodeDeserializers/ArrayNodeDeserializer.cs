@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization.Utilities;
@@ -79,6 +78,7 @@ namespace YamlDotNet.Serialization.NodeDeserializers
                 Clear();
             }
 
+            /// <inheritdoc />
             public int Add(object? value)
             {
                 if (Count == data.Length)
@@ -89,22 +89,31 @@ namespace YamlDotNet.Serialization.NodeDeserializers
                 return Count++;
             }
 
+            /// <inheritdoc />
             public void Clear()
             {
                 data = new object[10];
                 Count = 0;
             }
 
+            /// <inheritdoc />
             bool IList.Contains(object? value) => throw new NotSupportedException();
+            /// <inheritdoc />
             int IList.IndexOf(object? value) => throw new NotSupportedException();
+            /// <inheritdoc />
             void IList.Insert(int index, object? value) => throw new NotSupportedException();
+            /// <inheritdoc />
             void IList.Remove(object? value) => throw new NotSupportedException();
+            /// <inheritdoc />
             void IList.RemoveAt(int index) => throw new NotSupportedException();
 
+            /// <inheritdoc />
             public bool IsFixedSize => false;
 
+            /// <inheritdoc />
             public bool IsReadOnly => false;
 
+            /// <inheritdoc />
             public object? this[int index]
             {
                 get
@@ -117,16 +126,21 @@ namespace YamlDotNet.Serialization.NodeDeserializers
                 }
             }
 
+            /// <inheritdoc />
             public void CopyTo(Array array, int index)
             {
                 Array.Copy(data, 0, array, index, Count);
             }
 
+            /// <inheritdoc />
             public int Count { get; private set; }
 
+            /// <inheritdoc />
             public bool IsSynchronized => false;
+            /// <inheritdoc />
             public object SyncRoot => data;
 
+            /// <inheritdoc />
             public IEnumerator GetEnumerator()
             {
                 for (var i = 0; i < Count; ++i)
@@ -137,4 +151,3 @@ namespace YamlDotNet.Serialization.NodeDeserializers
         }
     }
 }
-

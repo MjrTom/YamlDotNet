@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using YamlDotNet.Core;
@@ -37,7 +35,7 @@ namespace YamlDotNet.RepresentationModel
         /// Gets or sets the root node.
         /// </summary>
         /// <value>The root node.</value>
-        public YamlNode RootNode { get; private set; }
+        public YamlNode RootNode { get; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="YamlDocument"/> class.
@@ -148,11 +146,13 @@ namespace YamlDotNet.RepresentationModel
                 }
             }
 
+            /// <inheritdoc />
             public override void Visit(YamlScalarNode scalar)
             {
                 VisitNodeAndFindDuplicates(scalar);
             }
 
+            /// <inheritdoc />
             public override void Visit(YamlMappingNode mapping)
             {
                 if (!VisitNodeAndFindDuplicates(mapping))
@@ -161,6 +161,7 @@ namespace YamlDotNet.RepresentationModel
                 }
             }
 
+            /// <inheritdoc />
             public override void Visit(YamlSequenceNode sequence)
             {
                 if (!VisitNodeAndFindDuplicates(sequence))

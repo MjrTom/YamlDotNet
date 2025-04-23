@@ -19,13 +19,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.ComponentModel;
 using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
 {
-
     public sealed class DefaultExclusiveObjectGraphVisitor : ChainedObjectGraphVisitor
     {
         public DefaultExclusiveObjectGraphVisitor(IObjectGraphVisitor<IEmitter> nextVisitor)
@@ -38,12 +36,14 @@ namespace YamlDotNet.Serialization.ObjectGraphVisitors
             return type.IsValueType() ? Activator.CreateInstance(type) : null;
         }
 
+        /// <inheritdoc />
         public override bool EnterMapping(IObjectDescriptor key, IObjectDescriptor value, IEmitter context, ObjectSerializer serializer)
         {
             return !Equals(value.Value, GetDefault(value.Type))
                    && base.EnterMapping(key, value, context, serializer);
         }
 
+        /// <inheritdoc />
         public override bool EnterMapping(IPropertyDescriptor key, IObjectDescriptor value, IEmitter context, ObjectSerializer serializer)
         {
             var defaultValueAttribute = key.GetCustomAttribute<DefaultValueAttribute>();

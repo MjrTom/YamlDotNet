@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 #if NET7_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 #endif
@@ -45,7 +43,6 @@ namespace YamlDotNet.Serialization
     /// to apply customizations, then call <see cref="Build" /> to create an instance of the deserializer
     /// with the desired customizations.
     /// </summary>
-
 #if NET7_0_OR_GREATER
     [RequiresDynamicCode("This builder configures the deserializer to use reflection which is not compatible with ahead-of-time compilation or assembly trimming." +
         " You need to use the code generator/analyzer to generate static code and use the 'StaticDeserializerBuilder' object instead of this one.")]

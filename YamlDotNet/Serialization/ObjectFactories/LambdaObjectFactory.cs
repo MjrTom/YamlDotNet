@@ -19,12 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using YamlDotNet.Helpers;
-using YamlDotNet.Serialization.Utilities;
-
 namespace YamlDotNet.Serialization.ObjectFactories
 {
     /// <summary>
@@ -39,6 +33,7 @@ namespace YamlDotNet.Serialization.ObjectFactories
             this.factory = factory ?? throw new ArgumentNullException(nameof(factory));
         }
 
+        /// <inheritdoc />
         public override object Create(Type type)
         {
             return factory(type);

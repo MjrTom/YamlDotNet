@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
 
 namespace YamlDotNet.Serialization.ObjectFactories
@@ -122,12 +121,16 @@ namespace YamlDotNet.Serialization.ObjectFactories
             return false;
         }
 
+        /// <inheritdoc />
         public abstract void ExecuteOnDeserializing(object value);
 
+        /// <inheritdoc />
         public abstract void ExecuteOnDeserialized(object value);
 
+        /// <inheritdoc />
         public abstract void ExecuteOnSerializing(object value);
 
+        /// <inheritdoc />
         public abstract void ExecuteOnSerialized(object value);
     }
 }

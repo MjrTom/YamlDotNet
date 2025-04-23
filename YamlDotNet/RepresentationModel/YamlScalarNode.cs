@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using YamlDotNet.Core;
@@ -164,7 +162,6 @@ namespace YamlDotNet.RepresentationModel
             visitor.Visit(this);
         }
 
-        /// <summary />
         public override bool Equals(object? obj)
         {
             return obj is YamlScalarNode other
@@ -222,15 +219,16 @@ namespace YamlDotNet.RepresentationModel
             get { return YamlNodeType.Scalar; }
         }
 
+        /// <inheritdoc />
         void IYamlConvertible.Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer)
         {
             Load(parser, new DocumentLoadingState());
         }
 
+        /// <inheritdoc />
         void IYamlConvertible.Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer)
         {
             Emit(emitter, new EmitterState());
         }
-
     }
 }

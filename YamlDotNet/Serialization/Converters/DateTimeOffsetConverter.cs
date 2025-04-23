@@ -19,9 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Globalization;
-using System.Linq;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 
@@ -96,7 +94,7 @@ namespace YamlDotNet.Serialization.Converters
         public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer serializer)
         {
             var dt = (DateTimeOffset)value!;
-            var formatted = dt.ToString(formats.First(), this.provider); // Always take the first format of the list.
+            var formatted = dt.ToString(formats[0], this.provider); // Always take the first format of the list.
 
             emitter.Emit(new Scalar(AnchorName.Empty, TagName.Empty, formatted, style, true, false));
         }

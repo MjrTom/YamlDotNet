@@ -19,9 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Diagnostics;
-using YamlDotNet.Core;
 
 namespace YamlDotNet.Core.ObjectPool
 {
@@ -52,11 +50,13 @@ namespace YamlDotNet.Core.ObjectPool
                 this.pool = pool;
             }
 
+            /// <inheritdoc />
             public override string ToString()
             {
                 return Buffer.ToString()!;
             }
 
+            /// <inheritdoc />
             public void Dispose()
             {
                 pool.Return(Buffer);

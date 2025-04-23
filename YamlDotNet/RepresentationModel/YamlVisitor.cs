@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-
 namespace YamlDotNet.RepresentationModel
 {
     /// <summary>
@@ -196,6 +194,7 @@ namespace YamlDotNet.RepresentationModel
             }
         }
 
+        /// <inheritdoc />
         void IYamlVisitor.Visit(YamlStream stream)
         {
             Visit(stream);
@@ -203,6 +202,7 @@ namespace YamlDotNet.RepresentationModel
             Visited(stream);
         }
 
+        /// <inheritdoc />
         void IYamlVisitor.Visit(YamlDocument document)
         {
             Visit(document);
@@ -210,12 +210,14 @@ namespace YamlDotNet.RepresentationModel
             Visited(document);
         }
 
+        /// <inheritdoc />
         void IYamlVisitor.Visit(YamlScalarNode scalar)
         {
             Visit(scalar);
             Visited(scalar);
         }
 
+        /// <inheritdoc />
         void IYamlVisitor.Visit(YamlSequenceNode sequence)
         {
             Visit(sequence);
@@ -223,6 +225,7 @@ namespace YamlDotNet.RepresentationModel
             Visited(sequence);
         }
 
+        /// <inheritdoc />
         void IYamlVisitor.Visit(YamlMappingNode mapping)
         {
             Visit(mapping);

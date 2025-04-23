@@ -19,11 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using YamlDotNet.Serialization.Callbacks;
 
@@ -85,6 +82,7 @@ namespace YamlDotNet.Serialization.ObjectFactories
             this.settings = settings;
         }
 
+        /// <inheritdoc />
         public override object Create(Type type)
         {
             if (type.IsInterface())
@@ -116,15 +114,19 @@ namespace YamlDotNet.Serialization.ObjectFactories
             }
         }
 
+        /// <inheritdoc />
         public override void ExecuteOnDeserialized(object value) =>
             ExecuteState(typeof(OnDeserializedAttribute), value);
 
+        /// <inheritdoc />
         public override void ExecuteOnDeserializing(object value) =>
             ExecuteState(typeof(OnDeserializingAttribute), value);
 
+        /// <inheritdoc />
         public override void ExecuteOnSerialized(object value) =>
             ExecuteState(typeof(OnSerializedAttribute), value);
 
+        /// <inheritdoc />
         public override void ExecuteOnSerializing(object value) =>
             ExecuteState(typeof(OnSerializingAttribute), value);
 
@@ -147,7 +149,6 @@ namespace YamlDotNet.Serialization.ObjectFactories
         private MethodInfo[] GetStateMethods(Type attributeType, Type valueType)
         {
             var stateDictionary = stateMethods[attributeType];
-
 
             return stateDictionary.GetOrAdd(valueType, type =>
             {

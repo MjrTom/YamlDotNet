@@ -23,9 +23,7 @@
 // the copyright holder has agreed to redistribute this file under the license
 // used in YamlDotNet.
 
-using System;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
 using System.ComponentModel;
 using YamlDotNet.Helpers;
@@ -243,6 +241,5 @@ namespace YamlDotNet.Serialization.Utilities
                 TypeDescriptor.AddAttributes(typeof(TConvertible), new TypeConverterAttribute(typeof(TConverter)));
             }
         }
-
     }
 }

@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using YamlDotNet.Helpers;
 
 namespace YamlDotNet.Core
@@ -80,13 +79,13 @@ namespace YamlDotNet.Core
             return $"Line: {Line}, Col: {Column}, Idx: {Index}";
         }
 
-        /// <summary />
+        /// <inheritdoc />
         public override bool Equals(object? obj)
         {
             return Equals((Mark)(obj ?? Empty));
         }
 
-        /// <summary />
+        /// <inheritdoc />
         public bool Equals(Mark other)
         {
             return Index == other.Index
@@ -94,7 +93,7 @@ namespace YamlDotNet.Core
                 && Column == other.Column;
         }
 
-        /// <summary />
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return HashCode.CombineHashCodes(
@@ -106,13 +105,13 @@ namespace YamlDotNet.Core
             );
         }
 
-        /// <summary />
+        /// <inheritdoc />
         public int CompareTo(object? obj)
         {
             return CompareTo((Mark)(obj ?? Empty));
         }
 
-        /// <summary />
+        /// <inheritdoc />
         public int CompareTo(Mark other)
         {
             var cmp = Line.CompareTo(other.Line);

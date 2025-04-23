@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using YamlDotNet.Core.ObjectPool;
 
 namespace YamlDotNet.Core
@@ -32,8 +31,10 @@ namespace YamlDotNet.Core
 
         public int Length => Value.Length;
 
+        /// <inheritdoc />
         public bool EndOfInput => IsOutside(Position);
 
+        /// <inheritdoc />
         public char Peek(int offset)
         {
             var index = Position + offset;
@@ -45,6 +46,7 @@ namespace YamlDotNet.Core
             return index >= Value.Length;
         }
 
+        /// <inheritdoc />
         public void Skip(int length)
         {
             if (length < 0)
@@ -54,6 +56,7 @@ namespace YamlDotNet.Core
             Position += length;
         }
 
+        /// <inheritdoc />
         public bool TryReset()
         {
             Position = 0;

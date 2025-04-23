@@ -19,10 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Text;
 using YamlDotNet.Core.ObjectPool;
 using YamlDotNet.Core.Tokens;
@@ -100,7 +97,7 @@ namespace YamlDotNet.Core
 
         public bool SkipComments
         {
-            get; private set;
+            get;
         }
 
         /// <summary>
@@ -161,6 +158,7 @@ namespace YamlDotNet.Core
             return MoveNextWithoutConsuming();
         }
 
+        /// <inheritdoc />
         public bool MoveNextWithoutConsuming()
         {
             if (!tokenAvailable && !streamEndProduced)
@@ -263,23 +261,19 @@ namespace YamlDotNet.Core
         /// Check the list of potential simple keys and remove the positions that
         /// cannot contain simple keys anymore.
         /// </summary>
-
         private void StaleSimpleKeys()
         {
             // Check for a potential simple key for each flow level.
 
             foreach (var key in simpleKeys)
             {
-
                 // The specification requires that a simple key
 
                 //  - is limited to a single line,
                 //  - is shorter than 1024 characters.
 
-
                 if (key.IsPossible && (key.Line < cursor.Line || key.Index + maxKeySize < cursor.Index))
                 {
-
                     // Check if the potential simple key to be removed is required.
 
                     if (key.IsRequired)
@@ -314,10 +308,8 @@ namespace YamlDotNet.Core
 
             UnrollIndent(cursor.LineOffset);
 
-
             // Ensure that the buffer contains at least 4 characters.  4 is the length
             // of the longest indicators ('--- ' and '... ').
-
 
             analyzer.Buffer.Cache(4);
 
@@ -503,7 +495,6 @@ namespace YamlDotNet.Core
                 return;
             }
 
-
             // Is it a plain scalar?
 
             // A plain scalar may start with any non-blank characters except
@@ -521,7 +512,6 @@ namespace YamlDotNet.Core
 
             // The last rule is more restrictive than the specification requires.
 
-
             var isInvalidPlainScalarCharacter = analyzer.IsWhiteBreakOrZero() || analyzer.Check("-?:,[]{}#&*!|>'\"%@`");
 
             var isPlainScalar =
@@ -538,7 +528,7 @@ namespace YamlDotNet.Core
                     tokens.Enqueue(new Error("While scanning plain scalar, found a comment between adjacent scalars.", startMark, startMark));
                 }
 
-                if (flowScalarFetched || flowCollectionFetched && !startFlowCollectionFetched)
+                if (flowScalarFetched || (flowCollectionFetched && !startFlowCollectionFetched))
                 {
                     if (analyzer.Check(':'))
                     {
@@ -609,7 +599,6 @@ namespace YamlDotNet.Core
 
             while (true)
             {
-
                 // Eat whitespaces.
 
                 // Tabs are allowed:
@@ -617,7 +606,6 @@ namespace YamlDotNet.Core
                 //  - in the flow context;
                 //  - in the block context, but not at the beginning of the line or
                 //  after '-', '?', or ':' (complex value).
-
 
                 while (CheckWhiteSpace())
                 {
@@ -707,7 +695,6 @@ namespace YamlDotNet.Core
         /// becomes less or equal to the column.  For each indentation level, append
         /// the BLOCK-END token.
         /// </summary>
-
         private void UnrollIndent(long column)
         {
             // In the flow context, do nothing.
@@ -858,7 +845,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the DOCUMENT-START or DOCUMENT-END token.
         /// </summary>
-
         private void FetchDocumentIndicator(bool isStartToken)
         {
             // Reset the indentation level.
@@ -906,7 +892,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the FLOW-SEQUENCE-START or FLOW-MAPPING-START token.
         /// </summary>
-
         private void FetchFlowCollectionStart(bool isSequenceToken)
         {
             // The indicators '[' and '{' may start a simple key.
@@ -945,7 +930,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Increase the flow level and resize the simple key list if needed.
         /// </summary>
-
         private void IncreaseFlowLevel()
         {
             // Reset the simple key on the next level.
@@ -960,7 +944,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the FLOW-SEQUENCE-END or FLOW-MAPPING-END token.
         /// </summary>
-
         private void FetchFlowCollectionEnd(bool isSequenceToken)
         {
             // Reset any potential simple key on the current flow level.
@@ -1007,7 +990,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Decrease the flow level.
         /// </summary>
-
         private void DecreaseFlowLevel()
         {
             // flowLevel could be zero in case of malformed YAML.
@@ -1022,7 +1004,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the FLOW-ENTRY token.
         /// </summary>
-
         private void FetchFlowEntry()
         {
             // Reset any potential simple keys on the current flow level.
@@ -1053,7 +1034,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the BLOCK-ENTRY token.
         /// </summary>
-
         private void FetchBlockEntry()
         {
             // Check if the scanner is in the block context.
@@ -1108,7 +1088,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the KEY token.
         /// </summary>
-
         private void FetchKey()
         {
             // In the block context, additional checks are required.
@@ -1149,7 +1128,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the VALUE token.
         /// </summary>
-
         private void FetchValue()
         {
             var simpleKey = simpleKeys.Peek();
@@ -1242,10 +1220,8 @@ namespace YamlDotNet.Core
 
             if (indent < column)
             {
-
                 // Push the current indentation level to the stack and set the new
                 // indentation level.
-
 
                 indents.Push(indent);
 
@@ -1277,7 +1253,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the ALIAS or ANCHOR token.
         /// </summary>
-
         private void FetchAnchor(bool isAlias)
         {
             // An anchor or an alias could be a simple key.
@@ -1342,7 +1317,6 @@ namespace YamlDotNet.Core
 
             //      '?', ':', ',', ']', '}', '%', '@', '`'.
 
-
             if (value.Length == 0 || !(analyzer.IsWhiteBreakOrZero() || analyzer.Check("?:,]}%@`")))
             {
                 throw new SyntaxErrorException(start, cursor.Mark(), "While scanning an anchor or alias, found value containing disallowed: []{},");
@@ -1363,7 +1337,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the TAG token.
         /// </summary>
-
         private void FetchTag()
         {
             // A tag could be a simple key.
@@ -1443,10 +1416,8 @@ namespace YamlDotNet.Core
 
                     handle = "!";
 
-
                     // A special case: the '!' tag.  Set the handle to '' and the
                     // suffix to '!'.
-
 
                     if (suffix.Length == 0)
                     {
@@ -1471,7 +1442,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the SCALAR(...,literal) or SCALAR(...,folded) tokens.
         /// </summary>
-
         private void FetchBlockScalar(bool isLiteral)
         {
             // A block scalar can be a simple key
@@ -1693,7 +1663,6 @@ namespace YamlDotNet.Core
         /// Scan indentation spaces and line breaks for a block scalar.  Determine the
         /// indentation level if needed.
         /// </summary>
-
         private long ScanBlockScalarBreaks(long currentIndent, StringBuilder breaks, bool isLiteral, ref Mark end, ref bool? isFirstLine)
         {
             var maxIndent = (long)0;
@@ -1780,7 +1749,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the SCALAR(...,single-quoted) or SCALAR(...,double-quoted) tokens.
         /// </summary>
-
         private void FetchQuotedScalar(bool isSingleQuoted)
         {
             // A plain scalar could be a simple key.
@@ -1812,7 +1780,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Scan a quoted scalar.
         /// </summary>
-
         private Scalar ScanFlowScalar(bool isSingleQuoted)
         {
             // Eat the left quote.
@@ -2006,7 +1973,6 @@ namespace YamlDotNet.Core
                                 {
                                     Skip();
                                 }
-
                             }
 
                             value.Append(char.ConvertFromUtf32(character));
@@ -2103,7 +2069,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Produce the SCALAR(...,plain) token.
         /// </summary>
-
         private void FetchPlainScalar()
         {
             // A plain scalar could be a simple key.
@@ -2128,7 +2093,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Scan a plain scalar.
         /// </summary>
-
         private Scalar ScanPlainScalar(ref bool isMultiline)
         {
             using var valueBuilder = StringBuilderPool.Rent();
@@ -2180,10 +2144,10 @@ namespace YamlDotNet.Core
                 {
                     // Check for indicators that may end a plain scalar.
 
-                    if (analyzer.Check(':') &&
+                    if ((analyzer.Check(':') &&
                         !isAliasValue &&
                         (analyzer.IsWhiteBreakOrZero(1) ||
-                         (flowLevel > 0 && analyzer.Check(',', 1))) ||
+                         (flowLevel > 0 && analyzer.Check(',', 1)))) ||
                         (flowLevel > 0 && analyzer.Check(",[]{}")))
                     {
                         if (flowLevel == 0 && !key.IsPossible)
@@ -2310,11 +2274,9 @@ namespace YamlDotNet.Core
             return new Scalar(value.ToString(), ScalarStyle.Plain, start, end);
         }
 
-
         /// <summary>
         /// Remove a potential simple key at the current flow level.
         /// </summary>
-
         private void RemoveSimpleKey()
         {
             var key = simpleKeys.Peek();
@@ -2458,7 +2420,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Scan a tag.
         /// </summary>
-
         private string ScanTagUri(string? head, Mark start)
         {
             using var tagBuilder = StringBuilderPool.Rent();
@@ -2480,7 +2441,6 @@ namespace YamlDotNet.Core
             //      '0'-'9', 'A'-'Z', 'a'-'z', '_', '-', ';', '/', '?', ':', '@', '&',
             //      '=', '+', '$', ',', '.', '!', '~', '*', '\'', '(', ')', '[', ']',
             //      '%'.
-
 
             while (analyzer.IsAlphaNumericDashOrUnderscore() || analyzer.Check(";/?:@&=+$.!~*'()[]%") ||
                    (analyzer.Check(',') && !analyzer.IsBreak(1)))
@@ -2523,7 +2483,6 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Decode an URI-escape sequence corresponding to a single UTF-8 character.
         /// </summary>
-
         private string ScanUriEscapes(in Mark start)
         {
             // Decode the required number of characters.
@@ -2593,10 +2552,8 @@ namespace YamlDotNet.Core
         /// <summary>
         /// Scan a tag handle.
         /// </summary>
-
         private string ScanTagHandle(bool isDirective, Mark start)
         {
-
             // Check the initial '!' character.
 
             if (!analyzer.Check('!'))
@@ -2625,11 +2582,9 @@ namespace YamlDotNet.Core
             }
             else
             {
-
                 // It's either the '!' tag or not really a tag handle.  If it's a %TAG
                 // directive, it's an error.  If it's a tag token, it must be a part of
                 // URI.
-
 
                 if (isDirective && (tagHandle.Length != 1 || tagHandle[0] != '!'))
                 {
@@ -2665,7 +2620,7 @@ namespace YamlDotNet.Core
                     throw new SyntaxErrorException(start, cursor.Mark(), "While scanning a %YAML directive, found extremely long version number.");
                 }
 
-                value = value * 10 + analyzer.AsDigit();
+                value = (value * 10) + analyzer.AsDigit();
 
                 Skip();
             }
@@ -2684,27 +2639,20 @@ namespace YamlDotNet.Core
         /// Check if a simple key may start at the current position and add it if
         /// needed.
         /// </summary>
-
         private void SaveSimpleKey()
         {
-
             // A simple key is required at the current position if the scanner is in
             // the block context and the current column coincides with the indentation
             // level.
 
-
             var isRequired = (flowLevel == 0 && indent == cursor.LineOffset);
-
 
             // A simple key is required only when it is the first token in the current
             // line.  Therefore it is always allowed.  But we add a check anyway.
 
-
             Debug.Assert(simpleKeyAllowed || !isRequired, "Can't require a simple key and disallow it at the same time.");    // Impossible.
 
-
             // If the current position may start a simple key, save it.
-
 
             if (simpleKeyAllowed)
             {

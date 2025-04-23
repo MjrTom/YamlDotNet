@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using YamlDotNet.Core.Tokens;
 
@@ -49,7 +48,7 @@ namespace YamlDotNet.Core
             }
         }
 
-        /// <summary/>
+        /// <inheritdoc />
         protected override string GetKeyForItem(TagDirective item) => item.Handle;
 
         /// <summary>

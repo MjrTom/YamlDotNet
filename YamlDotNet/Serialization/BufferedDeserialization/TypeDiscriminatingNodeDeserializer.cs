@@ -19,13 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
-using YamlDotNet.Serialization;
-using YamlDotNet.Serialization.NodeDeserializers;
 using YamlDotNet.Serialization.BufferedDeserialization.TypeDiscriminators;
 
 namespace YamlDotNet.Serialization.BufferedDeserialization

@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using YamlDotNet.Serialization.NamingConventions;
 
 namespace YamlDotNet.Serialization.Utilities
@@ -27,7 +26,7 @@ namespace YamlDotNet.Serialization.Utilities
     public class ReflectionTypeConverter : ITypeConverter
     {
         public object? ChangeType(object? value, Type expectedType, ITypeInspector typeInspector) => ChangeType(value, expectedType, NullNamingConvention.Instance, typeInspector);
+        /// <inheritdoc />
         public object? ChangeType(object? value, Type expectedType, INamingConvention enumNamingConvention, ITypeInspector typeInspector) => TypeConverter.ChangeType(value, expectedType, enumNamingConvention, typeInspector);
-
     }
 }

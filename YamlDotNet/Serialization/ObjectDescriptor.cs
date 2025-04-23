@@ -19,17 +19,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization
 {
     public sealed class ObjectDescriptor : IObjectDescriptor
     {
-        public object? Value { get; private set; }
-        public Type Type { get; private set; }
-        public Type StaticType { get; private set; }
-        public ScalarStyle ScalarStyle { get; private set; }
+        /// <inheritdoc />
+        public object? Value { get; }
+        /// <inheritdoc />
+        public Type Type { get; }
+        /// <inheritdoc />
+        public Type StaticType { get; }
+        /// <inheritdoc />
+        public ScalarStyle ScalarStyle { get; }
 
         public ObjectDescriptor(object? value, Type type, Type staticType)
             : this(value, type, staticType, ScalarStyle.Any)

@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 
@@ -27,6 +26,7 @@ namespace YamlDotNet.Serialization.NodeTypeResolvers
 {
     public class PreventUnknownTagsNodeTypeResolver : INodeTypeResolver
     {
+        /// <inheritdoc />
         bool INodeTypeResolver.Resolve(NodeEvent? nodeEvent, ref Type currentType)
         {
             if (nodeEvent != null && !nodeEvent.Tag.IsEmpty)

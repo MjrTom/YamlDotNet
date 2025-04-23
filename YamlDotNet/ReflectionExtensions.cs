@@ -19,10 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 
 namespace YamlDotNet
@@ -219,9 +215,8 @@ namespace YamlDotNet
             return type.GetRuntimeField(name);
         }
 
-
-        private static readonly Func<PropertyInfo, bool> IsInstance = (PropertyInfo property) => !(property.GetMethod ?? property.SetMethod).IsStatic;
-        private static readonly Func<PropertyInfo, bool> IsInstancePublic = (PropertyInfo property) => IsInstance(property) && (property.GetMethod ?? property.SetMethod).IsPublic;
+        private static readonly Func<PropertyInfo, bool> IsInstance = property => !(property.GetMethod ?? property.SetMethod).IsStatic;
+        private static readonly Func<PropertyInfo, bool> IsInstancePublic = property => IsInstance(property) && (property.GetMethod ?? property.SetMethod).IsPublic;
 
         public static IEnumerable<PropertyInfo> GetProperties(this Type type, bool includeNonPublic)
         {

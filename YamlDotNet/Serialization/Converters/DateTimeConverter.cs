@@ -19,9 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Globalization;
-using System.Linq;
 
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
@@ -94,7 +92,7 @@ namespace YamlDotNet.Serialization.Converters
         {
             var dt = (DateTime)value!;
             var adjusted = this.kind == DateTimeKind.Local ? dt.ToLocalTime() : dt.ToUniversalTime();
-            var formatted = adjusted.ToString(this.formats.First(), this.provider); // Always take the first format of the list.
+            var formatted = adjusted.ToString(this.formats[0], this.provider); // Always take the first format of the list.
 
             emitter.Emit(new Scalar(AnchorName.Empty, TagName.Empty, formatted, doubleQuotes ? ScalarStyle.DoubleQuoted : ScalarStyle.Any, true, false));
         }

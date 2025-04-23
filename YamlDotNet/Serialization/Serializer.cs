@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.IO;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 
@@ -42,10 +40,6 @@ namespace YamlDotNet.Serialization
         {
         }
 
-        /// <remarks>
-        /// This constructor is private to discourage its use.
-        /// To invoke it, call the <see cref="FromValueSerializer"/> method.
-        /// </remarks>
         private Serializer(IValueSerializer valueSerializer, EmitterSettings emitterSettings)
         {
             this.valueSerializer = valueSerializer ?? throw new ArgumentNullException(nameof(valueSerializer));

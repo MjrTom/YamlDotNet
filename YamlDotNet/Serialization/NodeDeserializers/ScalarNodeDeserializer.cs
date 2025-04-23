@@ -19,14 +19,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Core.ObjectPool;
 using YamlDotNet.Helpers;
-using YamlDotNet.Serialization.NamingConventions;
 using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Serialization.NodeDeserializers
@@ -176,7 +174,6 @@ namespace YamlDotNet.Serialization.NodeDeserializers
                 currentIndex++;
                 isNegative = true;
             }
-
             else if (value[0] == '+')
             {
                 currentIndex++;
@@ -192,7 +189,6 @@ namespace YamlDotNet.Serialization.NodeDeserializers
                     numberBase = 10;
                     result = 0;
                 }
-
                 else
                 {
                     // Check the next character
@@ -205,7 +201,6 @@ namespace YamlDotNet.Serialization.NodeDeserializers
 
                         currentIndex++;
                     }
-
                     else if (value[currentIndex] == 'x')
                     {
                         // Hex
@@ -213,7 +208,6 @@ namespace YamlDotNet.Serialization.NodeDeserializers
 
                         currentIndex++;
                     }
-
                     else
                     {
                         // Octal
@@ -249,7 +243,6 @@ namespace YamlDotNet.Serialization.NodeDeserializers
                         break;
                 }
             }
-
             else
             {
                 // Could be decimal or base 60

@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace YamlDotNet.RepresentationModel
@@ -31,13 +30,11 @@ namespace YamlDotNet.RepresentationModel
     {
         #region IEqualityComparer<YamlNode> Members
 
-        /// <summary />
         public bool Equals([AllowNull] YamlNode x, [AllowNull] YamlNode y)
         {
             return ReferenceEquals(x, y);
         }
 
-        /// <summary />
         public int GetHashCode(YamlNode obj)
         {
             return obj.GetHashCode();

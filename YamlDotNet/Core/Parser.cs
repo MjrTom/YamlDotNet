@@ -19,10 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using YamlDotNet.Core.Tokens;
 using MappingStyle = YamlDotNet.Core.Events.MappingStyle;
 using ParsingEvent = YamlDotNet.Core.Events.ParsingEvent;
@@ -257,7 +254,7 @@ namespace YamlDotNet.Core
 
             // Parse an isImplicit document.
 
-            if (isImplicit && !(current is VersionDirective || current is TagDirective || current is DocumentStart || current is StreamEnd || current is DocumentEnd) || current is BlockMappingStart)
+            if ((isImplicit && !(current is VersionDirective || current is TagDirective || current is DocumentStart || current is StreamEnd || current is DocumentEnd)) || current is BlockMappingStart)
             {
                 var directives = new TagDirectiveCollection();
                 ProcessDirectives(directives);
@@ -632,7 +629,6 @@ namespace YamlDotNet.Core
         /// explicit_document    ::= DIRECTIVE* DOCUMENT-START block_node? DOCUMENT-END*
         ///                                                                *************
         /// </summary>
-
         private Events.DocumentEnd ParseDocumentEnd()
         {
             var current = GetCurrentToken() ?? throw new SemanticErrorException("Reached the end of the stream while parsing a document end");
@@ -666,7 +662,6 @@ namespace YamlDotNet.Core
         /// block_sequence ::= BLOCK-SEQUENCE-START (BLOCK-ENTRY block_node?)* BLOCK-END
         ///                    ********************  *********** *             *********
         /// </summary>
-
         private ParsingEvent ParseBlockSequenceEntry(bool isFirst)
         {
             if (isFirst)
@@ -774,19 +769,16 @@ namespace YamlDotNet.Core
                     return ProcessEmptyScalar(mark);
                 }
             }
-
             else if (current is Value value)
             {
                 Skip();
                 return ProcessEmptyScalar(value.End);
             }
-
             else if (current is AnchorAlias anchorAlias)
             {
                 Skip();
                 return new Events.AnchorAlias(anchorAlias.Value, anchorAlias.Start, anchorAlias.End);
             }
-
             else if (current is BlockEnd blockEnd)
             {
                 state = states.Pop();
@@ -794,12 +786,10 @@ namespace YamlDotNet.Core
                 Skip();
                 return evt;
             }
-
             else if (GetCurrentToken() is Error error)
             {
                 throw new SyntaxErrorException(error.Start, error.End, error.Value);
             }
-
             else
             {
                 throw new SemanticErrorException(current?.Start ?? Mark.Empty, current?.End ?? Mark.Empty, "While parsing a block mapping, did not find expected key.");

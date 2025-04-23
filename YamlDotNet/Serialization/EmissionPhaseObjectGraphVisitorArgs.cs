@@ -19,9 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization
@@ -31,19 +28,19 @@ namespace YamlDotNet.Serialization
         /// <summary>
         /// Gets the next visitor that should be called by the current visitor.
         /// </summary>
-        public IObjectGraphVisitor<IEmitter> InnerVisitor { get; private set; }
+        public IObjectGraphVisitor<IEmitter> InnerVisitor { get; }
 
         /// <summary>
         /// Gets the <see cref="IEventEmitter" /> that is to be used for serialization.
         /// </summary>
-        public IEventEmitter EventEmitter { get; private set; }
+        public IEventEmitter EventEmitter { get; }
 
         /// <summary>
         /// Gets a function that, when called, serializes the specified object.
         /// </summary>
-        public ObjectSerializer NestedObjectSerializer { get; private set; }
+        public ObjectSerializer NestedObjectSerializer { get; }
 
-        public IEnumerable<IYamlTypeConverter> TypeConverters { get; private set; }
+        public IEnumerable<IYamlTypeConverter> TypeConverters { get; }
 
         private readonly IEnumerable<IObjectGraphVisitor<Nothing>> preProcessingPhaseVisitors;
 

@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-
 namespace YamlDotNet.Core
 {
     /// <summary>
@@ -75,6 +73,7 @@ namespace YamlDotNet.Core
         {
         }
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return $"({Start}) - ({End}): {Message}";

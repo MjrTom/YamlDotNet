@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Globalization;
 
 namespace YamlDotNet
@@ -35,6 +34,7 @@ namespace YamlDotNet
         }
 
 #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
+        /// <inheritdoc />
         public override object GetFormat(Type? formatType)
 #else
         public override object? GetFormat(Type formatType)

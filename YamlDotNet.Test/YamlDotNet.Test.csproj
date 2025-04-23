@@ -11,7 +11,6 @@
     <PackageReference Include="FluentAssertions" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />
     <PackageReference Include="xunit" />
-    <PackageReference Include="xunit.runner.visualstudio" />
     <PackageReference Include="FakeItEasy" />
   </ItemGroup>
 
@@ -20,9 +19,7 @@
       <Project>{BF32DE1B-6276-4341-B212-F8862ADBBA7A}</Project>
       <Name>YamlDotNet</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YamlDotNet.Analyzers.StaticGenerator\YamlDotNet.Analyzers.StaticGenerator.csproj"
-                  OutputItemType="Analyzer"
-                  ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\YamlDotNet.Analyzers.StaticGenerator\YamlDotNet.Analyzers.StaticGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
 
   <ItemGroup>

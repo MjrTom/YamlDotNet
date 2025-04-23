@@ -44,7 +44,7 @@ namespace YamlDotNet.Core
 
         private static int GetHashCode(object? obj)
         {
-            return obj != null ? obj.GetHashCode() : 0;
+            return (obj?.GetHashCode()) ?? 0;
         }
     }
 }

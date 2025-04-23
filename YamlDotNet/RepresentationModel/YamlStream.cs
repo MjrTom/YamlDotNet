@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Collections.Generic;
-using System.IO;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 
@@ -152,7 +150,6 @@ namespace YamlDotNet.RepresentationModel
 
         #region IEnumerable<YamlDocument> Members
 
-        /// <summary />
         public IEnumerator<YamlDocument> GetEnumerator()
         {
             return documents.GetEnumerator();
@@ -162,6 +159,7 @@ namespace YamlDotNet.RepresentationModel
 
         #region IEnumerable Members
 
+        /// <inheritdoc />
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();

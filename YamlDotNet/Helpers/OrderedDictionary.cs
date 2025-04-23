@@ -19,11 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
@@ -38,6 +35,7 @@ namespace YamlDotNet.Helpers
         private readonly List<KeyValuePair<TKey, TValue>> list;
         private readonly IEqualityComparer<TKey> comparer;
 
+        /// <inheritdoc />
         public TValue this[TKey key]
         {
             get => dictionary[key];
@@ -56,14 +54,19 @@ namespace YamlDotNet.Helpers
             }
         }
 
+        /// <inheritdoc />
         public ICollection<TKey> Keys => new KeyCollection(this);
 
+        /// <inheritdoc />
         public ICollection<TValue> Values => new ValueCollection(this);
 
+        /// <inheritdoc />
         public int Count => dictionary.Count;
 
+        /// <inheritdoc />
         public bool IsReadOnly => false;
 
+        /// <inheritdoc />
         public KeyValuePair<TKey, TValue> this[int index]
         {
             get => list[index];
@@ -81,6 +84,7 @@ namespace YamlDotNet.Helpers
             this.comparer = comparer;
         }
 
+        /// <inheritdoc />
         public void Add(KeyValuePair<TKey, TValue> item)
         {
             if (!TryAdd(item))
@@ -89,6 +93,7 @@ namespace YamlDotNet.Helpers
             }
         }
 
+        /// <inheritdoc />
         public void Add(TKey key, TValue value)
         {
             if (!TryAdd(key, value))
@@ -126,27 +131,34 @@ namespace YamlDotNet.Helpers
             return false;
         }
 
+        /// <inheritdoc />
         public void Clear()
         {
             dictionary.Clear();
             list.Clear();
         }
 
+        /// <inheritdoc />
         public bool Contains(KeyValuePair<TKey, TValue> item) => dictionary.Contains(item);
 
+        /// <inheritdoc />
         public bool ContainsKey(TKey key) => dictionary.ContainsKey(key);
 
+        /// <inheritdoc />
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex) =>
             list.CopyTo(array, arrayIndex);
 
+        /// <inheritdoc />
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator() => list.GetEnumerator();
 
+        /// <inheritdoc />
         public void Insert(int index, TKey key, TValue value)
         {
             dictionary.Add(key, value);
             list.Insert(index, new KeyValuePair<TKey, TValue>(key, value));
         }
 
+        /// <inheritdoc />
         public bool Remove(TKey key)
         {
             if (dictionary.ContainsKey(key))
@@ -165,8 +177,10 @@ namespace YamlDotNet.Helpers
             }
         }
 
+        /// <inheritdoc />
         public bool Remove(KeyValuePair<TKey, TValue> item) => Remove(item.Key);
 
+        /// <inheritdoc />
         public void RemoveAt(int index)
         {
             var key = list[index].Key;
@@ -178,6 +192,7 @@ namespace YamlDotNet.Helpers
 #pragma warning disable 8767 // Nullability of reference types in type of parameter ... doesn't match implicitly implemented member
 #endif
 
+        /// <inheritdoc />
         public bool TryGetValue(TKey key, [MaybeNullWhen(false)] out TValue value) =>
             dictionary.TryGetValue(key, out value);
 
@@ -185,8 +200,8 @@ namespace YamlDotNet.Helpers
 #pragma warning restore 8767
 #endif
 
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => list.GetEnumerator();
-
 
         [OnDeserialized]
         internal void OnDeserializedMethod(StreamingContext context)
@@ -203,14 +218,19 @@ namespace YamlDotNet.Helpers
         {
             private readonly OrderedDictionary<TKey, TValue> orderedDictionary;
 
+            /// <inheritdoc />
             public int Count => orderedDictionary.list.Count;
 
+            /// <inheritdoc />
             public bool IsReadOnly => true;
 
+            /// <inheritdoc />
             public void Add(TKey item) => throw new NotSupportedException();
 
+            /// <inheritdoc />
             public void Clear() => throw new NotSupportedException();
 
+            /// <inheritdoc />
             public bool Contains(TKey item) => orderedDictionary.dictionary.ContainsKey(item);
 
             public KeyCollection(OrderedDictionary<TKey, TValue> orderedDictionary)
@@ -218,6 +238,7 @@ namespace YamlDotNet.Helpers
                 this.orderedDictionary = orderedDictionary;
             }
 
+            /// <inheritdoc />
             public void CopyTo(TKey[] array, int arrayIndex)
             {
                 for (var i = 0; i < orderedDictionary.list.Count; i++)
@@ -226,11 +247,14 @@ namespace YamlDotNet.Helpers
                 }
             }
 
+            /// <inheritdoc />
             public IEnumerator<TKey> GetEnumerator() =>
                 orderedDictionary.list.Select(kvp => kvp.Key).GetEnumerator();
 
+            /// <inheritdoc />
             public bool Remove(TKey item) => throw new NotSupportedException();
 
+            /// <inheritdoc />
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
 
@@ -238,14 +262,19 @@ namespace YamlDotNet.Helpers
         {
             private readonly OrderedDictionary<TKey, TValue> orderedDictionary;
 
+            /// <inheritdoc />
             public int Count => orderedDictionary.list.Count;
 
+            /// <inheritdoc />
             public bool IsReadOnly => true;
 
+            /// <inheritdoc />
             public void Add(TValue item) => throw new NotSupportedException();
 
+            /// <inheritdoc />
             public void Clear() => throw new NotSupportedException();
 
+            /// <inheritdoc />
             public bool Contains(TValue item) => orderedDictionary.dictionary.ContainsValue(item);
 
             public ValueCollection(OrderedDictionary<TKey, TValue> orderedDictionary)
@@ -253,6 +282,7 @@ namespace YamlDotNet.Helpers
                 this.orderedDictionary = orderedDictionary;
             }
 
+            /// <inheritdoc />
             public void CopyTo(TValue[] array, int arrayIndex)
             {
                 for (var i = 0; i < orderedDictionary.list.Count; i++)
@@ -261,11 +291,14 @@ namespace YamlDotNet.Helpers
                 }
             }
 
+            /// <inheritdoc />
             public IEnumerator<TValue> GetEnumerator() =>
                 orderedDictionary.list.Select(kvp => kvp.Value).GetEnumerator();
 
+            /// <inheritdoc />
             public bool Remove(TValue item) => throw new NotSupportedException();
 
+            /// <inheritdoc />
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
         }
     }

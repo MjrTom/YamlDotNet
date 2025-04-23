@@ -19,10 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using YamlDotNet.Helpers;
 
 namespace YamlDotNet.Serialization.TypeInspectors
@@ -42,6 +39,7 @@ namespace YamlDotNet.Serialization.TypeInspectors
             this.innerTypeDescriptor = innerTypeDescriptor ?? throw new ArgumentNullException(nameof(innerTypeDescriptor));
         }
 
+        /// <inheritdoc />
         public override string GetEnumName(Type enumType, string name)
         {
             var cache = enumNameCache.GetOrAdd(enumType, _ => new ConcurrentDictionary<string, string>());
@@ -54,6 +52,7 @@ namespace YamlDotNet.Serialization.TypeInspectors
             return result;
         }
 
+        /// <inheritdoc />
         public override string GetEnumValue(object enumValue)
         {
             var result = enumValueCache.GetOrAdd(enumValue, static (_, context) =>
@@ -65,6 +64,7 @@ namespace YamlDotNet.Serialization.TypeInspectors
             return result;
         }
 
+        /// <inheritdoc />
         public override IEnumerable<IPropertyDescriptor> GetProperties(Type type, object? container)
         {
             return cache.GetOrAdd(type, static (t, context) =>

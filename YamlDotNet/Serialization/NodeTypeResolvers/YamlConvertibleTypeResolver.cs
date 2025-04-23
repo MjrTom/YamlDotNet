@@ -19,13 +19,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeTypeResolvers
 {
     public sealed class YamlConvertibleTypeResolver : INodeTypeResolver
     {
+        /// <inheritdoc />
         public bool Resolve(NodeEvent? nodeEvent, ref Type currentType)
         {
             return typeof(IYamlConvertible).IsAssignableFrom(currentType);

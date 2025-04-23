@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using System.Globalization;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
@@ -252,7 +250,7 @@ namespace YamlDotNet.RepresentationModel
             visitor.Visit(this);
         }
 
-        /// <summary />
+        /// <inheritdoc />
         public override bool Equals(object? obj)
         {
             var other = obj as YamlMappingNode;
@@ -362,7 +360,6 @@ namespace YamlDotNet.RepresentationModel
 
         #region IEnumerable<KeyValuePair<YamlNode,YamlNode>> Members
 
-        /// <summary />
         public IEnumerator<KeyValuePair<YamlNode, YamlNode>> GetEnumerator()
         {
             return children.GetEnumerator();
@@ -372,6 +369,7 @@ namespace YamlDotNet.RepresentationModel
 
         #region IEnumerable Members
 
+        /// <inheritdoc />
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
@@ -379,11 +377,13 @@ namespace YamlDotNet.RepresentationModel
 
         #endregion
 
+        /// <inheritdoc />
         void IYamlConvertible.Read(IParser parser, Type expectedType, ObjectDeserializer nestedObjectDeserializer)
         {
             Load(parser, new DocumentLoadingState());
         }
 
+        /// <inheritdoc />
         void IYamlConvertible.Write(IEmitter emitter, ObjectSerializer nestedObjectSerializer)
         {
             Emit(emitter, new EmitterState());

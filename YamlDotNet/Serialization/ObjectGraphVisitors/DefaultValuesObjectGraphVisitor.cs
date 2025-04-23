@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
 using System.ComponentModel;
 using YamlDotNet.Core;
@@ -40,6 +39,7 @@ namespace YamlDotNet.Serialization.ObjectGraphVisitors
 
         private object? GetDefault(Type type) => factory.CreatePrimitive(type);
 
+        /// <inheritdoc />
         public override bool EnterMapping(IPropertyDescriptor key, IObjectDescriptor value, IEmitter context, ObjectSerializer serializer)
         {
             var configuration = handling;

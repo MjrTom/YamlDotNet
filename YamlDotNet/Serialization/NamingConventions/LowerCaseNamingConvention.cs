@@ -47,7 +47,6 @@ namespace YamlDotNet.Serialization.NamingConventions
 
             var result = char.ToUpperInvariant(value[0]) + value.Substring(1);
             return result;
-
         }
 
         public static readonly INamingConvention Instance = new LowerCaseNamingConvention();

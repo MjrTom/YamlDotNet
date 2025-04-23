@@ -19,13 +19,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 #if NET7_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 #endif
 using YamlDotNet.Core;
-using YamlDotNet.Helpers;
 using YamlDotNet.Serialization.Converters;
 using YamlDotNet.Serialization.EventEmitters;
 using YamlDotNet.Serialization.NamingConventions;
@@ -37,7 +34,6 @@ using YamlDotNet.Serialization.TypeResolvers;
 
 namespace YamlDotNet.Serialization
 {
-
     /// <summary>
     /// Creates and configures instances of <see cref="Serializer" />.
     /// This class is used to customize the behavior of <see cref="Serializer" />. Use the relevant methods
@@ -181,7 +177,7 @@ namespace YamlDotNet.Serialization
         public StaticSerializerBuilder WithEventEmitter<TEventEmitter>(
             Func<IEventEmitter, TEventEmitter> eventEmitterFactory,
             Action<IRegistrationLocationSelectionSyntax<IEventEmitter>> where
-        ) where TEventEmitter : IEventEmitter => WithEventEmitter((IEventEmitter e, ITypeInspector _) => eventEmitterFactory(e), where);
+        ) where TEventEmitter : IEventEmitter => WithEventEmitter((e, _) => eventEmitterFactory(e), where);
 
         /// <summary>
         /// Registers an additional <see cref="IEventEmitter" /> to be used by the serializer.
@@ -208,7 +204,6 @@ namespace YamlDotNet.Serialization
             return Self;
         }
 
-
         /// <summary>
         /// Registers an additional <see cref="IEventEmitter" /> to be used by the serializer.
         /// </summary>
@@ -233,7 +228,6 @@ namespace YamlDotNet.Serialization
             where(eventEmitterFactories.CreateTrackingRegistrationLocationSelector(typeof(TEventEmitter), (wrapped, inner) => eventEmitterFactory(wrapped, inner)));
             return Self;
         }
-
 
         /// <summary>
         /// Unregisters an existing <see cref="IEventEmitter" /> of type <typeparam name="TEventEmitter" />.
@@ -766,7 +760,6 @@ namespace YamlDotNet.Serialization
                 {
                     traversalStrategy.Traverse(graph, visitor, default, NestedObjectSerializer);
                 }
-
 
                 var emittingVisitor = emissionPhaseObjectGraphVisitorFactories.BuildComponentChain(
                     new EmittingObjectGraphVisitor(eventEmitter),

@@ -19,9 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using YamlDotNet.Core;
 
@@ -52,6 +49,7 @@ namespace YamlDotNet.Serialization.TypeInspectors
                 && property.GetGetMethod(true)!.GetParameters().Length == 0;
         }
 
+        /// <inheritdoc />
         public override IEnumerable<IPropertyDescriptor> GetProperties(Type type, object? container)
         {
             return type

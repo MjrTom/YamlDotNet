@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Text.RegularExpressions;
 
 namespace YamlDotNet.Core.Tokens
@@ -29,7 +28,6 @@ namespace YamlDotNet.Core.Tokens
     /// </summary>
     public class TagDirective : Token
     {
-
         /// <summary>
         /// Gets the handle.
         /// </summary>
@@ -109,7 +107,7 @@ namespace YamlDotNet.Core.Tokens
             return Handle.GetHashCode() ^ Prefix.GetHashCode();
         }
 
-        /// <summary/>
+        /// <inheritdoc />
         public override string ToString()
         {
             return $"{Handle} => {Prefix}";

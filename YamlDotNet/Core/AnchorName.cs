@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Text.RegularExpressions;
 
 namespace YamlDotNet.Core
@@ -47,15 +46,19 @@ namespace YamlDotNet.Core
             }
         }
 
+        /// <inheritdoc />
         public override string ToString() => value ?? "[empty]";
 
+        /// <inheritdoc />
         public bool Equals(AnchorName other) => Equals(value, other.value);
 
+        /// <inheritdoc />
         public override bool Equals(object? obj)
         {
             return obj is AnchorName other && Equals(other);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return value?.GetHashCode() ?? 0;

@@ -19,10 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Linq.Expressions;
 using YamlDotNet.Helpers;
 using HashCode = YamlDotNet.Core.HashCode;
@@ -45,6 +42,7 @@ namespace YamlDotNet.Serialization
                 PropertyName = propertyName;
             }
 
+            /// <inheritdoc />
             public override bool Equals(object? obj)
             {
                 return obj is AttributeKey other
@@ -52,6 +50,7 @@ namespace YamlDotNet.Serialization
                     && PropertyName.Equals(other.PropertyName);
             }
 
+            /// <inheritdoc />
             public override int GetHashCode()
             {
                 return HashCode.CombineHashCodes(AttributeType.GetHashCode(), PropertyName.GetHashCode());
@@ -69,6 +68,7 @@ namespace YamlDotNet.Serialization
                 Attribute = attribute;
             }
 
+            /// <inheritdoc />
             public override bool Equals(object? obj)
             {
                 return obj is AttributeMapping other
@@ -76,6 +76,7 @@ namespace YamlDotNet.Serialization
                     && Attribute.Equals(other.Attribute);
             }
 
+            /// <inheritdoc />
             public override int GetHashCode()
             {
                 return HashCode.CombineHashCodes(RegisteredType.GetHashCode(), Attribute.GetHashCode());

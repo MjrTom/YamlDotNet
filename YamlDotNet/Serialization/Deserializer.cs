@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.IO;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization.Utilities;
@@ -47,10 +45,6 @@ namespace YamlDotNet.Serialization
         {
         }
 
-        /// <remarks>
-        /// This constructor is private to discourage its use.
-        /// To invoke it, call the <see cref="FromValueDeserializer"/> method.
-        /// </remarks>
         private Deserializer(IValueDeserializer valueDeserializer)
         {
             this.valueDeserializer = valueDeserializer ?? throw new ArgumentNullException(nameof(valueDeserializer));

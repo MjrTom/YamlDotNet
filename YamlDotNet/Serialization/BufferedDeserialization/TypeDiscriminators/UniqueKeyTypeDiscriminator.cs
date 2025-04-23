@@ -19,12 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Linq;
-using System.Collections.Generic;
 using YamlDotNet.Core;
-using YamlDotNet.Core.Events;
-using YamlDotNet.Serialization;
 
 namespace YamlDotNet.Serialization.BufferedDeserialization.TypeDiscriminators
 {
@@ -34,7 +29,8 @@ namespace YamlDotNet.Serialization.BufferedDeserialization.TypeDiscriminators
     /// </summary>
     public class UniqueKeyTypeDiscriminator : ITypeDiscriminator
     {
-        public Type BaseType { get; private set; }
+        /// <inheritdoc />
+        public Type BaseType { get; }
 
         private readonly IDictionary<string, Type> typeMapping;
 

@@ -19,9 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using YamlDotNet.Serialization.TypeInspectors;
 
 namespace YamlDotNet.Serialization
@@ -38,10 +35,13 @@ namespace YamlDotNet.Serialization
             this.innerTypeDescriptor = innerTypeDescriptor;
         }
 
+        /// <inheritdoc />
         public override string GetEnumName(Type enumType, string name) => innerTypeDescriptor.GetEnumName(enumType, name);
 
+        /// <inheritdoc />
         public override string GetEnumValue(object enumValue) => innerTypeDescriptor.GetEnumValue(enumValue);
 
+        /// <inheritdoc />
         public override IEnumerable<IPropertyDescriptor> GetProperties(Type type, object? container)
         {
             return innerTypeDescriptor.GetProperties(type, container)

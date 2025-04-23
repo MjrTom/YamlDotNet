@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using YamlDotNet.Core;
 
 namespace YamlDotNet.RepresentationModel
@@ -69,7 +67,7 @@ namespace YamlDotNet.RepresentationModel
             throw new NotSupportedException("A YamlAliasNode is an implementation detail and should never be visited.");
         }
 
-        /// <summary />
+        /// <inheritdoc />
         public override bool Equals(object? obj)
         {
             return obj is YamlAliasNode other

@@ -19,10 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace YamlDotNet.Serialization.TypeInspectors
 {
     /// <summary>
@@ -42,6 +38,7 @@ namespace YamlDotNet.Serialization.TypeInspectors
             this.typeInspectors = typeInspectors?.ToList() ?? throw new ArgumentNullException(nameof(typeInspectors));
         }
 
+        /// <inheritdoc />
         public override string GetEnumName(Type enumType, string name)
         {
             foreach (var inspector in typeInspectors)
@@ -59,6 +56,7 @@ namespace YamlDotNet.Serialization.TypeInspectors
             throw new ArgumentOutOfRangeException(nameof(enumType) + "," + nameof(name), "Name not found on enum type");
         }
 
+        /// <inheritdoc />
         public override string GetEnumValue(object enumValue)
         {
             if (enumValue == null)
@@ -81,6 +79,7 @@ namespace YamlDotNet.Serialization.TypeInspectors
             throw new ArgumentOutOfRangeException(nameof(enumValue), $"Value not found for ({enumValue})");
         }
 
+        /// <inheritdoc />
         public override IEnumerable<IPropertyDescriptor> GetProperties(Type type, object? container)
         {
             return typeInspectors

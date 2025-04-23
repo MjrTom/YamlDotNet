@@ -19,9 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
 using YamlDotNet.Helpers;
 
@@ -150,7 +148,7 @@ namespace YamlDotNet.Core
                 }
 
                 items = newItems;
-                mask = mask * 2 + 1;
+                mask = (mask * 2) + 1;
             }
         }
 
@@ -203,6 +201,7 @@ namespace YamlDotNet.Core
             }
         }
 
+        /// <inheritdoc />
         public IEnumerator<T> GetEnumerator()
         {
             var ptr = readPtr;
@@ -213,6 +212,7 @@ namespace YamlDotNet.Core
             }
         }
 
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

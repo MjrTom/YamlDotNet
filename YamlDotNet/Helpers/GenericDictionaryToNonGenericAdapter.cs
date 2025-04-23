@@ -19,9 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace YamlDotNet.Helpers
 {
@@ -39,51 +37,61 @@ namespace YamlDotNet.Helpers
             this.genericDictionary = genericDictionary ?? throw new ArgumentNullException(nameof(genericDictionary));
         }
 
+        /// <inheritdoc />
         public void Add(object key, object? value)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public void Clear()
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public bool Contains(object key)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public IDictionaryEnumerator GetEnumerator()
         {
             return new DictionaryEnumerator(genericDictionary.GetEnumerator());
         }
 
+        /// <inheritdoc />
         public bool IsFixedSize
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public bool IsReadOnly
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public ICollection Keys
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public void Remove(object key)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public ICollection Values
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public object? this[object key]
         {
             get
@@ -96,26 +104,31 @@ namespace YamlDotNet.Helpers
             }
         }
 
+        /// <inheritdoc />
         public void CopyTo(Array array, int index)
         {
             throw new NotSupportedException();
         }
 
+        /// <inheritdoc />
         public int Count
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public bool IsSynchronized
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         public object SyncRoot
         {
             get { throw new NotSupportedException(); }
         }
 
+        /// <inheritdoc />
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
@@ -130,6 +143,7 @@ namespace YamlDotNet.Helpers
                 this.enumerator = enumerator;
             }
 
+            /// <inheritdoc />
             public DictionaryEntry Entry
             {
                 get
@@ -138,26 +152,31 @@ namespace YamlDotNet.Helpers
                 }
             }
 
+            /// <inheritdoc />
             public object Key
             {
                 get { return enumerator.Current.Key!; }
             }
 
+            /// <inheritdoc />
             public object? Value
             {
                 get { return enumerator.Current.Value; }
             }
 
+            /// <inheritdoc />
             public object Current
             {
                 get { return Entry; }
             }
 
+            /// <inheritdoc />
             public bool MoveNext()
             {
                 return enumerator.MoveNext();
             }
 
+            /// <inheritdoc />
             public void Reset()
             {
                 enumerator.Reset();

@@ -19,18 +19,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using YamlDotNet.Helpers;
-using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Serialization.ObjectFactories
 {
     public abstract class ObjectFactoryBase : IObjectFactory
     {
+        /// <inheritdoc />
         public abstract object Create(Type type);
 
+        /// <inheritdoc />
         public virtual object? CreatePrimitive(Type type) => type.IsValueType() ? Activator.CreateInstance(type) : null;
 
         /// <inheritdoc />
@@ -53,6 +52,7 @@ namespace YamlDotNet.Serialization.ObjectFactories
         {
         }
 
+        /// <inheritdoc />
         public virtual bool GetDictionary(IObjectDescriptor descriptor, out IDictionary? dictionary, out Type[]? genericArguments)
         {
             var genericDictionaryType = descriptor.Type.GetImplementationOfOpenGenericInterface(typeof(IDictionary<,>));
@@ -68,6 +68,7 @@ namespace YamlDotNet.Serialization.ObjectFactories
             return false;
         }
 
+        /// <inheritdoc />
         public virtual Type GetValueType(Type type)
         {
             var enumerableType = type.GetImplementationOfOpenGenericInterface(typeof(IEnumerable<>));

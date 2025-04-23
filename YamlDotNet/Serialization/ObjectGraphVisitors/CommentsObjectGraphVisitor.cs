@@ -30,6 +30,7 @@ namespace YamlDotNet.Serialization.ObjectGraphVisitors
         {
         }
 
+        /// <inheritdoc />
         public override bool EnterMapping(IPropertyDescriptor key, IObjectDescriptor value, IEmitter context, ObjectSerializer serializer)
         {
             var yamlMember = key.GetCustomAttribute<YamlMemberAttribute>();

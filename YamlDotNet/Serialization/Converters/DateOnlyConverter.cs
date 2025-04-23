@@ -89,7 +89,7 @@ namespace YamlDotNet.Serialization.Converters
         public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer serializer)
         {
             var dateOnly = (DateOnly)value!;
-            var formatted = dateOnly.ToString(this.formats.First(), this.provider); // Always take the first format of the list.
+            var formatted = dateOnly.ToString(this.formats[0], this.provider); // Always take the first format of the list.
 
             emitter.Emit(new Scalar(AnchorName.Empty, TagName.Empty, formatted, doubleQuotes ? ScalarStyle.DoubleQuoted : ScalarStyle.Any, true, false));
         }

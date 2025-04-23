@@ -19,10 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 namespace YamlDotNet.Serialization.Utilities
 {
     /// <summary>
@@ -56,6 +52,7 @@ namespace YamlDotNet.Serialization.Utilities
             }
         }
 
+        /// <inheritdoc />
         public void Dispose()
         {
             foreach (var disposable in items.Values.OfType<IDisposable>())

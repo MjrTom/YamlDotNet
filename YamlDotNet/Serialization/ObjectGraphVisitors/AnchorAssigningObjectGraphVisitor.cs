@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using YamlDotNet.Core;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
@@ -38,6 +36,7 @@ namespace YamlDotNet.Serialization.ObjectGraphVisitors
             this.aliasProvider = aliasProvider;
         }
 
+        /// <inheritdoc />
         public override bool Enter(IPropertyDescriptor? propertyDescriptor, IObjectDescriptor value, IEmitter context, ObjectSerializer serializer)
         {
             if (value.Value != null)
@@ -53,18 +52,21 @@ namespace YamlDotNet.Serialization.ObjectGraphVisitors
             return base.Enter(propertyDescriptor, value, context, serializer);
         }
 
+        /// <inheritdoc />
         public override void VisitMappingStart(IObjectDescriptor mapping, Type keyType, Type valueType, IEmitter context, ObjectSerializer serializer)
         {
             var anchor = aliasProvider.GetAlias(mapping.NonNullValue());
             eventEmitter.Emit(new MappingStartEventInfo(mapping) { Anchor = anchor }, context);
         }
 
+        /// <inheritdoc />
         public override void VisitSequenceStart(IObjectDescriptor sequence, Type elementType, IEmitter context, ObjectSerializer serializer)
         {
             var anchor = aliasProvider.GetAlias(sequence.NonNullValue());
             eventEmitter.Emit(new SequenceStartEventInfo(sequence) { Anchor = anchor }, context);
         }
 
+        /// <inheritdoc />
         public override void VisitScalar(IObjectDescriptor scalar, IEmitter context, ObjectSerializer serializer)
         {
             var scalarInfo = new ScalarEventInfo(scalar);

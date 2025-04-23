@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 
@@ -37,17 +36,20 @@ namespace YamlDotNet.Serialization.Converters
             this.jsonCompatible = jsonCompatible;
         }
 
+        /// <inheritdoc />
         public bool Accepts(Type type)
         {
             return type == typeof(Guid);
         }
 
+        /// <inheritdoc />
         public object ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
         {
             var value = parser.Consume<Scalar>().Value;
             return new Guid(value);
         }
 
+        /// <inheritdoc />
         public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer serializer)
         {
             var guid = (Guid)value!;

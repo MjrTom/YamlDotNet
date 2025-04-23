@@ -19,7 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 
@@ -33,17 +32,20 @@ namespace YamlDotNet.Serialization.Converters
     /// </remarks>
     public class SystemTypeConverter : IYamlTypeConverter
     {
+        /// <inheritdoc />
         public bool Accepts(Type type)
         {
             return typeof(Type).IsAssignableFrom(type);
         }
 
+        /// <inheritdoc />
         public object ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)
         {
             var value = parser.Consume<Scalar>().Value;
             return Type.GetType(value, throwOnError: true)!; // Will throw instead of returning null
         }
 
+        /// <inheritdoc />
         public void WriteYaml(IEmitter emitter, object? value, Type type, ObjectSerializer serializer)
         {
             var systemType = (Type)value!;

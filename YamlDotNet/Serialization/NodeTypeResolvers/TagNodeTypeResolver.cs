@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 
@@ -35,6 +33,7 @@ namespace YamlDotNet.Serialization.NodeTypeResolvers
             this.tagMappings = tagMappings ?? throw new ArgumentNullException(nameof(tagMappings));
         }
 
+        /// <inheritdoc />
         bool INodeTypeResolver.Resolve(NodeEvent? nodeEvent, ref Type currentType)
         {
             if (nodeEvent != null && !nodeEvent.Tag.IsEmpty && tagMappings.TryGetValue(nodeEvent.Tag, out var predefinedType))

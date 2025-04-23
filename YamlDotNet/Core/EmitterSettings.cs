@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-
 namespace YamlDotNet.Core
 {
     public sealed class EmitterSettings
@@ -48,7 +46,7 @@ namespace YamlDotNet.Core
         /// <summary>
         /// If true, write output without anchor names.
         /// </summary>
-        public bool SkipAnchorName { get; private set; }
+        public bool SkipAnchorName { get; }
 
         /// <summary>
         /// The maximum allowed length for simple keys.

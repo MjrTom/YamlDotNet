@@ -19,9 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Serialization.ObjectGraphVisitors
@@ -42,6 +39,7 @@ namespace YamlDotNet.Serialization.ObjectGraphVisitors
             this.typeConverterCache = new TypeConverterCache(tcs);
         }
 
+        /// <inheritdoc />
         bool IObjectGraphVisitor<Nothing>.Enter(IPropertyDescriptor? propertyDescriptor, IObjectDescriptor value, Nothing context, ObjectSerializer serializer)
         {
             if (typeConverterCache.TryGetConverterForType(value.Type, out _))
@@ -64,36 +62,43 @@ namespace YamlDotNet.Serialization.ObjectGraphVisitors
             return Enter(value, serializer);
         }
 
+        /// <inheritdoc />
         bool IObjectGraphVisitor<Nothing>.EnterMapping(IPropertyDescriptor key, IObjectDescriptor value, Nothing context, ObjectSerializer serializer)
         {
             return EnterMapping(key, value, serializer);
         }
 
+        /// <inheritdoc />
         bool IObjectGraphVisitor<Nothing>.EnterMapping(IObjectDescriptor key, IObjectDescriptor value, Nothing context, ObjectSerializer serializer)
         {
             return EnterMapping(key, value, serializer);
         }
 
+        /// <inheritdoc />
         void IObjectGraphVisitor<Nothing>.VisitMappingEnd(IObjectDescriptor mapping, Nothing context, ObjectSerializer serializer)
         {
             VisitMappingEnd(mapping, serializer);
         }
 
+        /// <inheritdoc />
         void IObjectGraphVisitor<Nothing>.VisitMappingStart(IObjectDescriptor mapping, Type keyType, Type valueType, Nothing context, ObjectSerializer serializer)
         {
             VisitMappingStart(mapping, keyType, valueType, serializer);
         }
 
+        /// <inheritdoc />
         void IObjectGraphVisitor<Nothing>.VisitScalar(IObjectDescriptor scalar, Nothing context, ObjectSerializer serializer)
         {
             VisitScalar(scalar, serializer);
         }
 
+        /// <inheritdoc />
         void IObjectGraphVisitor<Nothing>.VisitSequenceEnd(IObjectDescriptor sequence, Nothing context, ObjectSerializer serializer)
         {
             VisitSequenceEnd(sequence, serializer);
         }
 
+        /// <inheritdoc />
         void IObjectGraphVisitor<Nothing>.VisitSequenceStart(IObjectDescriptor sequence, Type elementType, Nothing context, ObjectSerializer serializer)
         {
             VisitSequenceStart(sequence, elementType, serializer);

@@ -19,9 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Diagnostics;
-using System.IO;
 using YamlDotNet.Helpers;
 
 namespace YamlDotNet.Core
@@ -68,7 +66,7 @@ namespace YamlDotNet.Core
 
             // Allocate twice the required capacity to ensure that 
             buffer = new char[capacity * 2];
-            mask = capacity * 2 - 1;
+            mask = (capacity * 2) - 1;
         }
 
         /// <summary>

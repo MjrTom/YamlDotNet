@@ -19,10 +19,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Core
@@ -45,8 +42,10 @@ namespace YamlDotNet.Core
             this.innerParser = innerParser;
         }
 
+        /// <inheritdoc />
         public ParsingEvent? Current => iterator.Current?.Value;
 
+        /// <inheritdoc />
         public bool MoveNext()
         {
             if (!merged)
@@ -216,8 +215,10 @@ namespace YamlDotNet.Core
                 return Enumerate(node);
             }
 
+            /// <inheritdoc />
             public IEnumerator<LinkedListNode<ParsingEvent>> GetEnumerator() => Enumerate(events.First).GetEnumerator();
 
+            /// <inheritdoc />
             IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 
             private static IEnumerable<LinkedListNode<ParsingEvent>> Enumerate(LinkedListNode<ParsingEvent>? node)

@@ -19,10 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-
 #if NET7_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 #endif
@@ -34,10 +30,8 @@ using YamlDotNet.Serialization.NodeTypeResolvers;
 using YamlDotNet.Serialization.ObjectFactories;
 using YamlDotNet.Serialization.Schemas;
 using YamlDotNet.Serialization.TypeInspectors;
-using YamlDotNet.Serialization.TypeResolvers;
 using YamlDotNet.Serialization.Utilities;
 using YamlDotNet.Serialization.ValueDeserializers;
-using YamlDotNet.Helpers;
 
 namespace YamlDotNet.Serialization
 {

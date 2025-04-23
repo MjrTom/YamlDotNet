@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-
 namespace YamlDotNet.Core
 {
     public readonly struct TagName : IEquatable<TagName>
@@ -52,15 +50,19 @@ namespace YamlDotNet.Core
             }
         }
 
+        /// <inheritdoc />
         public override string ToString() => value ?? "?";
 
+        /// <inheritdoc />
         public bool Equals(TagName other) => Equals(value, other.value);
 
+        /// <inheritdoc />
         public override bool Equals(object? obj)
         {
             return obj is TagName other && Equals(other);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return value?.GetHashCode() ?? 0;

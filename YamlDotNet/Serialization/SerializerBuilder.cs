@@ -19,8 +19,6 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 #if NET7_0_OR_GREATER
 using System.Diagnostics.CodeAnalysis;
 #endif
@@ -176,7 +174,7 @@ namespace YamlDotNet.Serialization
         public SerializerBuilder WithEventEmitter<TEventEmitter>(
             Func<IEventEmitter, TEventEmitter> eventEmitterFactory,
             Action<IRegistrationLocationSelectionSyntax<IEventEmitter>> where
-        ) where TEventEmitter : IEventEmitter => WithEventEmitter((IEventEmitter e, ITypeInspector _) => eventEmitterFactory(e), where);
+        ) where TEventEmitter : IEventEmitter => WithEventEmitter((e, _) => eventEmitterFactory(e), where);
 
         /// <summary>
         /// Registers an additional <see cref="IEventEmitter" /> to be used by the serializer.
@@ -202,7 +200,6 @@ namespace YamlDotNet.Serialization
             where(eventEmitterFactories.CreateRegistrationLocationSelector(typeof(TEventEmitter), inner => eventEmitterFactory(inner, BuildTypeInspector())));
             return Self;
         }
-
 
         /// <summary>
         /// Registers an additional <see cref="IEventEmitter" /> to be used by the serializer.
@@ -451,7 +448,6 @@ namespace YamlDotNet.Serialization
             where(preProcessingPhaseObjectGraphVisitorFactories.CreateRegistrationLocationSelector(typeof(TObjectGraphVisitor), _ => objectGraphVisitor));
             return this;
         }
-
 
         /// <summary>
         /// Registers an additional <see cref="IObjectGraphVisitor{Nothing}" /> to be used by the serializer

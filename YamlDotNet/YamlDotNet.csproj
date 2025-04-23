@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net6.0;netstandard2.0;netstandard2.1;net47</TargetFrameworks>
-
+    <TargetFrameworks>net8.0;netstandard2.1;netstandard2.0</TargetFrameworks>
     <Configurations>Debug;Release</Configurations>
     <AssemblyOriginatorKeyFile>..\YamlDotNet.snk</AssemblyOriginatorKeyFile>
     <SignAssembly>true</SignAssembly>
@@ -14,6 +13,8 @@
     <Nullable>enable</Nullable>
     <NetStandard>false</NetStandard>
     <RealTargetFramework>$(TargetFramework)</RealTargetFramework>
+    <NuGetAuditMode>all</NuGetAuditMode>
+    <ErrorReport>queue</ErrorReport>
   </PropertyGroup>
 
   <PropertyGroup Label="Package Properties">
@@ -68,7 +69,52 @@
     <NoWarn>$(NoWarn);IDE0083</NoWarn>  <!-- Use pattern matching  -->
     <NoWarn>$(NoWarn);IDE0090</NoWarn>  <!-- 'new' expression can be simplified  -->
     <NoWarn>$(NoWarn);IDE0110</NoWarn>  <!-- Discard can be removed  -->
-    <NoWarn>$(NoWarn);IDE0290</NoWarn>  <!-- Use primary constructor -->
+    <NoWarn>$(NoWarn);IDE0290</NoWarn>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <DelaySign>True</DelaySign>
+    <RepositoryUrl>https://github.com/MjrTom/YamlDotNet</RepositoryUrl>  <!-- Use primary constructor -->
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0|AnyCPU'">
+    <IsTrimmable>False</IsTrimmable>
+    <IsAotCompatible>False</IsAotCompatible>
+    <WarningLevel>8</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.1|AnyCPU'">
+    <IsTrimmable>False</IsTrimmable>
+    <IsAotCompatible>False</IsAotCompatible>
+    <WarningLevel>8</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard2.0|AnyCPU'">
+    <IsTrimmable>False</IsTrimmable>
+    <IsAotCompatible>False</IsAotCompatible>
+    <WarningLevel>8</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0|AnyCPU'">
+    <IsTrimmable>False</IsTrimmable>
+    <IsAotCompatible>False</IsAotCompatible>
+    <WarningLevel>8</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.1|AnyCPU'">
+    <IsTrimmable>False</IsTrimmable>
+    <IsAotCompatible>False</IsAotCompatible>
+    <WarningLevel>8</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard2.0|AnyCPU'">
+    <IsTrimmable>False</IsTrimmable>
+    <IsAotCompatible>False</IsAotCompatible>
+    <WarningLevel>8</WarningLevel>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
   </PropertyGroup>
 
 </Project>

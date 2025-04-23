@@ -19,18 +19,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace YamlDotNet.Serialization.TypeInspectors
 {
     public abstract class ReflectionTypeInspector : TypeInspectorSkeleton
     {
+        /// <inheritdoc />
         public override string GetEnumName(Type enumType, string name)
         {
 #if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
@@ -45,6 +41,7 @@ namespace YamlDotNet.Serialization.TypeInspectors
 #endif
             return name;
         }
+        /// <inheritdoc />
         public override string GetEnumValue(object enumValue)
         {
             if (enumValue == null)
@@ -67,6 +64,5 @@ namespace YamlDotNet.Serialization.TypeInspectors
 #endif
             return result!;
         }
-
     }
 }

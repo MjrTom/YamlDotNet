@@ -19,14 +19,13 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-using System.Collections.Generic;
 using YamlDotNet.Core.Events;
 
 namespace YamlDotNet.Serialization.NodeTypeResolvers
 {
     public sealed class DefaultContainersNodeTypeResolver : INodeTypeResolver
     {
+        /// <inheritdoc />
         bool INodeTypeResolver.Resolve(NodeEvent? nodeEvent, ref Type currentType)
         {
             if (currentType == typeof(object))

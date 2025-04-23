@@ -19,12 +19,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
-
 namespace YamlDotNet.Serialization.Utilities
 {
     public class NullTypeConverter : ITypeConverter
     {
+        /// <inheritdoc />
         public object? ChangeType(object? value, Type expectedType, INamingConvention enumNamingConvention, ITypeInspector typeInspector) => value;
     }
 }

@@ -19,13 +19,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Text;
 using YamlDotNet.Core;
 using YamlDotNet.Helpers;
-using YamlDotNet.Serialization.Utilities;
 
 namespace YamlDotNet.Serialization.ObjectGraphTraversalStrategies
 {
@@ -57,6 +54,7 @@ namespace YamlDotNet.Serialization.ObjectGraphTraversalStrategies
             this.objectFactory = objectFactory ?? throw new ArgumentNullException(nameof(objectFactory));
         }
 
+        /// <inheritdoc />
         void IObjectGraphTraversalStrategy.Traverse<TContext>(IObjectDescriptor graph, IObjectGraphVisitor<TContext> visitor, TContext context, ObjectSerializer serializer)
         {
             Traverse(null, "<root>", graph, visitor, context, new Stack<ObjectPathSegment>(maxRecursion), serializer);
@@ -103,7 +101,6 @@ namespace YamlDotNet.Serialization.ObjectGraphTraversalStrategies
 
                 throw new MaximumRecursionLevelReachedException(message.ToString());
             }
-
 
             if (!visitor.Enter(propertyDescriptor, value, context, serializer))
             {
