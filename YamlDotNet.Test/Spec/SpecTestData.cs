@@ -97,33 +97,22 @@ namespace YamlDotNet.Test.Spec
 
             if (!string.IsNullOrEmpty(fixturesPath))
             {
-                // Normalize the path to resolve any relative components
-                fixturesPath = Path.GetFullPath(fixturesPath);
-
-                // Define a safe base directory (e.g., the project's root directory)
-                var safeBaseDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), ".."));
-
-                // Ensure the path is within the safe base directory
-                if (!fixturesPath.StartsWith(safeBaseDirectory + Path.DirectorySeparatorChar, StringComparison.Ordinal))
-                {
-                    throw new Exception("Path set as environment variable 'YAMLDOTNET_SPEC_SUITE_DIR' is not within the allowed base directory!");
-                }
-
-                if (!Directory.Exists(fixturesPath))
+                try
                 {
                     // Normalize the path to resolve any relative components
                     fixturesPath = Path.GetFullPath(fixturesPath);
 
-                    // Define a safe base directory
-                    var baseDirectory = Path.GetFullPath("/safe/base/directory");
+                    // Define a safe base directory (e.g., the project's root directory)
+                    var safeBaseDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), ".."));
 
                     // Ensure the path is within the safe base directory
-                    var relativePath = Path.GetRelativePath(baseDirectory, fixturesPath);
+                    var relativePath = Path.GetRelativePath(safeBaseDirectory, fixturesPath);
                     if (relativePath.StartsWith("..") || Path.IsPathRooted(relativePath))
                     {
                         throw new Exception("Path set as environment variable 'YAMLDOTNET_SPEC_SUITE_DIR' is not within the allowed base directory!");
                     }
 
+                    // Ensure the directory exists
                     if (!Directory.Exists(fixturesPath))
                     {
                         throw new Exception("Path set as environment variable 'YAMLDOTNET_SPEC_SUITE_DIR' does not exist!");
