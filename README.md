@@ -1,9 +1,9 @@
 # YamlDotNet
-
+🍴<!-- 
 | Appveyor | NuGet |
 |----------|-------|
 |[![Build status](https://ci.appveyor.com/api/projects/status/github/aaubry/yamldotnet?svg=true)](https://ci.appveyor.com/project/aaubry/yamldotnet/branch/master)|  [![NuGet](https://img.shields.io/nuget/v/YamlDotNet.svg)](https://www.nuget.org/packages/YamlDotNet/)
-
+-->
 
 YamlDotNet is a YAML library for [netstandard and other .NET runtimes](#the-yamldotnet-library).
 
@@ -29,7 +29,6 @@ The library has now been successfully used in multiple projects and is considere
 * netstandard 2.1
 * .NET 6.0
 * .NET 8.0
-* .NET Framework 4.7
 
 ## Quick start
 
