@@ -106,7 +106,8 @@ namespace YamlDotNet.Test.Spec
                     var baseDirectory = Path.GetFullPath("/safe/base/directory");
 
                     // Ensure the path is within the safe base directory
-                    if (!fixturesPath.StartsWith(baseDirectory + Path.DirectorySeparatorChar))
+                    var relativePath = Path.GetRelativePath(baseDirectory, fixturesPath);
+                    if (relativePath.StartsWith("..") || Path.IsPathRooted(relativePath))
                     {
                         throw new Exception("Path set as environment variable 'YAMLDOTNET_SPEC_SUITE_DIR' is not within the allowed base directory!");
                     }
