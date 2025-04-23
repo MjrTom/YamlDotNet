@@ -97,6 +97,18 @@ namespace YamlDotNet.Test.Spec
 
             if (!string.IsNullOrEmpty(fixturesPath))
             {
+                // Normalize the path to resolve any relative components
+                fixturesPath = Path.GetFullPath(fixturesPath);
+
+                // Define a safe base directory (e.g., the project's root directory)
+                var safeBaseDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), ".."));
+
+                // Ensure the path is within the safe base directory
+                if (!fixturesPath.StartsWith(safeBaseDirectory + Path.DirectorySeparatorChar, StringComparison.Ordinal))
+                {
+                    throw new Exception("Path set as environment variable 'YAMLDOTNET_SPEC_SUITE_DIR' is not within the allowed base directory!");
+                }
+
                 if (!Directory.Exists(fixturesPath))
                 {
                     throw new Exception("Path set as environment variable 'YAMLDOTNET_SPEC_SUITE_DIR' does not exist!");
